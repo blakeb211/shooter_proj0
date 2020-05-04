@@ -1,6 +1,25 @@
 #pragma once
 #include <vector>
 
+struct Bullet;
+
+namespace Globals {
+// Player
+const int kPlayerWidth = 4;
+const int kPlayerHeight = 4;
+const float kPlayerSpeed = 100;
+const float kScreenWidth = 360;
+const float kScreenHeight = kScreenWidth * 9 / 16;
+// Bullet
+int kBulletWidth = 3;
+int kBulletHeight = 3;
+float kBulletSpeed = -120;
+Bullet* reusable_bullet;
+// Level - what level are we on?
+int Level = 0;
+}  // namespace Globals
+
+
 struct Bullet {
   Bullet() = default;
   Bullet(float x, float y, float vx, float vy) {
@@ -25,34 +44,19 @@ struct Alien {
   float Pos[2];
   float Vel[2];
   int height, width;
-  void UpdatePosition(float fElapsed, int screenWidth, int screenHeight) {
+  void UpdatePosition(float fElapsed) {
     Pos[0] += Vel[0] * fElapsed;
     Pos[1] += Vel[1] * fElapsed;
     // wrap around if go off screne
     if (Pos[0] < 0)
-      Pos[0] += screenWidth;
-    else if (Pos[0] > screenWidth)
-      Pos[0] -= screenWidth;
-    else if (Pos[1] > screenHeight)
-      Pos[1] -= screenHeight;
+      Pos[0] += Globals::kScreenWidth;
+    else if (Pos[0] > Globals::kScreenWidth)
+      Pos[0] -= Globals::kScreenWidth;
+    else if (Pos[1] > Globals::kScreenHeight)
+      Pos[1] -= Globals::kScreenHeight;
     else if (Pos[1] < 0) {
-      Pos[1] += screenHeight;
+      Pos[1] += Globals::kScreenHeight;
     }
   }
 };
 
-namespace Globals {
-  // Player 
-  const int kPlayerWidth = 4;
-  const int kPlayerHeight = 4;
-  const float kPlayerSpeed = 100;
-  const float kScreenWidth = 360;
-  const float kScreenHeight = kScreenWidth * 9 / 16;
-  // Bullet
-  int kBulletWidth = 3;
-  int kBulletHeight = 3;
-  float kBulletSpeed = -120;
-  Bullet* reusable_bullet;
-  // Level - what level are we on?
-  int Level = 0;
-  } // namespace Globals

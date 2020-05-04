@@ -27,8 +27,6 @@ struct Example : public olcConsoleGameEngine {
   }
 
   bool OnUserUpdate(float fElapsedTime) {
-	int _screenWidth = ScreenWidth();
-	int _screenHeight = ScreenHeight();
     // use fElapsedTime to modulate speed of motion
 
     // Check for User Input
@@ -69,15 +67,14 @@ struct Example : public olcConsoleGameEngine {
         // we have a re-usable bullet slot, so update all active bullets
           b.Pos[1] += Globals::kBulletSpeed * fElapsedTime;
       }
-      //
-      // Update Enemy Position
-      //
-      for (auto& e : enemy) {
-        e.UpdatePosition(fElapsedTime, _screenWidth, _screenHeight);
-      }
-
     }
 
+    //
+    // Update Enemy Position
+    //
+    for (auto& e : enemy) {
+      e.UpdatePosition(fElapsedTime);
+    }
     /************************************************************************************
     // Drawing Start
     /************************************************************************************/
