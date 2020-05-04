@@ -23,7 +23,7 @@
     <ClInclude Include="olcConsoleGameEngine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\blakelib\blakelib.h">
+    <ClInclude Include="stdlibs.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

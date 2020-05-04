@@ -1,0 +1,15 @@
+#pragma once
+#include <iostream>
+#include <vector>
+#include <string>
+#include <cmath>
+#include <iomanip>
+#include <fstream>
+#include <cassert>
+#include <exception>
+#include <algorithm>
+#include <limits>
+#include <list>
+#include <deque>
+#include <stack>
+#include <array>

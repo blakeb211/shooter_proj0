@@ -1,7 +1,7 @@
 // shooter_proj0.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //
 
-#include "../../blakelib/blakelib.h"
+#include "stdlibs.h"
 #include "olcConsoleGameEngine.h"
 
 
@@ -54,7 +54,7 @@ struct Example : public olcConsoleGameEngine {
     }
     // Clear Screen
     Fill(0, 0, ScreenWidth(), ScreenHeight(), L' ',
-         4);
+         BG_WHITE);
     //
     // Draw Player
     //
@@ -65,7 +65,7 @@ struct Example : public olcConsoleGameEngine {
     //
     for (auto& b : bullets) {
       Fill(b.Pos[0], b.Pos[1], b.Pos[0] + b.Width, b.Pos[1] + b.Height, L'%',
-           FG_GREEN);
+           FG_CYAN);
     }
     return true; 
   }
