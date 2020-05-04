@@ -33,14 +33,15 @@ struct Example : public olcConsoleGameEngine {
 
     // Check for User Input
     //
-    // If Empty_Bullet_Slot, re-use that bullet.
-    // Otherwise, create a new bullet.
     if (m_keys[VK_SPACE].bPressed) {
+      // if there is an reusable bullet, re-use it
       if (Globals::reusable_bullet) {
         Globals::reusable_bullet->Pos[1] = playerPos[1] - Globals::kBulletHeight;
         Globals::reusable_bullet->Pos[0] = playerPos[0] + Globals::kPlayerWidth / 2;
+        Globals::reusable_bullet->Alive = true;
         Globals::reusable_bullet = 0;
       } else
+        // create new bullet
         bullet.emplace_back(playerPos[0], playerPos[1] - 1, 0, 2);
     }
     //
@@ -57,9 +58,13 @@ struct Example : public olcConsoleGameEngine {
     // Check Collisions
     //
     for (auto& e : enemy) {
+      if (e.Alive)
       for (auto& b : bullet) {
-        if (Alien::GotHit(e, b))
-          e.Health--;
+        if (b.Alive)
+          if (Alien::GotHit(e, b)) {
+            e.Health--;
+            b.Alive = false;
+          }
       }
       // kill the enemy if health is gone
       if (e.Health <= 0)
@@ -72,8 +77,10 @@ struct Example : public olcConsoleGameEngine {
     if (!Globals::reusable_bullet) {
       for (auto& b : bullet) {
         // mark a re-usable bullet slot because we don't have one
-        if (b.Pos[1] < 0)
+        if (b.Pos[1] < 0) {
+          b.Alive = false;
           Globals::reusable_bullet = &b;
+        }
         else
           b.Pos[1] += Globals::kBulletSpeed * fElapsedTime;
       }
@@ -103,7 +110,7 @@ struct Example : public olcConsoleGameEngine {
     
     // Draw Bullets
     for (auto& b : bullet) {
-      if (b.Pos[1] >= 0 - Globals::kPlayerHeight) 
+      if (b.Alive) 
         Fill(b.Pos[0], b.Pos[1], b.Pos[0] + Globals::kBulletWidth,
              b.Pos[1] + Globals::kBulletHeight, L'O', 60);
     }

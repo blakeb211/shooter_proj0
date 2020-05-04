@@ -26,9 +26,11 @@ struct Bullet {
     Pos[1] = y;
     Vel[0] = vx;
     Vel[1] = vy;
+    Alive = true;
   }
   float Pos[2];
   float Vel[2];
+  bool Alive;
 };
 
 struct Alien {
@@ -73,7 +75,7 @@ bool Alien::GotHit(Alien& a, Bullet& b) {
   int bottomBullet = b.Pos[1] + Globals::kBulletHeight;
   int leftBullet = b.Pos[0];
   int rightBullet = b.Pos[0] + Globals::kBulletWidth;
-  if (leftBullet > leftAlien && leftBullet < rightAlien && topBullet > topAlien && topBullet < bottomAlien){
+  if (rightBullet > leftAlien && leftBullet < rightAlien && topBullet > topAlien && topBullet < bottomAlien){
     std::cout << "Collision Happened" << std::endl;
     return true;
   } else {
