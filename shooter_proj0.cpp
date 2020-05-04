@@ -1,93 +1,90 @@
-// shooter_proj0.cpp : This file contains the 'main' function. Program execution begins and ends there.
+// shooter_proj0.cpp : This file contains the 'main' function. Program execution
+// begins and ends there.
 //
 
-#include "stdlibs.h"
+#include "globals.h"
 #include "olcConsoleGameEngine.h"
-
-
-struct Bullet {
-  Bullet() = default;
-  Bullet(float x, float y, float vx, float vy) { 
-    Pos[0] = x;
-    Pos[1] = y;
-    Vel[0] = vx;
-    Vel[1] = vy;
-    Width = 2;
-    Height = 2;
-  }
-  float Pos[2];
-  float Vel[2];
-  int Width, Height;
-};
+#include "stdlibs.h"
 
 struct Example : public olcConsoleGameEngine {
   bool OnUserCreate() {
-    // load level, characters, sprites, etc.
+    // load level, characters, sprites, etc
+    Globals::last_empty = 0;
     playerPos[0] = ScreenWidth() / 2;
-    playerPos[1] = ScreenHeight() - 5;
-    return true; 
+    playerPos[1] = ScreenHeight() - (Globals::kPlayerHeight + 1);
+
+    return true;
   }
 
-  bool OnUserUpdate(float fElapsedTime) { 
+  bool OnUserUpdate(float fElapsedTime) {
     // use fElapsedTime to modulate speed of motion
+
+    // Check for User Input
     //
-    // Update Player Position
-    //
+    // If Empty_Bullet_Slot, re-use that bullet.
+    // Otherwise, create a new bullet.
     if (m_keys[VK_SPACE].bPressed) {
-      bullets.emplace_back(playerPos[0], playerPos[1] - 1, 0, 2);
-      cout << "new bullet created" << endl;
-      //cout << setw(20) << "SPACE" << endl;
+      if (Globals::last_empty) {
+        Globals::last_empty->Pos[1] = playerPos[1] - 1;
+        Globals::last_empty->Pos[0] = playerPos[0];
+        Globals::last_empty = 0;
+      } else
+        bullets.emplace_back(playerPos[0], playerPos[1] - 1, 0, 2);
+      // cout << setw(20) << "SPACE" << endl;
     }
     if (m_keys[VK_RIGHT].bPressed || m_keys[VK_RIGHT].bHeld) {
       playerPos[0]++;
-      //cout << setw(20) << "RIGHT" << endl;
+      // cout << setw(20) << "RIGHT" << endl;
     }
     if (m_keys[VK_LEFT].bPressed || m_keys[VK_LEFT].bHeld) {
       playerPos[0]--;
-      //cout << setw(20) << "LEFT" << endl;
+      // cout << setw(20) << "LEFT" << endl;
     }
+
     //
     // Update Bullet Positions
     //
-    for (auto& b : bullets) {
-      b.Pos[1] -= b.Vel[1];
+    if (!Globals::last_empty) {
+      for (auto& b : bullets) {
+        // mark the last used bullet
+
+        if (b.Pos[1] < 0)
+          Globals::last_empty = &b;
+        else
+          b.Pos[1] -= Globals::kBulletSpeed;
+      }
+    } else {
+      for (auto& b : bullets) {
+        // move active bullets
+        if (b.Pos[1] >= 0)
+          b.Pos[1] -= Globals::kBulletSpeed;
+      }
     }
+ 
     // Clear Screen
-    Fill(0, 0, ScreenWidth(), ScreenHeight(), L';',
-         85);
+    Fill(0, 0, ScreenWidth(), ScreenHeight(), L';', 0);
+
     //
     // Draw Player
     //
-    Fill(playerPos[0], playerPos[1], playerPos[0]+4,
-         playerPos[1] + 4, L'&', 14);
+    Fill(playerPos[0], playerPos[1], playerPos[0] + Globals::kPlayerWidth,
+         playerPos[1] + Globals::kPlayerHeight, L'&', 14);
     //
     // Draw Bullets
     //
     for (auto& b : bullets) {
-      Fill(b.Pos[0], b.Pos[1], b.Pos[0] + b.Width, b.Pos[1] + b.Height, L'%',
-           60);
+      Fill(b.Pos[0], b.Pos[1], b.Pos[0] + Globals::kBulletWidth,
+           b.Pos[1] + Globals::kBulletHeight, L'O', 60);
     }
-    //
-    // COLOR TEST
-    //
-    int xx = 0;
-    int yy = 40;
-
-    for (int i = 0; i < 128; i++) {
-      Fill(xx, yy, xx + 2, yy + 2, L'-', i);
-      xx += 2;
-      if (xx % 50 == 0)
-        xx + 10;
-    }
-    return true; 
+    return true;
   }
-  
-  vector<Bullet> bullets; 
+
+  vector<Bullet> bullets;
   int playerPos[2];
 };
 
 int main() {
-  // 
+  //
   // Create game window
   //
   Example game;

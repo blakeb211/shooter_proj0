@@ -158,6 +158,7 @@
     <ClCompile Include="shooter_proj0.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="globals.h" />
     <ClInclude Include="olcConsoleGameEngine.h" />
     <ClInclude Include="stdlibs.h" />
   </ItemGroup>

@@ -26,5 +26,8 @@
     <ClInclude Include="stdlibs.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="globals.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
