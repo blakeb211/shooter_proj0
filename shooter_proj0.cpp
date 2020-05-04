@@ -22,6 +22,12 @@ struct Example : public olcConsoleGameEngine {
         enemy.emplace_back(Alien(25, 10, 5, 25, 10, 10));
         enemy.emplace_back(Alien(40, 10, 5, 25, 10, 10));
         break;
+		case 1:
+		// dynamically allocate new enemies for the current level
+        for (int i = 0; i < 10; i++)
+			enemy.emplace_back(Alien(i*10, 10, i, 5*i, 8, 8));
+
+        break;
       default:
         break;
     };
@@ -116,11 +122,23 @@ struct Example : public olcConsoleGameEngine {
     }
 
     // Draw Enemies
+	int _livingEnemyCount = 0;
     for (auto& e : enemy) {
       if (e.Alive)
+	  {
+		_livingEnemyCount++;
         Fill(e.Pos[0], e.Pos[1], e.Pos[0] + e.width,
            e.Pos[1] + e.height, L'T', 14);
-    }
+	  }
+	}
+	// Progress to Next level
+	if (_livingEnemyCount == 0) {
+		Globals::Level++;
+		enemy.clear();
+    bullet.clear();
+    OnUserCreate();
+    Sleep(3000);
+	}
     /************************************************************************************
     // Drawing End
     /************************************************************************************/

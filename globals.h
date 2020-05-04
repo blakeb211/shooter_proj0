@@ -1,5 +1,8 @@
 #pragma once
 #include "stdlibs.h"
+
+
+// Forward declare Bullet so Globals can use it
 struct Bullet;
 
 namespace Globals {
@@ -76,7 +79,7 @@ bool Alien::GotHit(Alien& a, Bullet& b) {
   int leftBullet = b.Pos[0];
   int rightBullet = b.Pos[0] + Globals::kBulletWidth;
   if (rightBullet > leftAlien && leftBullet < rightAlien && topBullet > topAlien && topBullet < bottomAlien){
-    std::cout << "Collision Happened" << std::endl;
+    //std::cout << "Collision Happened" << std::endl;
     return true;
   } else {
     return false;
