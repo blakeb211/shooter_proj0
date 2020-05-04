@@ -21,6 +21,8 @@ Bullet* reusable_bullet;
 int Level = 0;    // what level are we on
 bool Pause = false; // is game paused
 bool Cutscene = false; // is game in a cutscene
+float CutSceneTimer = 0.0;
+const float kCutSceneLength = 5; // 10 seconds pause
 }  // namespace Globals
 
 
