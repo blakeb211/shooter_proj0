@@ -35,8 +35,17 @@ struct Example : public olcConsoleGameEngine {
   }
 
   bool OnUserUpdate(float fElapsedTime) {
-    // use fElapsedTime to modulate speed of motion
+    //
+    // Toggle Pause and break;
+    //
+    if (m_keys[VK_ESCAPE].bPressed) {
+      Globals::Pause = !Globals::Pause;
+      cout << "Pause Pressed" << endl;
+    }
 
+    if (Globals::Pause) {
+      return true;
+    }
     // Check for User Input
     //
     if (m_keys[VK_SPACE].bPressed) {

@@ -17,8 +17,10 @@ int kBulletWidth = 3;
 int kBulletHeight = 3;
 float kBulletSpeed = -120;
 Bullet* reusable_bullet;
-// Level - what level are we on?
-int Level = 0;
+// Game state
+int Level = 0;    // what level are we on
+bool Pause = false; // is game paused
+bool Cutscene = false; // is game in a cutscene
 }  // namespace Globals
 
 
