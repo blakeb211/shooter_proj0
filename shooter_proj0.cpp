@@ -24,6 +24,7 @@ struct Example : public olcConsoleGameEngine {
         enemy.emplace_back(Alien(40, 10, 5, 25, 10, 10));
         break;
       case 1:
+        Globals::Cutscene = true;
         // dynamically allocate new enemies for the current level
         for (int i = 0; i < 10; i++)
           enemy.emplace_back(Alien(i * 10, 10, i, 5 * i, 8, 8));
@@ -39,26 +40,31 @@ struct Example : public olcConsoleGameEngine {
     //
     // Toggle Pause and break;
     //
-    if (Globals::Pause) {
-      return true;
-    }
     if (m_keys[VK_ESCAPE].bPressed) {
       Globals::Pause = !Globals::Pause;
       cout << "Pause Pressed" << endl;
     }
+    if (Globals::Pause) {
+      return true;
+    }
     if (Globals::Cutscene) {
       Globals::CutSceneTimer += fElapsedTime;
       if (Globals::CutSceneTimer >= Globals::kCutSceneLength) {
+        // reset timer
+        Globals::CutSceneTimer = 0;
+        // reset font
         m_nFontHeight = 2;
         m_nFontWidth = 2;
+        // reset cutscene flag
         Globals::Cutscene = false;
+        return true;
       }
       // Clear Screen
       Fill(0, 0, Globals::kScreenWidth, Globals::kScreenHeight, L' ', 0);
       // Draw Menu
-      m_nFontHeight = 12;
-      m_nFontWidth = 12;
-      string strLevel2 = "Level: " + to_string(Globals::Level);
+      m_nFontHeight = 16;
+      m_nFontWidth = 16;
+      string strLevel2 = "Get Ready! Level: " + to_string(Globals::Level);
       wstring strLevel(strLevel2.begin(), strLevel2.end());
       DrawString(10, 10, strLevel, 88);
       return true;
