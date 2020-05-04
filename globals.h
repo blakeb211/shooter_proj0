@@ -1,6 +1,5 @@
 #pragma once
-#include <vector>
-
+#include "stdlibs.h"
 struct Bullet;
 
 namespace Globals {
@@ -40,10 +39,14 @@ struct Alien {
     Vel[1] = vy;
     this->width = width;
     this->height = height;
+    Alive = true;
+    Health = 2;
   }
   float Pos[2];
   float Vel[2];
   int height, width;
+  bool Alive;
+  int Health;
   void UpdatePosition(float fElapsed) {
     Pos[0] += Vel[0] * fElapsed;
     Pos[1] += Vel[1] * fElapsed;
@@ -58,5 +61,22 @@ struct Alien {
       Pos[1] += Globals::kScreenHeight;
     }
   }
+  static bool GotHit(Alien&, Bullet&);
 };
 
+bool Alien::GotHit(Alien& a, Bullet& b) {
+  int rightAlien = a.Pos[0] + a.width;
+  int leftAlien = a.Pos[0];
+  int bottomAlien = a.Pos[1] + a.height;
+  int topAlien = a.Pos[1];
+  int topBullet = b.Pos[1];
+  int bottomBullet = b.Pos[1] + Globals::kBulletHeight;
+  int leftBullet = b.Pos[0];
+  int rightBullet = b.Pos[0] + Globals::kBulletWidth;
+  if (leftBullet > leftAlien && leftBullet < rightAlien && topBullet > topAlien && topBullet < bottomAlien){
+    std::cout << "Collision Happened" << std::endl;
+    return true;
+  } else {
+    return false;
+  }
+}

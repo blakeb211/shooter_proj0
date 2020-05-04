@@ -19,6 +19,8 @@ struct Example : public olcConsoleGameEngine {
         // dynamically allocate new enemies for the current level
         enemy.emplace_back(Alien(10, 10, 10, 50, 8, 8));
         enemy.emplace_back(Alien(ScreenWidth() - 10, 10, -5, 50, 8, 8));
+        enemy.emplace_back(Alien(25, 10, 5, 25, 10, 10));
+        enemy.emplace_back(Alien(40, 10, 5, 25, 10, 10));
         break;
       default:
         break;
@@ -52,6 +54,19 @@ struct Example : public olcConsoleGameEngine {
     }
 
     //
+    // Check Collisions
+    //
+    for (auto& e : enemy) {
+      for (auto& b : bullet) {
+        if (Alien::GotHit(e, b))
+          e.Health--;
+      }
+      // kill the enemy if health is gone
+      if (e.Health <= 0)
+        e.Alive = false;
+    }
+
+    //
     // Update Bullet Positions
     //
     if (!Globals::reusable_bullet) {
@@ -73,6 +88,7 @@ struct Example : public olcConsoleGameEngine {
     // Update Enemy Position
     //
     for (auto& e : enemy) {
+      if (e.Alive)
       e.UpdatePosition(fElapsedTime);
     }
     /************************************************************************************
@@ -94,8 +110,8 @@ struct Example : public olcConsoleGameEngine {
 
     // Draw Enemies
     for (auto& e : enemy) {
-      cout << "e.x " << e.Pos[0] << " e.y " << e.Pos[1] << "e.width" << e.width << "e.height" << e.height <<  endl;
-      Fill(e.Pos[0], e.Pos[1], e.Pos[0] + e.width,
+      if (e.Alive)
+        Fill(e.Pos[0], e.Pos[1], e.Pos[0] + e.width,
            e.Pos[1] + e.height, L'T', 14);
     }
     /************************************************************************************
