@@ -53,8 +53,8 @@ struct Example : public olcConsoleGameEngine {
       b.Pos[1] -= b.Vel[1];
     }
     // Clear Screen
-    Fill(0, 0, ScreenWidth(), ScreenHeight(), L' ',
-         BG_WHITE);
+    Fill(0, 0, ScreenWidth(), ScreenHeight(), L';',
+         85);
     //
     // Draw Player
     //
@@ -65,7 +65,19 @@ struct Example : public olcConsoleGameEngine {
     //
     for (auto& b : bullets) {
       Fill(b.Pos[0], b.Pos[1], b.Pos[0] + b.Width, b.Pos[1] + b.Height, L'%',
-           FG_CYAN);
+           60);
+    }
+    //
+    // COLOR TEST
+    //
+    int xx = 0;
+    int yy = 40;
+
+    for (int i = 0; i < 128; i++) {
+      Fill(xx, yy, xx + 2, yy + 2, L'-', i);
+      xx += 2;
+      if (xx % 50 == 0)
+        xx + 10;
     }
     return true; 
   }
