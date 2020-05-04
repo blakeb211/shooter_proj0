@@ -65,8 +65,11 @@ struct Example : public olcConsoleGameEngine {
       m_nFontHeight = 16;
       m_nFontWidth = 16;
       string strLevel2 = "Get Ready! Level: " + to_string(Globals::Level);
+      string strPause2 = "(Pause game with Escape Key) ";
       wstring strLevel(strLevel2.begin(), strLevel2.end());
+      wstring strPause(strPause2.begin(), strPause2.end());
       DrawString(10, 10, strLevel, 88);
+      DrawString(10, 30, strPause, 88);
       return true;
     }
     // Check for User Input
