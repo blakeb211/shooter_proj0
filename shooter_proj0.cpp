@@ -128,7 +128,7 @@ struct Example : public olcConsoleGameEngine {
 	  {
 		_livingEnemyCount++;
         Fill(e.Pos[0], e.Pos[1], e.Pos[0] + e.width,
-           e.Pos[1] + e.height, L'T', 14);
+           e.Pos[1] + e.height, L'T', 75);
 	  }
 	}
 	// Progress to Next level

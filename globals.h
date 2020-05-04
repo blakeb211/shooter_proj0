@@ -47,11 +47,14 @@ struct Alien {
     Alive = true;
     Health = 2;
   }
+  // member variables
   float Pos[2];
   float Vel[2];
   int height, width;
   bool Alive;
   int Health;
+  
+  // member methods
   void UpdatePosition(float fElapsed) {
     Pos[0] += Vel[0] * fElapsed;
     Pos[1] += Vel[1] * fElapsed;
