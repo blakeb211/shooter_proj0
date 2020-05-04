@@ -17,9 +17,10 @@ namespace Globals {
   // Player 
   const int kPlayerWidth = 4;
   const int kPlayerHeight = 4;
+  const float kPlayerSpeed = 100;
   // Bullet
   const int kBulletWidth = 3;
   const int kBulletHeight = 3;
-  const int kBulletSpeed = 1;
-  Bullet* last_empty;
+  const float kBulletSpeed = 120;
+  Bullet* reusable_bullet;
 } // namespace Globals

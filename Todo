@@ -1,1 +1,7 @@
 TODO Space Invaders
+
+NOT_DONE
+  Fix the framerate
+
+DONE
+  Make bullets re-usable

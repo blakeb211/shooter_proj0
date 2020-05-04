@@ -162,6 +162,9 @@
     <ClInclude Include="olcConsoleGameEngine.h" />
     <ClInclude Include="stdlibs.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Todo" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
