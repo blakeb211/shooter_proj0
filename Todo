@@ -1,7 +1,14 @@
 TODO Space Invaders
 
-NOT_DONE
-  Fix the framerate
-
 DONE
   Make bullets re-usable
+    Fix the framerate
+  
+  
+FEATURES
+	ALIENS
+		COLLISION DETECTION
+		
+	PLAYER ATTACKS
+		SEND UP WALLS
+		LAY TIMED ATTACKS

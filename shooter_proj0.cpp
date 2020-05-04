@@ -13,6 +13,16 @@ struct Example : public olcConsoleGameEngine {
     playerPos[0] = ScreenWidth() / 2;
     playerPos[1] = ScreenHeight() - (Globals::kPlayerHeight + 1);
 
+    // create aliens
+    switch (Globals::Level) {
+      case 0:
+        // dynamically allocate new enemies for the current level
+        enemy.emplace_back(Alien(10, 10, 10, 50, 8, 8));
+        enemy.emplace_back(Alien(ScreenWidth() - 10, 10, -5, 50, 8, 8));
+        break;
+      default:
+        break;
+    };
     return true;
   }
 
@@ -29,8 +39,7 @@ struct Example : public olcConsoleGameEngine {
         Globals::reusable_bullet->Pos[0] = playerPos[0] + Globals::kPlayerWidth / 2;
         Globals::reusable_bullet = 0;
       } else
-        bullets.emplace_back(playerPos[0], playerPos[1] - 1, 0, 2);
-      // cout << setw(20) << "SPACE" << endl;
+        bullet.emplace_back(playerPos[0], playerPos[1] - 1, 0, 2);
     }
     //
     // Update Player Position
@@ -46,18 +55,25 @@ struct Example : public olcConsoleGameEngine {
     // Update Bullet Positions
     //
     if (!Globals::reusable_bullet) {
-      for (auto& b : bullets) {
+      for (auto& b : bullet) {
         // mark a re-usable bullet slot because we don't have one
         if (b.Pos[1] < 0)
           Globals::reusable_bullet = &b;
         else
-          b.Pos[1] -= Globals::kBulletSpeed * fElapsedTime;
+          b.Pos[1] += Globals::kBulletSpeed * fElapsedTime;
       }
     } else {
-      for (auto& b : bullets) {
+      for (auto& b : bullet) {
         // we have a re-usable bullet slot, so update all active bullets
-          b.Pos[1] -= Globals::kBulletSpeed * fElapsedTime;
+          b.Pos[1] += Globals::kBulletSpeed * fElapsedTime;
       }
+      //
+      // Update Enemy Position
+      //
+      for (auto& e : enemy) {
+        e.UpdatePosition(fElapsedTime, ScreenWidth(), ScreenHeight());
+      }
+
     }
 
     // 
@@ -71,10 +87,17 @@ struct Example : public olcConsoleGameEngine {
          playerPos[1] + Globals::kPlayerHeight, L'&', 14);
     
     // Draw Bullets
-    for (auto& b : bullets) {
+    for (auto& b : bullet) {
       if (b.Pos[1] >= 0 - Globals::kPlayerHeight) 
         Fill(b.Pos[0], b.Pos[1], b.Pos[0] + Globals::kBulletWidth,
              b.Pos[1] + Globals::kBulletHeight, L'O', 60);
+    }
+
+    // Draw Enemies
+    for (auto& e : enemy) {
+      cout << "e.x " << e.Pos[0] << " e.y " << e.Pos[1] << "e.width" << e.width << "e.height" << e.height <<  endl;
+      Fill(e.Pos[0], e.Pos[1], e.Pos[0] + e.width,
+           e.Pos[1] + e.height, L'T', 14);
     }
     // 
     // Drawing End
@@ -82,8 +105,9 @@ struct Example : public olcConsoleGameEngine {
     return true;
   }
 
-  vector<Bullet> bullets;
+  vector<Bullet> bullet;
   float playerPos[2];
+  vector<Alien> enemy;
 };
 
 int main() {
