@@ -2,13 +2,15 @@ TODO Space Invaders
 
 DONE
   Make bullets re-usable
-    Fix the framerate
-  
+  Modulate motion with fElapsedTime
+  Aliens + Bullet Collision Detection
   
 FEATURES
-	ALIENS
-		COLLISION DETECTION
-		
+	ALIEN ATTACKS
+  PLAYER DIE 
+  LEVEL RESET AFTER PLAYER DEATH
+  ALIEN BEHAVIORS
+
 	PLAYER ATTACKS
 		SEND UP WALLS
 		LAY TIMED ATTACKS
