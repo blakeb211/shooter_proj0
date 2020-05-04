@@ -46,6 +46,8 @@ namespace Globals {
   const int kPlayerWidth = 4;
   const int kPlayerHeight = 4;
   const float kPlayerSpeed = 100;
+  const float kScreenWidth = 360;
+  const float kScreenHeight = kScreenWidth * 9 / 16;
   // Bullet
   int kBulletWidth = 3;
   int kBulletHeight = 3;

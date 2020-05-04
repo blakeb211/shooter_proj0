@@ -27,6 +27,8 @@ struct Example : public olcConsoleGameEngine {
   }
 
   bool OnUserUpdate(float fElapsedTime) {
+	int _screenWidth = ScreenWidth();
+	int _screenHeight = ScreenHeight();
     // use fElapsedTime to modulate speed of motion
 
     // Check for User Input
@@ -71,16 +73,16 @@ struct Example : public olcConsoleGameEngine {
       // Update Enemy Position
       //
       for (auto& e : enemy) {
-        e.UpdatePosition(fElapsedTime, ScreenWidth(), ScreenHeight());
+        e.UpdatePosition(fElapsedTime, _screenWidth, _screenHeight);
       }
 
     }
 
-    // 
+    /************************************************************************************
     // Drawing Start
-    //
+    /************************************************************************************/
     // Clear Screen
-    Fill(0, 0, ScreenWidth(), ScreenHeight(), L' ', 0);
+    Fill(0, 0, Globals::kScreenWidth, Globals::kScreenHeight, L' ', 0);
 
     // Draw Player
     Fill(playerPos[0], playerPos[1], playerPos[0] + Globals::kPlayerWidth,
@@ -99,9 +101,9 @@ struct Example : public olcConsoleGameEngine {
       Fill(e.Pos[0], e.Pos[1], e.Pos[0] + e.width,
            e.Pos[1] + e.height, L'T', 14);
     }
-    // 
+    /************************************************************************************
     // Drawing End
-    // 
+    /************************************************************************************/
     return true;
   }
 
@@ -115,8 +117,8 @@ int main() {
   // Create game window
   //
   Example game;
-  const int kWinWidth = 300;
-  game.ConstructConsole(kWinWidth, kWinWidth * 9 / 16, 2, 2);
+  const int kWinWidth = Globals::kScreenWidth;
+  game.ConstructConsole(Globals::kScreenWidth, Globals::kScreenHeight, 2, 2);
   game.Start();
   return 0;
 }
