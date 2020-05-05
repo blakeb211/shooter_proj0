@@ -47,6 +47,7 @@ struct Alien {
     Alive = true;
     Health = 2;
   }
+  
   // member variables
   float Pos[2];
   float Vel[2];

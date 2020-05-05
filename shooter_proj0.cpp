@@ -25,7 +25,7 @@ struct Example : public olcConsoleGameEngine {
 		case 1:
 		// dynamically allocate new enemies for the current level
         for (int i = 0; i < 10; i++)
-			enemy.emplace_back(Alien(i*10, 10, i, 5*i, 8, 8));
+			enemy.emplace_back(Alien(i*10, 10, 15, 40, 8, 8));
 
         break;
       default:
@@ -135,9 +135,9 @@ struct Example : public olcConsoleGameEngine {
 	if (_livingEnemyCount == 0) {
 		Globals::Level++;
 		enemy.clear();
-    bullet.clear();
-    OnUserCreate();
-    Sleep(3000);
+		bullet.clear();
+		OnUserCreate();
+		Sleep(3000);
 	}
     /************************************************************************************
     // Drawing End
