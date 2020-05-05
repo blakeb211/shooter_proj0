@@ -26,6 +26,11 @@ struct Example : public olcConsoleGameEngine {
         enemy.emplace_back(Alien(30 + i * 40, 48, radius, rot_direction, 15, 8,
                                  Behavior::circles));
       }
+	  for (int i = 1; i < 7; i++) {
+        int shuffle_dir = (i % 3 == 0 ? 1 : -1);
+        enemy.emplace_back(Alien(i * widthSpacer0, 70, shuffle_dir*20, 8, 12,
+                                 8, Behavior::side_to_side));
+      }
       break;
     case 1:
       Globals::CUTSCENE = true;
@@ -124,6 +129,8 @@ struct Example : public olcConsoleGameEngine {
           if (b.Alive)
             if (Alien::GotHit(e, b)) {
               e.Health--;
+			  // create explosion effect
+			  explosions.emplace_back(e.Pos[0] + e.width / 2, e.Pos[1] + e.height / 2, 2.0, -999);
               b.Alive = false;
             }
         }
@@ -158,8 +165,15 @@ struct Example : public olcConsoleGameEngine {
       if (e.Alive)
         e.UpdatePosition(fElapsedTime);
     }
+	//
+	// Update Explosion Timers
+	//
+	for (auto &ex : explosions)
+	{
+		ex.UpdateTimer(fElapsedTime);
+	}
     /************************************************************************************
-                                                                Drawing Start
+                                      Drawing Start
     ************************************************************************************/
     // Clear Screen
     Fill(0, 0, Globals::kScreenWidth, Globals::kScreenHeight, L' ', 0);
@@ -184,23 +198,37 @@ struct Example : public olcConsoleGameEngine {
              75);
       }
     }
-    // Progress to Next level
+	// Draw Explosions
+	for (auto &ex : explosions)
+	{
+		if (ex.Alive)
+		{
+			// draw circle of triangles at ex's current radius
+			float radius = ex.GetRadius();
+			for(float theta = 0; theta < 2*Globals::M_PI; theta += 0.5){
+				int xpos = ex.xPos0 + radius*cos(theta);
+				int ypos = ex.yPos0 + radius*sin(theta);
+				DrawTriangle(xpos, ypos, xpos + 2, ypos + 2, xpos -2, ypos + 2, L'*', radius * 4);
+			}
+		}
+	}
+    /************************************************************************************
+                                  Drawing End
+    ************************************************************************************/
+	// Progress to Next level
     if (_livingEnemyCount == 0) {
       Globals::Level++;
       enemy.clear();
       bullet.clear();
       OnUserCreate();
     }
-    /************************************************************************************
-                                                                        Drawing
-    End
-    ************************************************************************************/
     return true;
   }
 
   vector<Bullet> bullet;
   float playerPos[2];
   vector<Alien> enemy;
+  vector<ParticleEffect> explosions;
 };
 
 int main() {

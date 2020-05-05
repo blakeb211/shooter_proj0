@@ -12,6 +12,7 @@ namespace Globals {
 	const float kPlayerSpeed = 115;
 	const float kScreenWidth = 360;
 	const float kScreenHeight = kScreenWidth * 9 / 16;
+	const double M_PI = 3.1415926;
 	// Bullet
 	int kBulletWidth = 3;
 	int kBulletHeight = 3;
@@ -24,6 +25,7 @@ namespace Globals {
 	float CutSceneTimer = 0.0;
 	const float kCutSceneLength = 5; // seconds pause
 	float TotalTime = 0.0; 
+	
 }  // namespace Globals
 
 
@@ -89,6 +91,34 @@ struct Alien {
   }
   static bool GotHit(const Alien&, const Bullet&);
 };
+
+struct ParticleEffect {
+public:
+	ParticleEffect() = default;
+	ParticleEffect(int x, int y, float duration, float param2) {
+		_timer = 0;
+		Alive = true;
+		xPos0 = x;
+		yPos0 = y;
+		_maxTimer = duration; // 2 seconds long
+	}
+	bool Alive;
+	int xPos0;
+	int yPos0;
+
+	void UpdateTimer(float fElapsed) { 
+		_timer += fElapsed; 
+		if (_timer >= _maxTimer) 
+			Alive = false;
+	}
+	float GetRadius() {
+		return _timer*_timer* + 4.0*_timer+3.0;
+	}
+private:
+	float _maxTimer;
+	float _timer;
+};
+
 
 // Static method for alien-bullet collisions
 bool Alien::GotHit(const Alien& a, const Bullet& b) {

@@ -2,14 +2,15 @@ TODO Space Invaders
 
 
 FEATURES
-  
+
+
+  ALIENS EXPLODE WHEN THEY DIE
   ALIEN ATTACKS
-  ALIENS EXPLODE
-  DIFFERENT ALIEN BEHAVIORS
-  PLAYER HEALTH
-  PLAYER DIE 
-  LEVEL RESET AFTER PLAYER DEATH
-  ALIEN BEHAVIORS
+
+  ALIEN BOID BEHAVIOR
+	PLAYER HEALTH
+	PLAYER DIE 
+	LEVEL RESET AFTER PLAYER DEATH
 
 	PLAYER ATTACKS
 		SEND UP WALLS
@@ -18,6 +19,7 @@ FEATURES
 		
 
 DONE
+  Alien Behaviors (side_to_side, circles)
   Make bullets re-usable
   Modulate motion with fElapsedTime
   Aliens + Bullet Collision Detection
