@@ -9,7 +9,7 @@ namespace Globals {
 // Player
 const int kPlayerWidth = 4;
 const int kPlayerHeight = 4;
-const float kPlayerSpeed = 100;
+const float kPlayerSpeed = 115;
 const float kScreenWidth = 360;
 const float kScreenHeight = kScreenWidth * 9 / 16;
 // Bullet
@@ -40,7 +40,7 @@ struct Bullet {
   bool Alive;
 };
 
-enum Behavior { circles, avoid_bottom_and_top, side_to_side, flocker };
+enum class Behavior { circles, avoid_bottom_and_top, side_to_side, flocker };
 
 struct Alien {
   Alien(float x, float y, float vx, float vy, int height, int width, Behavior b = Behavior::side_to_side) {

@@ -19,10 +19,9 @@ struct Example : public olcConsoleGameEngine {
       case 0:
         // dynamically allocate new enemies for the current level
         Globals::CUTSCENE = true;
-        
         for (int i = 2; i <= 8; i++)
-          enemy.emplace_back(Alien(i*widthSpacer0, 10, 10, 40, 8, 8, Behavior::side_to_side));
-
+          enemy.emplace_back(Alien(i * widthSpacer0, 10, 10, 40, 8, 8,
+                                   Behavior::side_to_side));
         break;
       case 1:
         Globals::CUTSCENE = true;
@@ -105,7 +104,7 @@ struct Example : public olcConsoleGameEngine {
     }
 
     //
-    // Check Collisions
+    // Check Enemy-Bullet Collisions
     //
     for (auto& e : enemy) {
       if (e.Alive)
