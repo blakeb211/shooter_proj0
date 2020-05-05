@@ -6,23 +6,24 @@
 struct Bullet;
 
 namespace Globals {
-// Player
-const int kPlayerWidth = 4;
-const int kPlayerHeight = 4;
-const float kPlayerSpeed = 115;
-const float kScreenWidth = 360;
-const float kScreenHeight = kScreenWidth * 9 / 16;
-// Bullet
-int kBulletWidth = 3;
-int kBulletHeight = 3;
-float kBulletSpeed = -140;
-Bullet* reusable_bullet;
-// Game state
-int Level = 0;    // what level are we on
-bool PAUSE = false; // is game paused
-bool CUTSCENE = false; // is game in a cutscene
-float CutSceneTimer = 0.0;
-const float kCutSceneLength = 5; // 10 seconds pause
+	// Player
+	const int kPlayerWidth = 4;
+	const int kPlayerHeight = 4;
+	const float kPlayerSpeed = 115;
+	const float kScreenWidth = 360;
+	const float kScreenHeight = kScreenWidth * 9 / 16;
+	// Bullet
+	int kBulletWidth = 3;
+	int kBulletHeight = 3;
+	float kBulletSpeed = -140;
+	Bullet* reusable_bullet;
+	// Game state
+	int Level = 0;    // what level are we on
+	bool PAUSE = false; // is game paused
+	bool CUTSCENE = false; // is game in a cutscene
+	float CutSceneTimer = 0.0;
+	const float kCutSceneLength = 5; // seconds pause
+	float TotalTime = 0.0; 
 }  // namespace Globals
 
 
@@ -43,8 +44,10 @@ struct Bullet {
 enum class Behavior { circles, avoid_bottom_and_top, side_to_side, flocker };
 
 struct Alien {
-  Alien(float x, float y, float vx, float vy, int height, int width, Behavior b = Behavior::side_to_side) {
+  Alien(float x, float y, float vx, float vy, int width, int height, Behavior b = Behavior::side_to_side) {
     Pos[0] = x;
+	PosX0 = x;
+	PosY0 = y;
     Pos[1] = y;
     Vel[0] = vx;
     Vel[1] = vy;
@@ -52,30 +55,37 @@ struct Alien {
     this->height = height;
     Alive = true;
     Health = 2;
-    Behavior attitude;
+	attitude = b;
   }
   
   // member variables
+  float PosX0, PosY0;
   float Pos[2];
   float Vel[2];
   int height, width;
   bool Alive;
   int Health;
-  
+  Behavior attitude;
   // member methods
   void UpdatePosition(float fElapsed) {
-    Pos[0] += Vel[0] * fElapsed;
-    Pos[1] += Vel[1] * fElapsed;
-    // wrap around if go off screne
-    if (Pos[0] < 0)
-      Pos[0] += Globals::kScreenWidth;
-    else if (Pos[0] > Globals::kScreenWidth)
-      Pos[0] -= Globals::kScreenWidth;
-    else if (Pos[1] > Globals::kScreenHeight)
-      Pos[1] -= Globals::kScreenHeight;
-    else if (Pos[1] < 0) {
-      Pos[1] += Globals::kScreenHeight;
-    }
+	  switch(attitude) {
+		case Behavior::side_to_side:  
+		    Pos[0] += Vel[0] * fElapsed; 
+			Pos[1] += Vel[1] * fElapsed;
+			if(Pos[0] < 20 || Pos[0] > Globals::kScreenWidth - 20)
+				Vel[0]*=-1.0;
+			if(Pos[1] < 10 || Pos[1] > Globals::kScreenHeight - 35)
+				Vel[1]*=-1.0;
+		break;
+		case Behavior::circles:
+			Pos[0] = PosX0 + Vel[1]*Vel[0]*cos(1.1*Globals::TotalTime); // Vel[0] is the radius
+			Pos[1] = PosY0 + Vel[1]*Vel[0]*sin(1.1*Globals::TotalTime); // Vel[1] is the sign
+			if(Pos[0] < 0) Pos[0] += Globals::kScreenWidth;
+			if (Pos[0] > Globals::kScreenWidth) Pos[0] -= Globals::kScreenWidth;
+			if(Pos[1] < 0) Pos[1] += Globals::kScreenHeight;
+			if (Pos[1] > Globals::kScreenHeight) Pos[1] -= Globals::kScreenHeight;
+		break;
+	  };
   }
   static bool GotHit(const Alien&, const Bullet&);
 };

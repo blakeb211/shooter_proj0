@@ -7,8 +7,10 @@
 #include "stdlibs.h"
 
 struct Example : public olcConsoleGameEngine {
-  bool OnUserCreate() {
+	bool OnUserCreate() {
+	// This function is called at the beginning of each level
     // load level, characters, sprites, etc
+	Globals::TotalTime = 0.0;
     Globals::reusable_bullet = 0;
     playerPos[0] = ScreenWidth() / 2;
     playerPos[1] = ScreenHeight() - (Globals::kPlayerHeight + 1);
@@ -17,24 +19,26 @@ struct Example : public olcConsoleGameEngine {
     int widthSpacer0 = (ScreenWidth() / 10);
     switch (Globals::Level) {
       case 0:
-        // dynamically allocate new enemies for the current level
         Globals::CUTSCENE = true;
-        for (int i = 2; i <= 8; i++)
-          enemy.emplace_back(Alien(i * widthSpacer0, 10, 10, 40, 8, 8,
-                                   Behavior::side_to_side));
+        for (int i = 2; i <= 5; i++){
+			int rot_direction = (i%2 == 0 ? -1 : 1);
+			int radius = 30;
+			enemy.emplace_back(Alien(30+i*40, 48, radius, rot_direction, 15, 8, Behavior::circles));
+		}
         break;
       case 1:
         Globals::CUTSCENE = true;
-        // dynamically allocate new enemies for the current level
-        for (int i = 0; i < 10; i++)
-          enemy.emplace_back(Alien(i * 10, 10, i, 5 * i, 8, 8));
-
+        for (int i = 1; i < 7; i++)
+	        enemy.emplace_back(Alien(i * widthSpacer0, 10, 10, 5, 12, 8, Behavior::side_to_side));
         break;
+		
       case 2:
         Globals::CUTSCENE = true;
+		// create enemies
         break;
       case 3:
         Globals::CUTSCENE = true;
+		// create enemies
         break;
       default:
         break;
@@ -53,6 +57,10 @@ struct Example : public olcConsoleGameEngine {
     if (Globals::PAUSE) {
       return true;
     }
+	
+	// Increment total game running time
+	Globals::TotalTime += fElapsedTime;
+	
     if (Globals::CUTSCENE) {
       Globals::CutSceneTimer += fElapsedTime;
       if (Globals::CutSceneTimer >= Globals::kCutSceneLength) {
@@ -147,8 +155,8 @@ struct Example : public olcConsoleGameEngine {
         e.UpdatePosition(fElapsedTime);
     }
     /************************************************************************************
-    // Drawing Start
-    /************************************************************************************/
+								Drawing Start
+    ************************************************************************************/
     // Clear Screen
     Fill(0, 0, Globals::kScreenWidth, Globals::kScreenHeight, L' ', 0);
 
@@ -179,11 +187,10 @@ struct Example : public olcConsoleGameEngine {
 		enemy.clear();
 		bullet.clear();
 		OnUserCreate();
-		Sleep(3000);
 	}
     /************************************************************************************
-    // Drawing End
-    /************************************************************************************/
+									Drawing End
+    ************************************************************************************/
     return true;
   }
 
@@ -202,3 +209,4 @@ int main() {
   game.Start();
   return 0;
 }
+	

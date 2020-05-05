@@ -1,15 +1,12 @@
 TODO Space Invaders
 
-DONE
-  Make bullets re-usable
-  Modulate motion with fElapsedTime
-  Aliens + Bullet Collision Detection
-  Pause button
 
 FEATURES
-	ALIEN ATTACKS
+  
+  ALIEN ATTACKS
   ALIENS EXPLODE
   DIFFERENT ALIEN BEHAVIORS
+  PLAYER HEALTH
   PLAYER DIE 
   LEVEL RESET AFTER PLAYER DEATH
   ALIEN BEHAVIORS
@@ -17,3 +14,11 @@ FEATURES
 	PLAYER ATTACKS
 		SEND UP WALLS
 		LAY TIMED ATTACKS
+		
+		
+
+DONE
+  Make bullets re-usable
+  Modulate motion with fElapsedTime
+  Aliens + Bullet Collision Detection
+  Pause button
