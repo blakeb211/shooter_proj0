@@ -4,7 +4,8 @@ DONE
   Make bullets re-usable
   Modulate motion with fElapsedTime
   Aliens + Bullet Collision Detection
-  
+  Pause button
+
 FEATURES
 	ALIEN ATTACKS
   ALIENS EXPLODE

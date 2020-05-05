@@ -9,16 +9,20 @@ namespace Globals {
 // Player
 const int kPlayerWidth = 4;
 const int kPlayerHeight = 4;
-const float kPlayerSpeed = 100;
+const float kPlayerSpeed = 115;
 const float kScreenWidth = 360;
 const float kScreenHeight = kScreenWidth * 9 / 16;
 // Bullet
 int kBulletWidth = 3;
 int kBulletHeight = 3;
-float kBulletSpeed = -120;
+float kBulletSpeed = -140;
 Bullet* reusable_bullet;
-// Level - what level are we on?
-int Level = 0;
+// Game state
+int Level = 0;    // what level are we on
+bool PAUSE = false; // is game paused
+bool CUTSCENE = false; // is game in a cutscene
+float CutSceneTimer = 0.0;
+const float kCutSceneLength = 5; // 10 seconds pause
 }  // namespace Globals
 
 
@@ -36,8 +40,10 @@ struct Bullet {
   bool Alive;
 };
 
+enum class Behavior { circles, avoid_bottom_and_top, side_to_side, flocker };
+
 struct Alien {
-  Alien(float x, float y, float vx, float vy, int height = 5, int width = 5) {
+  Alien(float x, float y, float vx, float vy, int height, int width, Behavior b = Behavior::side_to_side) {
     Pos[0] = x;
     Pos[1] = y;
     Vel[0] = vx;
@@ -46,6 +52,7 @@ struct Alien {
     this->height = height;
     Alive = true;
     Health = 2;
+    Behavior attitude;
   }
   
   // member variables
@@ -70,20 +77,20 @@ struct Alien {
       Pos[1] += Globals::kScreenHeight;
     }
   }
-  static bool GotHit(Alien&, Bullet&);
+  static bool GotHit(const Alien&, const Bullet&);
 };
 
-bool Alien::GotHit(Alien& a, Bullet& b) {
-  int rightAlien = a.Pos[0] + a.width;
+// Static method for alien-bullet collisions
+bool Alien::GotHit(const Alien& a, const Bullet& b) {
+  int rightAlien = a.Pos[0] + a.width; // each enemy has own size
   int leftAlien = a.Pos[0];
   int bottomAlien = a.Pos[1] + a.height;
   int topAlien = a.Pos[1];
   int topBullet = b.Pos[1];
-  int bottomBullet = b.Pos[1] + Globals::kBulletHeight;
+  int bottomBullet = b.Pos[1] + Globals::kBulletHeight; // only one size bullet
   int leftBullet = b.Pos[0];
   int rightBullet = b.Pos[0] + Globals::kBulletWidth;
   if (rightBullet > leftAlien && leftBullet < rightAlien && topBullet > topAlien && topBullet < bottomAlien){
-    //std::cout << "Collision Happened" << std::endl;
     return true;
   } else {
     return false;
