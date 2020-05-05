@@ -7,10 +7,10 @@
 #include "stdlibs.h"
 
 struct Example : public olcConsoleGameEngine {
-	bool OnUserCreate() {
-	// This function is called at the beginning of each level
+  bool OnUserCreate() {
+    // This function is called at the beginning of each level
     // load level, characters, sprites, etc
-	Globals::TotalTime = 0.0;
+    Globals::TotalTime = 0.0;
     Globals::reusable_bullet = 0;
     playerPos[0] = ScreenWidth() / 2;
     playerPos[1] = ScreenHeight() - (Globals::kPlayerHeight + 1);
@@ -18,30 +18,34 @@ struct Example : public olcConsoleGameEngine {
     // create aliens
     int widthSpacer0 = (ScreenWidth() / 10);
     switch (Globals::Level) {
-      case 0:
-        Globals::CUTSCENE = true;
-        for (int i = 2; i <= 5; i++){
-			int rot_direction = (i%2 == 0 ? -1 : 1);
-			int radius = 30;
-			enemy.emplace_back(Alien(30+i*40, 48, radius, rot_direction, 15, 8, Behavior::circles));
-		}
-        break;
-      case 1:
-        Globals::CUTSCENE = true;
-        for (int i = 1; i < 7; i++)
-	        enemy.emplace_back(Alien(i * widthSpacer0, 10, 10, 5, 12, 8, Behavior::side_to_side));
-        break;
-		
-      case 2:
-        Globals::CUTSCENE = true;
-		// create enemies
-        break;
-      case 3:
-        Globals::CUTSCENE = true;
-		// create enemies
-        break;
-      default:
-        break;
+    case 0:
+      Globals::CUTSCENE = true;
+      for (int i = 2; i <= 5; i++) {
+        int rot_direction = (i % 2 == 0 ? -1 : 1);
+        int radius = 30;
+        enemy.emplace_back(Alien(30 + i * 40, 48, radius, rot_direction, 15, 8,
+                                 Behavior::circles));
+      }
+      break;
+    case 1:
+      Globals::CUTSCENE = true;
+      for (int i = 1; i < 7; i++) {
+        int shuffle_dir = (i % 3 == 0 ? 1 : -1);
+        enemy.emplace_back(Alien(i * widthSpacer0, 10, shuffle_dir*20, 8, 12,
+                                 8, Behavior::side_to_side));
+      }
+      break;
+
+    case 2:
+      Globals::CUTSCENE = true;
+      // create enemies
+      break;
+    case 3:
+      Globals::CUTSCENE = true;
+      // create enemies
+      break;
+    default:
+      break;
     };
     return true;
   }
@@ -57,10 +61,10 @@ struct Example : public olcConsoleGameEngine {
     if (Globals::PAUSE) {
       return true;
     }
-	
-	// Increment total game running time
-	Globals::TotalTime += fElapsedTime;
-	
+
+    // Increment total game running time
+    Globals::TotalTime += fElapsedTime;
+
     if (Globals::CUTSCENE) {
       Globals::CutSceneTimer += fElapsedTime;
       if (Globals::CutSceneTimer >= Globals::kCutSceneLength) {
@@ -114,9 +118,9 @@ struct Example : public olcConsoleGameEngine {
     //
     // Check Enemy-Bullet Collisions
     //
-    for (auto& e : enemy) {
+    for (auto &e : enemy) {
       if (e.Alive)
-        for (auto& b : bullet) {
+        for (auto &b : bullet) {
           if (b.Alive)
             if (Alien::GotHit(e, b)) {
               e.Health--;
@@ -132,7 +136,7 @@ struct Example : public olcConsoleGameEngine {
     // Update Bullet Positions
     //
     if (!Globals::reusable_bullet) {
-      for (auto& b : bullet) {
+      for (auto &b : bullet) {
         // mark a re-usable bullet slot because we don't have one
         if (b.Pos[1] < 0) {
           b.Alive = false;
@@ -141,7 +145,7 @@ struct Example : public olcConsoleGameEngine {
           b.Pos[1] += Globals::kBulletSpeed * fElapsedTime;
       }
     } else {
-      for (auto& b : bullet) {
+      for (auto &b : bullet) {
         // we have a re-usable bullet slot, so update all active bullets
         b.Pos[1] += Globals::kBulletSpeed * fElapsedTime;
       }
@@ -150,12 +154,12 @@ struct Example : public olcConsoleGameEngine {
     //
     // Update Enemy Position
     //
-    for (auto& e : enemy) {
+    for (auto &e : enemy) {
       if (e.Alive)
         e.UpdatePosition(fElapsedTime);
     }
     /************************************************************************************
-								Drawing Start
+                                                                Drawing Start
     ************************************************************************************/
     // Clear Screen
     Fill(0, 0, Globals::kScreenWidth, Globals::kScreenHeight, L' ', 0);
@@ -165,7 +169,7 @@ struct Example : public olcConsoleGameEngine {
          playerPos[1] + Globals::kPlayerHeight, L'&', 14);
 
     // Draw Bullets
-    for (auto& b : bullet) {
+    for (auto &b : bullet) {
       if (b.Alive)
         Fill(b.Pos[0], b.Pos[1], b.Pos[0] + Globals::kBulletWidth,
              b.Pos[1] + Globals::kBulletHeight, L'O', 60);
@@ -173,23 +177,23 @@ struct Example : public olcConsoleGameEngine {
 
     // Draw Enemies
     int _livingEnemyCount = 0;
-    for (auto& e : enemy) {
-      if (e.Alive)
-	  {
-		_livingEnemyCount++;
-        Fill(e.Pos[0], e.Pos[1], e.Pos[0] + e.width,
-           e.Pos[1] + e.height, L'T', 75);
-	  }
-	}
-	// Progress to Next level
-	if (_livingEnemyCount == 0) {
-		Globals::Level++;
-		enemy.clear();
-		bullet.clear();
-		OnUserCreate();
-	}
+    for (auto &e : enemy) {
+      if (e.Alive) {
+        _livingEnemyCount++;
+        Fill(e.Pos[0], e.Pos[1], e.Pos[0] + e.width, e.Pos[1] + e.height, L'T',
+             75);
+      }
+    }
+    // Progress to Next level
+    if (_livingEnemyCount == 0) {
+      Globals::Level++;
+      enemy.clear();
+      bullet.clear();
+      OnUserCreate();
+    }
     /************************************************************************************
-									Drawing End
+                                                                        Drawing
+    End
     ************************************************************************************/
     return true;
   }
@@ -209,4 +213,3 @@ int main() {
   game.Start();
   return 0;
 }
-	
