@@ -2,23 +2,26 @@ TODO Space Invaders
 
 
 FEATURES
-
-
+  Prevent Alien Collisions
+  Refactor main loop
   ALIENS EXPLODE WHEN THEY DIE
+  Bullets explode
   ALIEN ATTACKS
-
-  ALIEN BOID BEHAVIOR
-	PLAYER HEALTH
-	PLAYER DIE 
+  LEVEL EDITOR
+  MUSIC
+  SOUNDS
+  
+PLAYER HEALTH
+PLAYER DIE 
 	LEVEL RESET AFTER PLAYER DEATH
 
-	PLAYER ATTACKS
+	PLAYER ADVACED ATTACKS
 		SEND UP WALLS
 		LAY TIMED ATTACKS
 		
-		
 
 DONE
+  Block Explosions
   Alien Behaviors (side_to_side, circles)
   Make bullets re-usable
   Modulate motion with fElapsedTime

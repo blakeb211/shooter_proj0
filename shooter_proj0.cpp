@@ -20,17 +20,10 @@ struct Example : public olcConsoleGameEngine {
     switch (Globals::Level) {
     case 0:
       Globals::CUTSCENE = true;
-      for (int i = 2; i <= 5; i++) {
-        int rot_direction = (i % 2 == 0 ? -1 : 1);
-        int radius = 30;
-        enemy.emplace_back(Alien(30 + i * 40, 48, radius, rot_direction, 15, 8,
-                                 Behavior::circles));
-      }
-	  for (int i = 1; i < 7; i++) {
-        int shuffle_dir = (i % 3 == 0 ? 1 : -1);
-        enemy.emplace_back(Alien(i * widthSpacer0, 70, shuffle_dir*20, 8, 12,
+	  	  for (int i = 1; i < 6; i++) {
+	  enemy.emplace_back(Alien(50+i*5, 35*i, 0, 0, 12,
                                  8, Behavior::side_to_side));
-      }
+	  }
       break;
     case 1:
       Globals::CUTSCENE = true;
@@ -44,10 +37,25 @@ struct Example : public olcConsoleGameEngine {
     case 2:
       Globals::CUTSCENE = true;
       // create enemies
+	  for (int i = 1; i < 5; i++) {
+	  enemy.emplace_back(Alien(100, 50*i, 0, 0, 12,
+                                 8, Behavior::side_to_side));
+	  }
       break;
     case 3:
       Globals::CUTSCENE = true;
       // create enemies
+	        for (int i = 2; i <= 5; i++) {
+        int rot_direction = (i % 2 == 0 ? -1 : 1);
+        int radius = 30;
+        enemy.emplace_back(Alien(30 + i * 40, 48, radius, rot_direction, 15, 8,
+                                 Behavior::circles));
+      }
+	  for (int i = 1; i < 7; i++) {
+        int shuffle_dir = (i % 3 == 0 ? 1 : -1);
+        enemy.emplace_back(Alien(i * widthSpacer0, 70, shuffle_dir*20, 8, 12,
+                                 8, Behavior::side_to_side));
+      }
       break;
     default:
       break;
@@ -64,6 +72,20 @@ struct Example : public olcConsoleGameEngine {
       cout << "Pause Pressed" << endl;
     }
     if (Globals::PAUSE) {
+		// Draw Colors
+	  int xbump = 0;
+	  int ybump = 0;
+	  for (int i = 1; i < 250; i++){
+		  Fill(50+xbump,ybump,50+xbump+4,ybump+2,L'-',i);
+		  xbump+=5;
+		  if (i%50 == 0){
+			string strColorIndex = to_string(i);
+			wstring wStrColor(strColorIndex.begin(), strColorIndex.end());
+			DrawString(50+xbump+5, ybump, wStrColor, 140);
+			xbump = 0;
+			ybump += 7;
+		  }
+	  }
       return true;
     }
 
@@ -106,9 +128,13 @@ struct Example : public olcConsoleGameEngine {
             playerPos[0] + Globals::kPlayerWidth / 2;
         Globals::reusable_bullet->Alive = true;
         Globals::reusable_bullet = 0;
+		bullet.emplace_back(playerPos[0] + Globals::kPlayerWidth / 2 + 2, playerPos[1] - 1 + 2, 0, 2);
+		bullet.emplace_back(playerPos[0] + Globals::kPlayerWidth / 2 + -2, playerPos[1] - 1 + 2, 0, 2);
       } else
         // create new bullet
-        bullet.emplace_back(playerPos[0], playerPos[1] - 1, 0, 2);
+        bullet.emplace_back(playerPos[0] + Globals::kPlayerWidth / 2, playerPos[1] - 1, 0, 2);
+		bullet.emplace_back(playerPos[0] + Globals::kPlayerWidth / 2 + 2, playerPos[1] - 1 + 2, 0, 2);
+		bullet.emplace_back(playerPos[0] + Globals::kPlayerWidth / 2 + -2, playerPos[1] - 1 + 2, 0, 2);
     }
     //
     // Update Player Position
@@ -130,7 +156,8 @@ struct Example : public olcConsoleGameEngine {
             if (Alien::GotHit(e, b)) {
               e.Health--;
 			  // create explosion effect
-			  explosions.emplace_back(e.Pos[0] + e.width / 2, e.Pos[1] + e.height / 2.0, 0.4, -999);
+			  if (e.Health == 0) 
+				  explosions.emplace_back(e.Pos[0] + e.width / 2, e.Pos[1] + e.height / 2.0, 0.4, -999);
               b.Alive = false;
             }
         }
@@ -149,12 +176,12 @@ struct Example : public olcConsoleGameEngine {
           b.Alive = false;
           Globals::reusable_bullet = &b;
         } else
-          b.Pos[1] += Globals::kBulletSpeed * fElapsedTime;
+          b.Pos[1] += round(Globals::kBulletSpeed * fElapsedTime);
       }
     } else {
       for (auto &b : bullet) {
         // we have a re-usable bullet slot, so update all active bullets
-        b.Pos[1] += Globals::kBulletSpeed * fElapsedTime;
+        b.Pos[1] += round(Globals::kBulletSpeed * fElapsedTime);
       }
     }
 
@@ -179,14 +206,14 @@ struct Example : public olcConsoleGameEngine {
     Fill(0, 0, Globals::kScreenWidth, Globals::kScreenHeight, L' ', 0);
 
     // Draw Player
-    Fill(playerPos[0], playerPos[1], playerPos[0] + Globals::kPlayerWidth,
-         playerPos[1] + Globals::kPlayerHeight, L'&', 14);
+    Fill(round(playerPos[0]), round(playerPos[1]), round(playerPos[0] + Globals::kPlayerWidth),
+         round(playerPos[1] + Globals::kPlayerHeight), L'&', 14);
 
     // Draw Bullets
     for (auto &b : bullet) {
       if (b.Alive)
-        Fill(b.Pos[0], b.Pos[1], b.Pos[0] + Globals::kBulletWidth,
-             b.Pos[1] + Globals::kBulletHeight, L'O', 60);
+        Fill(round(b.Pos[0]), round(b.Pos[1]), round(b.Pos[0] + Globals::kBulletWidth),
+             round(b.Pos[1] + Globals::kBulletHeight), L'O', 60);
     }
 
     // Draw Enemies
@@ -194,7 +221,7 @@ struct Example : public olcConsoleGameEngine {
     for (auto &e : enemy) {
       if (e.Alive) {
         _livingEnemyCount++;
-        Fill(e.Pos[0], e.Pos[1], e.Pos[0] + e.width, e.Pos[1] + e.height, L'T',
+        Fill(round(e.Pos[0]), round(e.Pos[1]), round(e.Pos[0] + e.width), round(e.Pos[1] + e.height), L'T',
              75);
       }
     }
@@ -205,10 +232,12 @@ struct Example : public olcConsoleGameEngine {
 		{
 			// draw circle of triangles at ex's current radius
 			float radius = ex.GetRadius();
-			for(float theta = 0; theta < 2*Globals::M_PI; theta += 0.5){
-				int xpos = ex.xPos0 + radius*cos(theta);
-				int ypos = ex.yPos0 + radius*sin(theta);
-				DrawTriangle(xpos, ypos, xpos + 2, ypos + 2, xpos -2, ypos + 2, L'*', radius * 4);
+			float rand_0_6 = rand()%3;
+			radius += rand_0_6;
+			for(float theta = 0; theta < 2*Globals::M_PI; theta += 0.5 ){
+				int xpos = round(ex.xPos0 + radius*cos(theta));
+				int ypos = round(ex.yPos0 + radius*sin(theta));
+				DrawTriangle(xpos, ypos, xpos + 2, ypos + 2, xpos -2, ypos + 2, L'*', 200);
 			}
 		}
 	}
@@ -220,6 +249,7 @@ struct Example : public olcConsoleGameEngine {
       Globals::Level++;
       enemy.clear();
       bullet.clear();
+	 explosions.clear();
       OnUserCreate();
     }
     return true;
