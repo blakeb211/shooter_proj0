@@ -5,27 +5,27 @@
 struct Bullet;
 
 namespace Globals {
-// Player
-const int kPlayerWidth = 4;
-const int kPlayerHeight = 4;
-const float kPlayerSpeed = 115;
-const float kScreenWidth = 360;
-const float kScreenHeight = kScreenWidth * 9 / 16;
-const double M_PI = 3.1415926;
-// Bullet
-int kBulletWidth = 3;
-int kBulletHeight = 3;
-float kBulletSpeed = -140;
-Bullet *reusable_bullet;
-// Game state
-int Level = 0;         // what level are we on
-bool PAUSE = false;    // is game paused
-bool CUTSCENE = false; // is game in a cutscene
-float CutSceneTimer = 0.0;
-const float kCutSceneLength = 5; // seconds pause
-float TotalTime = 0.0;
-
-} // namespace Globals
+	// Player
+	const int kPlayerWidth = 8;
+	const int kPlayerHeight = 5;
+	const float kPlayerSpeed = 115;
+	constexpr float kScreenWidth = 360;
+	constexpr float kScreenHeight = kScreenWidth * 9 / 16;
+	const double M_PI = 3.1415926;
+	// Bullet
+	int kBulletWidth = 2;
+	int kBulletHeight = 5;
+	float kBulletSpeed = -140;
+	Bullet* reusable_bullet;
+	// Game state
+	int Level = 0;    // what level are we on
+	bool PAUSE = false; // is game paused
+	bool CUTSCENE = false; // is game in a cutscene
+	float CutSceneTimer = 0.0;
+	const float kCutSceneLength = 2; // seconds pause
+	float TotalTime = 0.0; 
+	
+}  // namespace Globals
 
 struct Bullet {
   Bullet() = default;
@@ -112,13 +112,14 @@ public:
   int xPos0;
   int yPos0;
 
-  void UpdateTimer(float fElapsed) {
-    _timer += fElapsed;
-    if (_timer >= _maxTimer)
-      Alive = false;
-  }
-  float GetRadius() { return _timer * _timer * +4.0 * _timer + 3.0; }
-
+	void UpdateTimer(float fElapsed) { 
+		_timer += fElapsed; 
+		if (_timer >= _maxTimer) 
+			Alive = false;
+	}
+	float GetRadius() {
+		return (0.5609 + (30*_timer) - (2*_timer*_timer));
+	}
 private:
   float _maxTimer;
   float _timer;
