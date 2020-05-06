@@ -272,6 +272,7 @@ struct Example : public olcConsoleGameEngine {
   float playerPos[2];
   vector<Alien> enemy;
   vector<ParticleEffect> explosions;
+
 };
 
 int main() {

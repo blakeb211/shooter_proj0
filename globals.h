@@ -24,6 +24,8 @@ namespace Globals {
 	float CutSceneTimer = 0.0;
 	const float kCutSceneLength = 2; // seconds pause
 	float TotalTime = 0.0; 
+  // rain generator
+   
 	
 }  // namespace Globals
 
