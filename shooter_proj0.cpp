@@ -16,56 +16,56 @@ struct Example : public olcConsoleGameEngine {
     playerPos[1] = ScreenHeight() - (Globals::kPlayerHeight + 1);
 
     // create aliens
-    int widthSpacer0 = (ScreenWidth() / 10);
+    int widthSpacer0 = (ScreenWidth() / 15);
     switch (Globals::Level) {
-    case 0:
-      Globals::CUTSCENE = true;
-      for (int i = 2; i <= 5; i++) {
-        int rot_direction = (i % 2 == 0 ? -1 : 1);
-        int radius = 30;
-        enemy.emplace_back(Alien(30 + i * 40, 48, radius, rot_direction, 15, 8,
-                                 Behavior::circles));
-      }
-	  for (int i = 1; i < 7; i++) {
-        int shuffle_dir = (i % 3 == 0 ? 1 : -1);
-        enemy.emplace_back(Alien(i * widthSpacer0, 70, shuffle_dir*20, 8, 12,
-                                 8, Behavior::side_to_side));
-	  }
-      break;
-    case 1:
-      Globals::CUTSCENE = true;
-      for (int i = 1; i < 7; i++) {
-        int shuffle_dir = (i % 3 == 0 ? 1 : -1);
-        enemy.emplace_back(Alien(i * widthSpacer0, 10, shuffle_dir * 20, 8, 12,
-                                 8, Behavior::side_to_side));
-      }
-      break;
+      case 0:
+        Globals::CUTSCENE = true;
+        for (int i = 2; i <= 5; i++) {
+          int rot_direction = (i % 2 == 0 ? -1 : 1);
+          int radius = 30;
+          enemy.emplace_back(Alien(30 + i * 40, 48, radius, rot_direction, 15,
+                                   8, Behavior::circles));
+        }
+        for (int i = 1; i < 7; i++) {
+          int shuffle_dir = (i % 3 == 0 ? 1 : -1);
+          enemy.emplace_back(Alien(i * widthSpacer0, 70, shuffle_dir * 20, 8,
+                                   12, 8, Behavior::side_to_side));
+        }
+        break;
+      case 1:
+        Globals::CUTSCENE = true;
+        for (int i = 1; i < 7; i++) {
+          int shuffle_dir = 1;
+          enemy.emplace_back(Alien(i * widthSpacer0, 10, shuffle_dir * 20, 8,
+                                   12, 8, Behavior::side_to_side));
+        }
+        break;
 
-    case 2:
-      Globals::CUTSCENE = true;
-      // create enemies
-	  for (int i = 1; i < 5; i++) {
-	  enemy.emplace_back(Alien(100, 50*i, 0, 0, 12,
-                                 8, Behavior::side_to_side));
-	  }
-      break;
-    case 3:
-      Globals::CUTSCENE = true;
-      // create enemies
-	        for (int i = 2; i <= 5; i++) {
-        int rot_direction = (i % 2 == 0 ? -1 : 1);
-        int radius = 30;
-        enemy.emplace_back(Alien(30 + i * 40, 48, radius, rot_direction, 15, 8,
-                                 Behavior::circles));
-      }
-	  for (int i = 1; i < 7; i++) {
-        int shuffle_dir = (i % 3 == 0 ? 1 : -1);
-        enemy.emplace_back(Alien(i * widthSpacer0, 70, shuffle_dir*20, 8, 12,
-                                 8, Behavior::side_to_side));
-      }
-      break;
-    default:
-      break;
+      case 2:
+        Globals::CUTSCENE = true;
+        // create enemies
+        for (int i = 1; i < 5; i++) {
+          enemy.emplace_back(
+              Alien(100, 25 * i, 0, 0, 12, 8, Behavior::side_to_side));
+        }
+        break;
+      case 3:
+        Globals::CUTSCENE = true;
+        // create enemies
+        for (int i = 2; i <= 5; i++) {
+          int rot_direction = (i % 2 == 0 ? -1 : 1);
+          int radius = 30;
+          enemy.emplace_back(Alien(30 + i * 40, 48, radius, rot_direction, 15,
+                                   8, Behavior::circles));
+        }
+        for (int i = 1; i < 7; i++) {
+          int shuffle_dir = 1;
+          enemy.emplace_back(Alien(i * widthSpacer0, 70, shuffle_dir * 20, 8,
+                                   12, 8, Behavior::side_to_side));
+        }
+        break;
+      default:
+        break;
     };
     return true;
   }
@@ -76,23 +76,23 @@ struct Example : public olcConsoleGameEngine {
     //
     if (m_keys[VK_ESCAPE].bPressed) {
       Globals::PAUSE = !Globals::PAUSE;
-      //cout << "Pause Pressed" << endl;
+      // cout << "Pause Pressed" << endl;
     }
     if (Globals::PAUSE) {
-		// Draw Colors
-	  int xbump = 0;
-	  int ybump = 0;
-	  for (int i = 1; i < 250; i++){
-		  Fill(50+xbump,ybump,50+xbump+4,ybump+2,L'-',i);
-		  xbump+=5;
-		  if (i%50 == 0){
-			string strColorIndex = to_string(i);
-			wstring wStrColor(strColorIndex.begin(), strColorIndex.end());
-			DrawString(50+xbump+5, ybump, wStrColor, 140);
-			xbump = 0;
-			ybump += 7;
-		  }
-	  }
+      // Draw Colors
+      int xbump = 0;
+      int ybump = 0;
+      for (int i = 1; i < 250; i++) {
+        Fill(50 + xbump, ybump, 50 + xbump + 4, ybump + 2, L'-', i);
+        xbump += 5;
+        if (i % 50 == 0) {
+          string strColorIndex = to_string(i);
+          wstring wStrColor(strColorIndex.begin(), strColorIndex.end());
+          DrawString(50 + xbump + 5, ybump, wStrColor, 140);
+          xbump = 0;
+          ybump += 7;
+        }
+      }
       return true;
     }
 
@@ -135,13 +135,18 @@ struct Example : public olcConsoleGameEngine {
             playerPos[0] + Globals::kPlayerWidth / 2;
         Globals::reusable_bullet->Alive = true;
         Globals::reusable_bullet = 0;
-		bullet.emplace_back(playerPos[0] + Globals::kPlayerWidth / 2 + 2, playerPos[1] - 1 + 2, 0, 2);
-		bullet.emplace_back(playerPos[0] + Globals::kPlayerWidth / 2 + -2, playerPos[1] - 1 + 2, 0, 2);
+        bullet.emplace_back(playerPos[0] + Globals::kPlayerWidth / 2 + 2,
+                            playerPos[1] - 1 + 2, 0, 2);
+        bullet.emplace_back(playerPos[0] + Globals::kPlayerWidth / 2 + -2,
+                            playerPos[1] - 1 + 2, 0, 2);
       } else
         // create new bullet
-        bullet.emplace_back(playerPos[0] + Globals::kPlayerWidth / 2, playerPos[1] - 1, 0, 2);
-		bullet.emplace_back(playerPos[0] + Globals::kPlayerWidth / 2 + 2, playerPos[1] - 1 + 2, 0, 2);
-		bullet.emplace_back(playerPos[0] + Globals::kPlayerWidth / 2 + -2, playerPos[1] - 1 + 2, 0, 2);
+        bullet.emplace_back(playerPos[0] + Globals::kPlayerWidth / 2,
+                            playerPos[1] - 1, 0, 2);
+      bullet.emplace_back(playerPos[0] + Globals::kPlayerWidth / 2 + 2,
+                          playerPos[1] - 1 + 2, 0, 2);
+      bullet.emplace_back(playerPos[0] + Globals::kPlayerWidth / 2 + -2,
+                          playerPos[1] - 1 + 2, 0, 2);
     }
     //
     // Update Player Position
@@ -156,15 +161,16 @@ struct Example : public olcConsoleGameEngine {
     //
     // Check Enemy-Bullet Collisions
     //
-    for (auto &e : enemy) {
+    for (auto& e : enemy) {
       if (e.Alive)
-        for (auto &b : bullet) {
+        for (auto& b : bullet) {
           if (b.Alive)
             if (Alien::GotHit(e, b)) {
               e.Health--;
-			  // create explosion effect
-			  if (e.Health == 0) 
-				  explosions.emplace_back(e.Pos[0] + e.width / 2, e.Pos[1] + e.height / 2.0, 0.4, -999);
+              // create explosion effect
+              if (e.Health == 0)
+                explosions.emplace_back(e.Pos[0] + e.width / 2,
+                                        e.Pos[1] + e.height / 2.0, 0.4, -999);
               b.Alive = false;
             }
         }
@@ -177,7 +183,7 @@ struct Example : public olcConsoleGameEngine {
     // Update Bullet Positions
     //
     if (!Globals::reusable_bullet) {
-      for (auto &b : bullet) {
+      for (auto& b : bullet) {
         // mark a re-usable bullet slot because we don't have one
         if (b.Pos[1] < 0) {
           b.Alive = false;
@@ -186,7 +192,7 @@ struct Example : public olcConsoleGameEngine {
           b.Pos[1] += round(Globals::kBulletSpeed * fElapsedTime);
       }
     } else {
-      for (auto &b : bullet) {
+      for (auto& b : bullet) {
         // we have a re-usable bullet slot, so update all active bullets
         b.Pos[1] += round(Globals::kBulletSpeed * fElapsedTime);
       }
@@ -195,14 +201,14 @@ struct Example : public olcConsoleGameEngine {
     //
     // Update Enemy Position
     //
-    for (auto &e : enemy) {
+    for (auto& e : enemy) {
       if (e.Alive)
         e.UpdatePosition(fElapsedTime);
     }
     //
     // Update Explosion Timers
     //
-    for (auto &ex : explosions) {
+    for (auto& ex : explosions) {
       ex.UpdateTimer(fElapsedTime);
     }
     /************************************************************************************
@@ -212,41 +218,42 @@ struct Example : public olcConsoleGameEngine {
     Fill(0, 0, Globals::kScreenWidth, Globals::kScreenHeight, L' ', 0);
 
     // Draw Player
-    Fill(round(playerPos[0]), round(playerPos[1]), round(playerPos[0] + Globals::kPlayerWidth),
+    Fill(round(playerPos[0]), round(playerPos[1]),
+         round(playerPos[0] + Globals::kPlayerWidth),
          round(playerPos[1] + Globals::kPlayerHeight), L'&', 14);
 
     // Draw Bullets
-    for (auto &b : bullet) {
+    for (auto& b : bullet) {
       if (b.Alive)
-        Fill(round(b.Pos[0]), round(b.Pos[1]), round(b.Pos[0] + Globals::kBulletWidth),
+        Fill(round(b.Pos[0]), round(b.Pos[1]),
+             round(b.Pos[0] + Globals::kBulletWidth),
              round(b.Pos[1] + Globals::kBulletHeight), L'O', 60);
     }
 
     // Draw Enemies
     int _livingEnemyCount = 0;
-    for (auto &e : enemy) {
+    for (auto& e : enemy) {
       if (e.Alive) {
         _livingEnemyCount++;
-        Fill(round(e.Pos[0]), round(e.Pos[1]), round(e.Pos[0] + e.width), round(e.Pos[1] + e.height), L'T',
-             75);
+        Fill(round(e.Pos[0]), round(e.Pos[1]), round(e.Pos[0] + e.width),
+             round(e.Pos[1] + e.height), L'T', 75);
       }
     }
-	// Draw Explosions
-	for (auto &ex : explosions)
-	{
-		if (ex.Alive)
-		{
-			// draw circle of triangles at ex's current radius
-			float radius = ex.GetRadius();
-			float rand_0_6 = rand()%3;
-			radius += rand_0_6;
-			for(float theta = 0; theta < 2*Globals::M_PI; theta += 0.5 ){
-				int xpos = round(ex.xPos0 + radius*cos(theta));
-				int ypos = round(ex.yPos0 + radius*sin(theta));
-				DrawTriangle(xpos, ypos, xpos + 2, ypos + 2, xpos -2, ypos + 2, L'*', 200);
-			}
-		}
-	}
+    // Draw Explosions
+    for (auto& ex : explosions) {
+      if (ex.Alive) {
+        // draw circle of triangles at ex's current radius
+        float radius = ex.GetRadius();
+        float rand_0_3 = rand() % 3;
+        radius += rand_0_3;
+        for (float theta = 0; theta < 2 * Globals::M_PI; theta += 0.5)  {
+          int xpos = round(ex.xPos0 + radius * cos(theta));
+          int ypos = round(ex.yPos0 + radius * sin(theta));
+          DrawTriangle(xpos, ypos, xpos + 2, ypos + 2, xpos - 2, ypos + 2, L'*',
+                       196);
+        }
+      }
+    }
     /************************************************************************************
                                   Drawing End
     ************************************************************************************/
@@ -255,7 +262,7 @@ struct Example : public olcConsoleGameEngine {
       Globals::Level++;
       enemy.clear();
       bullet.clear();
-	 explosions.clear();
+      explosions.clear();
       OnUserCreate();
     }
     return true;
