@@ -14,7 +14,7 @@ struct Example : public olcConsoleGameEngine {
     Globals::reusable_bullet = 0;
     playerPos[0] = ScreenWidth() / 2;
     playerPos[1] = ScreenHeight() - (Globals::kPlayerHeight + 1);
-
+   
     // create aliens
     int widthSpacer0 = (ScreenWidth() / 15);
     switch (Globals::Level) {
@@ -67,6 +67,12 @@ struct Example : public olcConsoleGameEngine {
       default:
         break;
     };
+    //
+    // Create Raindrops
+    //
+    for (int i = 0; i < 200; i++) {
+      rain.push_back(Drop());
+    }
     return true;
   }
 
@@ -211,12 +217,22 @@ struct Example : public olcConsoleGameEngine {
     for (auto& ex : explosions) {
       ex.UpdateTimer(fElapsedTime);
     }
+    //
+    // Update Rain position
+    //
+    for (auto& d : rain) {
+      d.Fall(fElapsedTime);
+    }
+
     /************************************************************************************
                                       Drawing Start
     ************************************************************************************/
     // Clear Screen
     Fill(0, 0, Globals::kScreenWidth, Globals::kScreenHeight, L' ', 0);
-
+    // Draw Rain
+    for (auto& d : rain) {
+      Fill(round(d.x), round(d.y), round(d.x + d.dropWidth), round(d.y + d.dropHeight), L'!', d.dropColor);
+    }
     // Draw Player
     Fill(round(playerPos[0]), round(playerPos[1]),
          round(playerPos[0] + Globals::kPlayerWidth),
@@ -272,7 +288,7 @@ struct Example : public olcConsoleGameEngine {
   float playerPos[2];
   vector<Alien> enemy;
   vector<ParticleEffect> explosions;
-
+  vector<Drop> rain;
 };
 
 int main() {

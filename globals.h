@@ -1,6 +1,7 @@
 #pragma once
 #include "stdlibs.h"
 
+
 // Forward declare Bullet so Globals can use it
 struct Bullet;
 
@@ -25,9 +26,8 @@ namespace Globals {
 	const float kCutSceneLength = 2; // seconds pause
 	float TotalTime = 0.0; 
   // rain generator
-   
-	
-}  // namespace Globals
+
+  }  // namespace Globals
 
 struct Bullet {
   Bullet() = default;
@@ -100,33 +100,6 @@ struct Alien {
   static bool GotHit(const Alien &, const Bullet &);
 };
 
-struct ParticleEffect {
-public:
-  ParticleEffect() = default;
-  ParticleEffect(int x, int y, float duration, float param2) {
-    _timer = 0;
-    Alive = true;
-    xPos0 = x;
-    yPos0 = y;
-    _maxTimer = duration; // 2 seconds long
-  }
-  bool Alive;
-  int xPos0;
-  int yPos0;
-
-	void UpdateTimer(float fElapsed) { 
-		_timer += fElapsed; 
-		if (_timer >= _maxTimer) 
-			Alive = false;
-	}
-	float GetRadius() {
-		return (0.5609 + (30*_timer) - (2*_timer*_timer));
-	}
-private:
-  float _maxTimer;
-  float _timer;
-};
-
 // Static method for alien-bullet collisions
 bool Alien::GotHit(const Alien &a, const Bullet &b) {
   int rightAlien = a.Pos[0] + a.width; // each enemy has own size
@@ -144,3 +117,52 @@ bool Alien::GotHit(const Alien &a, const Bullet &b) {
     return false;
   }
 }
+
+struct ParticleEffect {
+ public:
+  ParticleEffect() = default;
+  ParticleEffect(int x, int y, float duration, float param2) {
+    _timer = 0;
+    Alive = true;
+    xPos0 = x;
+    yPos0 = y;
+    _maxTimer = duration;  // 2 seconds long
+  }
+  bool Alive;
+  int xPos0;
+  int yPos0;
+
+  void UpdateTimer(float fElapsed) {
+    _timer += fElapsed;
+    if (_timer >= _maxTimer)
+      Alive = false;
+  }
+  float GetRadius() { return (0.5609 + (30 * _timer) - (2 * _timer * _timer)); }
+
+ private:
+  float _maxTimer;
+  float _timer;
+};
+
+struct Drop {
+  float x, y;
+  static int dropWidth;
+  static int dropHeight;
+  int dropColor;
+  int yspeed;
+  Drop() {
+    x = rand() % (int)Globals::kScreenWidth;
+    y = rand() % (int)Globals::kScreenHeight;
+    yspeed = 25 + rand() % 20; 
+    dropColor = 152 + (rand() % 5);
+  }
+  void Fall(float fElapsed) {
+    y += yspeed*fElapsed;
+    if (y > Globals::kScreenHeight) {
+      y = -5;
+      x = rand() % (int)Globals::kScreenWidth;
+    }
+  }
+};
+int Drop::dropWidth = 1;
+int Drop::dropHeight = 6;
