@@ -26,9 +26,9 @@ struct Example : public olcConsoleGameEngine {
         enemy.emplace_back(Alien(30 + i * 40, 48, radius, rot_direction, 15, 8,
                                  Behavior::circles));
       }
-	  for (int i = 1; i < 7; i++) {
+      for (int i = 1; i < 7; i++) {
         int shuffle_dir = (i % 3 == 0 ? 1 : -1);
-        enemy.emplace_back(Alien(i * widthSpacer0, 70, shuffle_dir*20, 8, 12,
+        enemy.emplace_back(Alien(i * widthSpacer0, 70, shuffle_dir * 20, 8, 12,
                                  8, Behavior::side_to_side));
       }
       break;
@@ -36,7 +36,7 @@ struct Example : public olcConsoleGameEngine {
       Globals::CUTSCENE = true;
       for (int i = 1; i < 7; i++) {
         int shuffle_dir = (i % 3 == 0 ? 1 : -1);
-        enemy.emplace_back(Alien(i * widthSpacer0, 10, shuffle_dir*20, 8, 12,
+        enemy.emplace_back(Alien(i * widthSpacer0, 10, shuffle_dir * 20, 8, 12,
                                  8, Behavior::side_to_side));
       }
       break;
@@ -61,7 +61,7 @@ struct Example : public olcConsoleGameEngine {
     //
     if (m_keys[VK_ESCAPE].bPressed) {
       Globals::PAUSE = !Globals::PAUSE;
-      cout << "Pause Pressed" << endl;
+      //cout << "Pause Pressed" << endl;
     }
     if (Globals::PAUSE) {
       return true;
@@ -129,8 +129,9 @@ struct Example : public olcConsoleGameEngine {
           if (b.Alive)
             if (Alien::GotHit(e, b)) {
               e.Health--;
-			  // create explosion effect
-			  explosions.emplace_back(e.Pos[0] + e.width / 2, e.Pos[1] + e.height / 2, 2.0, -999);
+              // create explosion effect
+              explosions.emplace_back(e.Pos[0] + e.width / 2,
+                                      e.Pos[1] + e.height / 2, 2.0, -999);
               b.Alive = false;
             }
         }
@@ -165,13 +166,12 @@ struct Example : public olcConsoleGameEngine {
       if (e.Alive)
         e.UpdatePosition(fElapsedTime);
     }
-	//
-	// Update Explosion Timers
-	//
-	for (auto &ex : explosions)
-	{
-		ex.UpdateTimer(fElapsedTime);
-	}
+    //
+    // Update Explosion Timers
+    //
+    for (auto &ex : explosions) {
+      ex.UpdateTimer(fElapsedTime);
+    }
     /************************************************************************************
                                       Drawing Start
     ************************************************************************************/
@@ -198,24 +198,23 @@ struct Example : public olcConsoleGameEngine {
              75);
       }
     }
-	// Draw Explosions
-	for (auto &ex : explosions)
-	{
-		if (ex.Alive)
-		{
-			// draw circle of triangles at ex's current radius
-			float radius = ex.GetRadius();
-			for(float theta = 0; theta < 2*Globals::M_PI; theta += 0.5){
-				int xpos = ex.xPos0 + radius*cos(theta);
-				int ypos = ex.yPos0 + radius*sin(theta);
-				DrawTriangle(xpos, ypos, xpos + 2, ypos + 2, xpos -2, ypos + 2, L'*', radius * 4);
-			}
-		}
-	}
+    // Draw Explosions
+    for (auto &ex : explosions) {
+      if (ex.Alive) {
+        // draw circle of triangles at ex's current radius
+        float radius = ex.GetRadius();
+        for (float theta = 0; theta < 2 * Globals::M_PI; theta += 0.5) {
+          int xpos = ex.xPos0 + radius * cos(theta);
+          int ypos = ex.yPos0 + radius * sin(theta);
+          DrawTriangle(xpos, ypos, xpos + 2, ypos + 2, xpos - 2, ypos + 2, L'*',
+                       radius * 4);
+        }
+      }
+    }
     /************************************************************************************
                                   Drawing End
     ************************************************************************************/
-	// Progress to Next level
+    // Progress to Next level
     if (_livingEnemyCount == 0) {
       Globals::Level++;
       enemy.clear();
