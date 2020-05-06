@@ -279,7 +279,6 @@ int main() {
   // Create game window
   //
   Example game;
-  const int kWinWidth = Globals::kScreenWidth;
   game.ConstructConsole(Globals::kScreenWidth, Globals::kScreenHeight, 2, 2);
   game.Start();
   return 0;
