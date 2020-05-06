@@ -112,7 +112,7 @@ public:
 			Alive = false;
 	}
 	float GetRadius() {
-		return _timer*_timer* + 4.0*_timer+3.0;
+		return (0.5609 + (30*_timer) - (3.32387*_timer*_timer));
 	}
 private:
 	float _maxTimer;

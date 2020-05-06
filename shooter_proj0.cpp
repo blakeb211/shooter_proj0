@@ -130,7 +130,7 @@ struct Example : public olcConsoleGameEngine {
             if (Alien::GotHit(e, b)) {
               e.Health--;
 			  // create explosion effect
-			  explosions.emplace_back(e.Pos[0] + e.width / 2, e.Pos[1] + e.height / 2, 2.0, -999);
+			  explosions.emplace_back(e.Pos[0] + e.width / 2, e.Pos[1] + e.height / 2.0, 0.4, -999);
               b.Alive = false;
             }
         }
