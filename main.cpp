@@ -14,7 +14,6 @@ struct Example : public olcConsoleGameEngine {
     // This function is called at the beginning of each level
     // load level, characters, sprites, etc
     Globals::TotalTime = 0.0;
-    Globals::reusable_bullet = 0;
     playerPos[0] = ScreenWidth() / 2;
     playerPos[1] = ScreenHeight() - (Globals::kPlayerHeight + 1);
     // clear object vectors
@@ -151,21 +150,30 @@ struct Example : public olcConsoleGameEngine {
     // Check for User Input
     //
     if (m_keys[VK_SPACE].bPressed) {
-      // if there is an reusable bullet, re-use it
+      // if there are 3 re-usable bullet slots, reincarnate those bullets at the end of the 
+      // "dead bullets" region of the bullet vector. 
 
+      // DDDDAAA before reincarnation
+      // DAAAAAA after reincarnation
+      //  ^^^    re-used bullets
       if (dead_bullet_count >= 3) {
-        bullet[0].Pos[0] = playerPos[0] + Globals::kPlayerWidth / 2;
-        bullet[0].Pos[1] = playerPos[1] - Globals::kBulletHeight;
+        bullet[dead_bullet_count - 1].Pos[0] = playerPos[0] + Globals::kPlayerWidth / 2;
+        bullet[dead_bullet_count - 1].Pos[1] =
+            playerPos[1] - Globals::kBulletHeight;
 
-        bullet[1].Pos[0] = playerPos[0] + Globals::kPlayerWidth / 2 + 2;
-        bullet[1].Pos[1] = playerPos[1] - 1 + 2;
+        bullet[dead_bullet_count - 2].Pos[0] =
+            playerPos[0] + Globals::kPlayerWidth / 2 + 2;
+        bullet[dead_bullet_count - 2].Pos[1] = playerPos[1] - 1 + 2;
         
-        bullet[2].Pos[0] = playerPos[0] + Globals::kPlayerWidth / 2 + -2;
-        bullet[2].Pos[1] = playerPos[1] - 1 + 2;
+        bullet[dead_bullet_count - 3].Pos[0] =
+            playerPos[0] + Globals::kPlayerWidth / 2 + -2;
+        bullet[dead_bullet_count - 3].Pos[1] = playerPos[1] - 1 + 2;
 
-        bullet[0].Alive = true;
-        bullet[1].Alive = true;
-        bullet[2].Alive = true;
+        bullet[dead_bullet_count - 1].Alive = true;
+        bullet[dead_bullet_count - 2].Alive = true;
+        bullet[dead_bullet_count - 3].Alive = true;
+        dead_bullet_count -= 3;
+        assert(dead_bullet_count >= 0);
       } else
         // create new bullet
         bullet.emplace_back(playerPos[0] + Globals::kPlayerWidth / 2,
@@ -188,9 +196,9 @@ struct Example : public olcConsoleGameEngine {
     //
     // Update Alive Bullet Positions
     //
-    for (auto it = _beg_alive_it; it != bullet.end(); it++) {
+    for (auto i = dead_bullet_count; i < bullet.size(); i++) {
       // mark a re-usable bullet slot because we don't have one
-      it->Pos[1] += round(Globals::kBulletSpeed * fElapsedTime);
+      bullet[i].Pos[1] += round(Globals::kBulletSpeed * fElapsedTime);
     }
 
     //
@@ -225,13 +233,13 @@ struct Example : public olcConsoleGameEngine {
     // Draw Player
     Fill(round(playerPos[0]), round(playerPos[1]),
          round(playerPos[0] + Globals::kPlayerWidth),
-         round(playerPos[1] + Globals::kPlayerHeight), L'&', 14);
+         round(playerPos[1] + Globals::kPlayerHeight), L'&', 175);
 
     // Draw Bullets
-    for (auto it = _beg_alive_it; it != bullet.end(); it++) {
-        Fill(round(it->Pos[0]), round(it->Pos[1]),
-             round(it->Pos[0] + Globals::kBulletWidth),
-             round(it->Pos[1] + Globals::kBulletHeight), L'O', 60);
+    for (auto i = dead_bullet_count; i < bullet.size(); i++) {
+        Fill(round(bullet[i].Pos[0]), round(bullet[i].Pos[1]),
+             round(bullet[i].Pos[0] + Globals::kBulletWidth),
+             round(bullet[i].Pos[1] + Globals::kBulletHeight), L'O', 60);
     }
 
     // Draw Enemies
@@ -267,14 +275,14 @@ struct Example : public olcConsoleGameEngine {
     //
     for (auto& e : enemy) {
       if (e.Alive)
-        for (auto it = _beg_alive_it; it != bullet.end(); it++) {
-          if (Alien::GotHit(e, *it)) {
+        for (auto i = dead_bullet_count; i < bullet.size(); i++) {
+          if (Alien::GotHit(e, bullet[i])) {
             e.Health--;
             // create explosion effect
             if (e.Health == 0)
               explosions.emplace_back(e.Pos[0] + e.width / 2,
                                       e.Pos[1] + e.height / 2.0, 0.4, -999);
-            (*it).Alive = false;
+              bullet[i].Alive = false;
           }
         }
       // kill the enemy if health is gone
