@@ -7,7 +7,7 @@ enum class Behavior { circles, avoid_bottom_and_top, side_to_side, flocker };
 struct Alien {
   Alien(float x, float y, float vx, float vy, int width, int height,
         Behavior b = Behavior::side_to_side) {
-	PosX0 = x;
+	  PosX0 = x;
     PosY0 = y;
     Pos[0] = x;
     Pos[1] = y;
@@ -67,7 +67,6 @@ bool Alien::GotHit(const Alien &a, const Bullet &b) {
   int bottomAlien = a.Pos[1] + a.height;
   int topAlien = a.Pos[1];
   int topBullet = b.Pos[1];
-  int bottomBullet = b.Pos[1] + Globals::kBulletHeight; // only one size bullet
   int leftBullet = b.Pos[0];
   int rightBullet = b.Pos[0] + Globals::kBulletWidth;
   if (rightBullet > leftAlien && leftBullet < rightAlien &&

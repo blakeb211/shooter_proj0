@@ -1,7 +1,6 @@
 #pragma once
 #include "stdlibs.h"
 
-
 // Forward declare Bullet so Globals can use it
 struct Bullet;
 
@@ -19,16 +18,10 @@ namespace Globals {
 		float kBulletSpeed = -160;
 		Bullet* reusable_bullet; 
 		// Game state
-		int Level = 0;    // what level are we on
-		bool PAUSE = false; // is game paused
-		bool CUTSCENE = false; // is game in a cutscene
+		int Level = 0;										// what level are we on
+		bool PAUSE = false;								// is game paused
+		bool CUTSCENE = false;						// is game in a cutscene
 		float CutSceneTimer = 0.0;
-		const float kCutSceneLength = 2; // seconds pause
+		const float kCutSceneLength = 2;	// seconds pause
 		float TotalTime = 0.0; 
   }  // namespace Globals
-
-
-
-
-
-
