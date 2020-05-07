@@ -17,7 +17,16 @@ struct Example : public olcConsoleGameEngine {
     Globals::reusable_bullet = 0;
     playerPos[0] = ScreenWidth() / 2;
     playerPos[1] = ScreenHeight() - (Globals::kPlayerHeight + 1);
-   
+    // clear object vectors
+    enemy.clear();
+    enemy.reserve(30);
+    bullet.clear();
+    bullet.reserve(30);
+    explosions.clear();
+    explosions.reserve(30);
+    rain.clear();
+    rain.reserve(200);
+
     // create aliens
     int widthSpacer0 = (ScreenWidth() / 15);
     switch (Globals::Level) {
@@ -73,7 +82,7 @@ struct Example : public olcConsoleGameEngine {
     //
     // Create Raindrops
     //
-    for (int i = 0; i < 200; i++) {
+    for (int i = 0; i < Globals::kRainDropCount; i++) {
       rain.push_back(Drop());
     }
     return true;
@@ -279,9 +288,6 @@ struct Example : public olcConsoleGameEngine {
     // Progress to Next level
     if (_livingEnemyCount == 0) {
       Globals::Level++;
-      enemy.clear();
-      bullet.clear();
-      explosions.clear();
       OnUserCreate();
     }
     return true;

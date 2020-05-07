@@ -2,8 +2,8 @@ TODO Space Invaders
 
 
 FEATURES
-  Prevent Alien Collisions
   Refactor main loop
+  Prevent Alien Collisions
   ALIENS EXPLODE WHEN THEY DIE
   Bullets explode
   ALIEN ATTACKS

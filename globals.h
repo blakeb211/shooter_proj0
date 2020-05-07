@@ -22,6 +22,11 @@ namespace Globals {
 		bool PAUSE = false;								// is game paused
 		bool CUTSCENE = false;						// is game in a cutscene
 		float CutSceneTimer = 0.0;
-		const float kCutSceneLength = 2;	// seconds pause
+		constexpr float kCutSceneLength = 2;	// seconds pause
 		float TotalTime = 0.0; 
+		// Rain
+    const int kRainDropCount = 200;
+		//
+		// Global Member Functions
+		//
   }  // namespace Globals
