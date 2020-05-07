@@ -145,8 +145,8 @@ struct Example : public olcConsoleGameEngine {
     // Partition and count dead bullets
     auto _beg_alive_it = partition(
         bullet.begin(), bullet.end(), [](const Bullet& b) { return b.Alive == false; });
-    int dead_bullet_count = _beg_alive_it - begin(bullet); 
-    
+    int dead_bullet_count = _beg_alive_it - bullet.begin();
+    cout << "Dead bullet count: " << dead_bullet_count << endl;
     // Check for User Input
     //
     if (m_keys[VK_SPACE].bPressed) {
@@ -157,6 +157,7 @@ struct Example : public olcConsoleGameEngine {
       // DAAAAAA after reincarnation
       //  ^^^    re-used bullets
       if (dead_bullet_count >= 3) {
+        cout << "reusing bullets" << endl;
         bullet[dead_bullet_count - 1].Pos[0] = playerPos[0] + Globals::kPlayerWidth / 2;
         bullet[dead_bullet_count - 1].Pos[1] =
             playerPos[1] - Globals::kBulletHeight;
@@ -173,7 +174,6 @@ struct Example : public olcConsoleGameEngine {
         bullet[dead_bullet_count - 2].Alive = true;
         bullet[dead_bullet_count - 3].Alive = true;
         dead_bullet_count -= 3;
-        assert(dead_bullet_count >= 0);
       } else
         // create new bullet
         bullet.emplace_back(playerPos[0] + Globals::kPlayerWidth / 2,
@@ -199,6 +199,7 @@ struct Example : public olcConsoleGameEngine {
     for (auto i = dead_bullet_count; i < bullet.size(); i++) {
       // mark a re-usable bullet slot because we don't have one
       bullet[i].Pos[1] += round(Globals::kBulletSpeed * fElapsedTime);
+      bullet[i].Alive = bullet[i].Pos[1] < 0 ? false : true;
     }
 
     //
@@ -220,7 +221,26 @@ struct Example : public olcConsoleGameEngine {
     for (auto& d : rain) {
       d.Fall(fElapsedTime);
     }
-
+    //
+    // Check Enemy-Bullet Collisions. This step invalidates the bullet iterator
+    //
+    for (auto& e : enemy) {
+      if (e.Alive)
+        for (auto i = dead_bullet_count; i < bullet.size(); i++) {
+          if (Alien::GotHit(e, bullet[i])) {
+            e.Health--;
+            // create explosion effect
+            if (e.Health == 0)
+              explosions.emplace_back(e.Pos[0] + e.width / 2,
+                                      e.Pos[1] + e.height / 2.0, 0.4, -999);
+            bullet[i].Alive = false;
+          }
+        }
+      // kill the enemy if health is gone
+      if (e.Health <= 0)
+        e.Alive = false;
+    }
+    cout << "Bullet size: " << bullet.size();
     /************************************************************************************
                                       Drawing Start
     ************************************************************************************/
@@ -269,26 +289,6 @@ struct Example : public olcConsoleGameEngine {
     /************************************************************************************
                                   Drawing End
     ************************************************************************************/
-    
-    //
-    // Check Enemy-Bullet Collisions. This step invalidates the bullet iterator
-    //
-    for (auto& e : enemy) {
-      if (e.Alive)
-        for (auto i = dead_bullet_count; i < bullet.size(); i++) {
-          if (Alien::GotHit(e, bullet[i])) {
-            e.Health--;
-            // create explosion effect
-            if (e.Health == 0)
-              explosions.emplace_back(e.Pos[0] + e.width / 2,
-                                      e.Pos[1] + e.height / 2.0, 0.4, -999);
-              bullet[i].Alive = false;
-          }
-        }
-      // kill the enemy if health is gone
-      if (e.Health <= 0)
-        e.Alive = false;
-    }
     
     // Progress to Next level
     if (_livingEnemyCount == 0) {
