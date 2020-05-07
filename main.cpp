@@ -146,7 +146,6 @@ struct Example : public olcConsoleGameEngine {
     auto _beg_alive_it = partition(
         bullet.begin(), bullet.end(), [](const Bullet& b) { return b.Alive == false; });
     int dead_bullet_count = _beg_alive_it - bullet.begin();
-    cout << "Dead bullet count: " << dead_bullet_count << endl;
     // Check for User Input
     //
     if (m_keys[VK_SPACE].bPressed) {
@@ -157,7 +156,6 @@ struct Example : public olcConsoleGameEngine {
       // DAAAAAA after reincarnation
       //  ^^^    re-used bullets
       if (dead_bullet_count >= 3) {
-        cout << "reusing bullets" << endl;
         bullet[dead_bullet_count - 1].Pos[0] = playerPos[0] + Globals::kPlayerWidth / 2;
         bullet[dead_bullet_count - 1].Pos[1] =
             playerPos[1] - Globals::kBulletHeight;
@@ -240,7 +238,6 @@ struct Example : public olcConsoleGameEngine {
       if (e.Health <= 0)
         e.Alive = false;
     }
-    cout << "Bullet size: " << bullet.size();
     /************************************************************************************
                                       Drawing Start
     ************************************************************************************/

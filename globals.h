@@ -9,7 +9,7 @@ namespace Globals {
 		const int kPlayerWidth = 8;
 		const int kPlayerHeight = 5;
 		const float kPlayerSpeed = 165;
-		constexpr float kScreenWidth = 550;
+		constexpr float kScreenWidth = 360;
 		constexpr float kScreenHeight = kScreenWidth * 9 / 16;
 		const double M_PI = 3.1415926;
 		// Bullet
