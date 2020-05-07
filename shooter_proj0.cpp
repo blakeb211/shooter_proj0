@@ -3,6 +3,9 @@
 //
 
 #include "globals.h"
+#include "Alien.h"
+#include "ParticleEffect.h"
+#include "Drop.h"
 #include "olcConsoleGameEngine.h"
 #include "stdlibs.h"
 
@@ -258,7 +261,7 @@ struct Example : public olcConsoleGameEngine {
     // Draw Explosions
     for (auto& ex : explosions) {
       if (ex.Alive) {
-        // draw circle of triangles at ex's current radius
+			// draw circle of triangles at ex's current radius
         float radius = ex.GetRadius();
         float rand_0_3 = rand() % 3;
         radius += rand_0_3;
