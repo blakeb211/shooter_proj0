@@ -142,28 +142,37 @@ struct Example : public olcConsoleGameEngine {
       DrawString(10, 12, strPause, 95);
       return true;
     }
+    
+    // Partition and count dead bullets
+    auto _beg_alive_it = partition(
+        bullet.begin(), bullet.end(), [](const Bullet& b) { return b.Alive == false; });
+    int dead_bullet_count = _beg_alive_it - begin(bullet); 
+    
     // Check for User Input
     //
     if (m_keys[VK_SPACE].bPressed) {
       // if there is an reusable bullet, re-use it
-      if (Globals::reusable_bullet) {
-        Globals::reusable_bullet->Pos[1] =
-            playerPos[1] - Globals::kBulletHeight;
-        Globals::reusable_bullet->Pos[0] =
-            playerPos[0] + Globals::kPlayerWidth / 2;
-        Globals::reusable_bullet->Alive = true;
-        Globals::reusable_bullet = 0;
-        bullet.emplace_back(playerPos[0] + Globals::kPlayerWidth / 2 + 2,
-                            playerPos[1] - 1 + 2, 0, 2);
-        bullet.emplace_back(playerPos[0] + Globals::kPlayerWidth / 2 + -2,
-                            playerPos[1] - 1 + 2, 0, 2);
+
+      if (dead_bullet_count >= 3) {
+        bullet[0].Pos[0] = playerPos[0] + Globals::kPlayerWidth / 2;
+        bullet[0].Pos[1] = playerPos[1] - Globals::kBulletHeight;
+
+        bullet[1].Pos[0] = playerPos[0] + Globals::kPlayerWidth / 2 + 2;
+        bullet[1].Pos[1] = playerPos[1] - 1 + 2;
+        
+        bullet[2].Pos[0] = playerPos[0] + Globals::kPlayerWidth / 2 + -2;
+        bullet[2].Pos[1] = playerPos[1] - 1 + 2;
+
+        bullet[0].Alive = true;
+        bullet[1].Alive = true;
+        bullet[2].Alive = true;
       } else
         // create new bullet
         bullet.emplace_back(playerPos[0] + Globals::kPlayerWidth / 2,
                             playerPos[1] - 1, 0, 2);
-      bullet.emplace_back(playerPos[0] + Globals::kPlayerWidth / 2 + 2,
+        bullet.emplace_back(playerPos[0] + Globals::kPlayerWidth / 2 + 2,
                           playerPos[1] - 1 + 2, 0, 2);
-      bullet.emplace_back(playerPos[0] + Globals::kPlayerWidth / 2 + -2,
+        bullet.emplace_back(playerPos[0] + Globals::kPlayerWidth / 2 + -2,
                           playerPos[1] - 1 + 2, 0, 2);
     }
     //
@@ -177,43 +186,11 @@ struct Example : public olcConsoleGameEngine {
     }
 
     //
-    // Check Enemy-Bullet Collisions
+    // Update Alive Bullet Positions
     //
-    for (auto& e : enemy) {
-      if (e.Alive)
-        for (auto& b : bullet) {
-          if (b.Alive)
-            if (Alien::GotHit(e, b)) {
-              e.Health--;
-              // create explosion effect
-              if (e.Health == 0)
-                explosions.emplace_back(e.Pos[0] + e.width / 2,
-                                        e.Pos[1] + e.height / 2.0, 0.4, -999);
-              b.Alive = false;
-            }
-        }
-      // kill the enemy if health is gone
-      if (e.Health <= 0)
-        e.Alive = false;
-    }
-
-    //
-    // Update Bullet Positions
-    //
-    if (!Globals::reusable_bullet) {
-      for (auto& b : bullet) {
-        // mark a re-usable bullet slot because we don't have one
-        if (b.Pos[1] < 0) {
-          b.Alive = false;
-          Globals::reusable_bullet = &b;
-        } else
-          b.Pos[1] += round(Globals::kBulletSpeed * fElapsedTime);
-      }
-    } else {
-      for (auto& b : bullet) {
-        // we have a re-usable bullet slot, so update all active bullets
-        b.Pos[1] += round(Globals::kBulletSpeed * fElapsedTime);
-      }
+    for (auto it = _beg_alive_it; it != bullet.end(); it++) {
+      // mark a re-usable bullet slot because we don't have one
+      it->Pos[1] += round(Globals::kBulletSpeed * fElapsedTime);
     }
 
     //
@@ -251,11 +228,10 @@ struct Example : public olcConsoleGameEngine {
          round(playerPos[1] + Globals::kPlayerHeight), L'&', 14);
 
     // Draw Bullets
-    for (auto& b : bullet) {
-      if (b.Alive)
-        Fill(round(b.Pos[0]), round(b.Pos[1]),
-             round(b.Pos[0] + Globals::kBulletWidth),
-             round(b.Pos[1] + Globals::kBulletHeight), L'O', 60);
+    for (auto it = _beg_alive_it; it != bullet.end(); it++) {
+        Fill(round(it->Pos[0]), round(it->Pos[1]),
+             round(it->Pos[0] + Globals::kBulletWidth),
+             round(it->Pos[1] + Globals::kBulletHeight), L'O', 60);
     }
 
     // Draw Enemies
@@ -285,6 +261,27 @@ struct Example : public olcConsoleGameEngine {
     /************************************************************************************
                                   Drawing End
     ************************************************************************************/
+    
+    //
+    // Check Enemy-Bullet Collisions. This step invalidates the bullet iterator
+    //
+    for (auto& e : enemy) {
+      if (e.Alive)
+        for (auto it = _beg_alive_it; it != bullet.end(); it++) {
+          if (Alien::GotHit(e, *it)) {
+            e.Health--;
+            // create explosion effect
+            if (e.Health == 0)
+              explosions.emplace_back(e.Pos[0] + e.width / 2,
+                                      e.Pos[1] + e.height / 2.0, 0.4, -999);
+            (*it).Alive = false;
+          }
+        }
+      // kill the enemy if health is gone
+      if (e.Health <= 0)
+        e.Alive = false;
+    }
+    
     // Progress to Next level
     if (_livingEnemyCount == 0) {
       Globals::Level++;
