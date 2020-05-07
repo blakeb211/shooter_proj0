@@ -8,6 +8,7 @@
 #include "Drop.h"
 #include "olcConsoleGameEngine.h"
 #include "stdlibs.h"
+#include "Drawing.h"
 
 struct Example : public olcConsoleGameEngine {
   bool OnUserCreate() {
@@ -128,8 +129,8 @@ struct Example : public olcConsoleGameEngine {
         Globals::CUTSCENE = false;
         return true;
       }
-      // Clear Screen
-      Fill(0, 0, Globals::kScreenWidth, Globals::kScreenHeight, L' ', 0);
+
+      Drawing::ClearScreen(*this);
       // Draw Message To Player
       m_nFontHeight = 16;
       m_nFontWidth = 16;
@@ -184,18 +185,17 @@ struct Example : public olcConsoleGameEngine {
     //
     // Update Player Position
     //
-    if (m_keys[VK_RIGHT].bPressed || m_keys[VK_RIGHT].bHeld) {
-      playerPos[0] += (Globals::kPlayerSpeed * fElapsedTime);
-    }
-    if (m_keys[VK_LEFT].bPressed || m_keys[VK_LEFT].bHeld) {
-      playerPos[0] -= Globals::kPlayerSpeed * fElapsedTime;
-    }
-
+    if (m_keys[VK_RIGHT].bPressed || m_keys[VK_RIGHT].bHeld) 
+        playerPos[0] += (Globals::kPlayerSpeed * fElapsedTime);
+      else if (m_keys[VK_LEFT].bPressed || m_keys[VK_LEFT].bHeld) 
+        playerPos[0] -= Globals::kPlayerSpeed * fElapsedTime;
+    
     //
     // Update Alive Bullet Positions
     //
+    // All bullets in the range [dead_bullet_count, bullet.end()] are alive 
+    // and need to be updated
     for (auto i = dead_bullet_count; i < bullet.size(); i++) {
-      // mark a re-usable bullet slot because we don't have one
       bullet[i].Pos[1] += round(Globals::kBulletSpeed * fElapsedTime);
       bullet[i].Alive = bullet[i].Pos[1] < 0 ? false : true;
     }
@@ -228,44 +228,39 @@ struct Example : public olcConsoleGameEngine {
           if (Alien::GotHit(e, bullet[i])) {
             e.Health--;
             // create explosion effect
-            if (e.Health == 0)
+            if (e.Health == 0) {
               explosions.emplace_back(e.Pos[0] + e.width / 2,
                                       e.Pos[1] + e.height / 2.0, 0.4, -999);
-            bullet[i].Alive = false;
+              bullet[i].Alive = false;
+              e.Alive = false;
+            }
           }
         }
-      // kill the enemy if health is gone
-      if (e.Health <= 0)
-        e.Alive = false;
     }
     /************************************************************************************
                                       Drawing Start
     ************************************************************************************/
     // Clear Screen
-    Fill(0, 0, Globals::kScreenWidth, Globals::kScreenHeight, L' ', 0);
+    Drawing::ClearScreen(*this);
+    
     // Draw Rain
-    for (auto& d : rain) {
-      Fill(round(d.x), round(d.y), round(d.x + d.dropWidth), round(d.y + d.dropHeight), L'!', d.dropColor);
-    }
+    for (auto& d : rain)
+      Drawing::DrawRain(*this, d);
+ 
     // Draw Player
-    Fill(round(playerPos[0]), round(playerPos[1]),
-         round(playerPos[0] + Globals::kPlayerWidth),
-         round(playerPos[1] + Globals::kPlayerHeight), L'&', 175);
+    Drawing::DrawPlayer(*this,playerPos);
 
     // Draw Bullets
-    for (auto i = dead_bullet_count; i < bullet.size(); i++) {
-        Fill(round(bullet[i].Pos[0]), round(bullet[i].Pos[1]),
-             round(bullet[i].Pos[0] + Globals::kBulletWidth),
-             round(bullet[i].Pos[1] + Globals::kBulletHeight), L'O', 60);
-    }
+    for (auto i = dead_bullet_count; i < bullet.size(); i++)
+      Drawing::DrawBullet(*this, bullet[i].Pos[0], bullet[i].Pos[1],
+                          Globals::kBulletWidth, Globals::kBulletHeight);
 
     // Draw Enemies
     int _livingEnemyCount = 0;
     for (auto& e : enemy) {
       if (e.Alive) {
         _livingEnemyCount++;
-        Fill(round(e.Pos[0]), round(e.Pos[1]), round(e.Pos[0] + e.width),
-             round(e.Pos[1] + e.height), L'T', 75);
+        Drawing::DrawEnemy(*this, e.Pos[0], e.Pos[1], e.width, e.height, e.attitude);
       }
     }
     // Draw Explosions
@@ -275,18 +270,12 @@ struct Example : public olcConsoleGameEngine {
         float radius = ex.GetRadius();
         float rand_0_3 = rand() % 3;
         radius += rand_0_3;
-        for (float theta = 0; theta < 2 * Globals::M_PI; theta += 0.5)  {
-          int xpos = round(ex.xPos0 + radius * cos(theta));
-          int ypos = round(ex.yPos0 + radius * sin(theta));
-          DrawTriangle(xpos, ypos, xpos + 2, ypos + 2, xpos - 2, ypos + 2, L'*',
-                       196);
-        }
+        Drawing::DrawExplosion(*this, ex.xPos0, ex.yPos0, radius);
       }
     }
     /************************************************************************************
                                   Drawing End
     ************************************************************************************/
-    
     // Progress to Next level
     if (_livingEnemyCount == 0) {
       Globals::Level++;

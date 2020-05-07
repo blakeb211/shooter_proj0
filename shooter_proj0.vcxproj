@@ -162,14 +162,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="test_partition_of_alive_objects.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Alien.h" />
     <ClInclude Include="Bullet.h" />
+    <ClInclude Include="Drawing.h" />
     <ClInclude Include="Drop.h" />
     <ClInclude Include="globals.h" />
     <ClInclude Include="olcConsoleGameEngine.h" />

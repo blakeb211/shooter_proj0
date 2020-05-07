@@ -21,7 +21,7 @@ namespace Globals {
 		bool PAUSE = false;								// is game paused
 		bool CUTSCENE = false;						// is game in a cutscene
 		float CutSceneTimer = 0.0;
-		constexpr float kCutSceneLength = 2;	// seconds pause
+		constexpr float kCutSceneLength = 1.5;	// seconds pause
 		float TotalTime = 0.0; 
 		// Rain
     const int kRainDropCount = 200;
