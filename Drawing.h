@@ -28,8 +28,27 @@ void DrawBullet(olcConsoleGameEngine& game, float xpos, float ypos, int width, i
 }
 
 
-void DrawEnemy(olcConsoleGameEngine& game, const float& x, const float& y, const int& width, const int& height, const Behavior& behavior) {
-  game.Fill(round(x), round(y), round(x + width), round(y + height), L'T', 75);
+void DrawEnemy(olcConsoleGameEngine& game, Alien & e) {
+
+  game.Fill(round(e.Pos[0]), round(e.Pos[1]), round(e.Pos[0] + e.width), round(e.Pos[1] + e.height), L'T', 75);
+  if (e.Cracked) {
+    int leftCrackX = e.Pos[0];
+    int leftCrackY = e.Pos[1] + e.height / 2 + 2;
+    int topCrackX = e.Pos[0] + e.width / 4 - 1;
+    int topCrackY = e.Pos[1];
+    int rightCrackX = e.Pos[0] + e.width;
+    int rightCrackY = e.Pos[1] + e.height - 2 ;
+    int bottomCrackX = e.Pos[0] + e.width;
+    int bottomCrackY = e.Pos[1] + e.height;
+    int centerX = e.Pos[0] + e.width / 2;
+    int centerY = e.Pos[1] + e.height / 2;
+    game.DrawLine(leftCrackX, leftCrackY, centerX, centerY, L'-', 1);
+    game.DrawLine(centerX, centerY, topCrackX, topCrackY, L'|', 1);
+    game.DrawLine(centerX, centerY, bottomCrackX, bottomCrackY, L'|', 1);
+    game.DrawLine(centerX + 2, centerY + 2, rightCrackX, rightCrackY- e.height/2, L'-', 1); 
+    game.DrawLine(topCrackX + (e.width * 3) / 4, topCrackY,bottomCrackX + e.width / 2, bottomCrackY, L'x', 1);
+  }
+
 }
 
  void DrawExplosion(olcConsoleGameEngine& game, const int& xPos0, const int& yPos0, const int& radius) {

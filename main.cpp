@@ -34,13 +34,13 @@ struct Example : public olcConsoleGameEngine {
         for (int i = 2; i <= 5; i++) {
           int rot_direction = (i % 2 == 0 ? -1 : 1);
           int radius = 30;
-          enemy.emplace_back(Alien(30 + i * 40, 48, radius, rot_direction, 15,
-                                   8, Behavior::circles));
+          enemy.emplace_back(Alien(30 + i * 40, 48, radius, rot_direction, 20,
+                                   12, Behavior::circles));
         }
         for (int i = 1; i < 7; i++) {
           int shuffle_dir = (i % 3 == 0 ? 1 : -1);
           enemy.emplace_back(Alien(i * widthSpacer0, 70, shuffle_dir * 20, 8,
-                                   12, 8, Behavior::side_to_side));
+                                   20, 12, Behavior::side_to_side));
         }
         break;
       case 1:
@@ -48,7 +48,7 @@ struct Example : public olcConsoleGameEngine {
         for (int i = 1; i < 7; i++) {
           int shuffle_dir = 1;
           enemy.emplace_back(Alien(i * widthSpacer0, 10, shuffle_dir * 20, 8,
-                                   12, 8, Behavior::side_to_side));
+                                   20, 12, Behavior::side_to_side));
         }
         break;
 
@@ -57,7 +57,7 @@ struct Example : public olcConsoleGameEngine {
         // create enemies
         for (int i = 1; i < 5; i++) {
           enemy.emplace_back(
-              Alien(100, 25 * i, 0, 0, 12, 8, Behavior::side_to_side));
+              Alien(100, 25 * i, 0, 0, 20, 14, Behavior::side_to_side));
         }
         break;
       case 3:
@@ -224,6 +224,7 @@ struct Example : public olcConsoleGameEngine {
         for (auto i = dead_bullet_count; i < bullet.size(); i++) {
           if (Alien::GotHit(*enemy_it, bullet[i])) {
             enemy_it->Health--;
+            enemy_it->Cracked = true;
             bullet[i].Alive = false;
             // create explosion effect
             if (enemy_it->Health <= 0) {
@@ -255,7 +256,7 @@ struct Example : public olcConsoleGameEngine {
 
     // Draw Enemies
     for (auto& e : enemy) {
-        Drawing::DrawEnemy(*this, e.Pos[0], e.Pos[1], e.width, e.height, e.attitude);
+        Drawing::DrawEnemy(*this, e);
     }
     // Draw Explosions
     for (auto& ex : explosions) {

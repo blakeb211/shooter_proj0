@@ -23,7 +23,7 @@ namespace Globals {
 		constexpr float kCutSceneLength = 1.5;	// seconds pause
 		float TotalTime = 0.0; 
 		// Rain
-    const int kRainDropCount = 200;
+		const int kRainDropCount = 200;
 		//
 		// Global Member Functions
 		//

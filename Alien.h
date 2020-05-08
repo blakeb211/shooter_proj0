@@ -15,8 +15,9 @@ struct Alien {
     Vel[1] = vy;
     this->width = width;
     this->height = height;
-    Health = 2;
+    Health = 3;
     attitude = b;
+    Cracked = false;
   }
 
   // member variables
@@ -25,6 +26,7 @@ struct Alien {
   float Vel[2];
   int height, width;
   int Health;
+  bool Cracked;
   Behavior attitude;
   
   // member methods
