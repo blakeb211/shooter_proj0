@@ -1,3 +1,4 @@
+
 #include "globals.h"
 #include "Alien.h"
 #include "Drop.h"
@@ -32,7 +33,7 @@ void DrawEnemy(olcConsoleGameEngine& game, const float& x, const float& y, const
 }
 
  void DrawExplosion(olcConsoleGameEngine& game, const int& xPos0, const int& yPos0, const int& radius) {
-  for (float theta = 0; theta < 2 * Globals::M_PI; theta += 0.5) {
+  for (float theta = 0; theta < 2 * M_PI; theta += 0.5) {
     int xpos = xPos0 + radius * cos(theta);
     int ypos = yPos0 + radius * sin(theta);
     game.DrawTriangle(xpos, ypos, xpos + 2, ypos + 2, xpos - 2, ypos + 2, L'*', 196);

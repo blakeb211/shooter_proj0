@@ -2,6 +2,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#define _USE_MATH_DEFINES
 #include <cmath>
 #include <iomanip>
 #include <fstream>
