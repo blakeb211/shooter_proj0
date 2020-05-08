@@ -30,7 +30,7 @@ void DrawBullet(olcConsoleGameEngine& game, float xpos, float ypos, int width, i
 
 void DrawEnemy(olcConsoleGameEngine& game, Alien & e) {
 
-  game.Fill(round(e.Pos[0]), round(e.Pos[1]), round(e.Pos[0] + e.width), round(e.Pos[1] + e.height), L'T', 75);
+  game.Fill(round(e.Pos[0]), round(e.Pos[1]), round(e.Pos[0] + e.width), round(e.Pos[1] + e.height), L'T', 165);
   if (e.Cracked) {
     // these values could be cached
     int leftCrackX = e.Pos[0];
