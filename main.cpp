@@ -116,6 +116,7 @@ struct Example : public olcConsoleGameEngine {
     // Increment total game running time
     Globals::TotalTime += fElapsedTime;
 
+
     if (Globals::CUTSCENE) {
       Globals::CutSceneTimer += fElapsedTime;
       if (Globals::CutSceneTimer >= Globals::kCutSceneLength) {
@@ -236,9 +237,15 @@ struct Example : public olcConsoleGameEngine {
           }
         }
     }
+    // Progress to Next level
+    if (enemy.size() == 0) {
+      Globals::Level++;
+      OnUserCreate();
+    }
     /************************************************************************************
                                       Drawing Start
     ************************************************************************************/
+
     // Clear Screen
     Drawing::ClearScreen(*this);
     
@@ -271,11 +278,7 @@ struct Example : public olcConsoleGameEngine {
     /************************************************************************************
                                   Drawing End
     ************************************************************************************/
-    // Progress to Next level
-    if (enemy.size() == 0) {
-      Globals::Level++;
-      OnUserCreate();
-    }
+
     return true;
   }
 
