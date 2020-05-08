@@ -32,6 +32,7 @@ void DrawEnemy(olcConsoleGameEngine& game, Alien & e) {
 
   game.Fill(round(e.Pos[0]), round(e.Pos[1]), round(e.Pos[0] + e.width), round(e.Pos[1] + e.height), L'T', 75);
   if (e.Cracked) {
+    // these values could be cached
     int leftCrackX = e.Pos[0];
     int leftCrackY = e.Pos[1] + e.height / 2 + 2;
     int topCrackX = e.Pos[0] + e.width / 4 - 1;
