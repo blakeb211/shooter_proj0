@@ -104,7 +104,7 @@ struct Example : public olcConsoleGameEngine {
         xbump += 5;
         if (i % 50 == 0) {
           string strColorIndex = to_string(i);
-          wstring wStrColor(strColorIndex.begin(), strColorIndex.end());
+          wstring wStrColor(strColorIndex.begin(), strColorIndex.end());\]
           DrawString(50 + xbump + 5, ybump, wStrColor, 140);
           xbump = 0;
           ybump += 7;
