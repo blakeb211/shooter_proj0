@@ -38,7 +38,7 @@ void DrawEnemy(olcConsoleGameEngine& game, Alien & e) {
     int topCrackX = e.Pos[0] + e.width / 4 - 1;
     int topCrackY = e.Pos[1];
     int rightCrackX = e.Pos[0] + e.width;
-    int rightCrackY = e.Pos[1] + e.height - 2 ;
+    int rightCrackY = e.Pos[1] + e.height - 2;
     int bottomCrackX = e.Pos[0] + e.width;
     int bottomCrackY = e.Pos[1] + e.height;
     int centerX = e.Pos[0] + e.width / 2;
@@ -46,8 +46,9 @@ void DrawEnemy(olcConsoleGameEngine& game, Alien & e) {
     game.DrawLine(leftCrackX, leftCrackY, centerX, centerY, L'-', 1);
     game.DrawLine(centerX, centerY, topCrackX, topCrackY, L'|', 1);
     game.DrawLine(centerX, centerY, bottomCrackX, bottomCrackY, L'|', 1);
-    game.DrawLine(centerX + 2, centerY + 2, rightCrackX, rightCrackY- e.height/2, L'-', 1); 
-    game.DrawLine(topCrackX + (e.width * 3) / 4, topCrackY,bottomCrackX + e.width / 2, bottomCrackY, L'x', 1);
+    game.DrawLine(centerX + 2, centerY + 2, rightCrackX, rightCrackY, L'-', 1); 
+    game.DrawLine(centerX + 3, centerY, rightCrackX, e.Pos[1], L'-', 1); 
+    game.DrawLine(centerX + 3, centerY, centerX - 1, e.Pos[1] + e.height, L'-', 1); 
   }
 
 }
