@@ -15,7 +15,6 @@ struct Alien {
     Vel[1] = vy;
     this->width = width;
     this->height = height;
-    Alive = true;
     Health = 2;
     attitude = b;
   }
@@ -25,7 +24,6 @@ struct Alien {
   float Pos[2];
   float Vel[2];
   int height, width;
-  bool Alive;
   int Health;
   Behavior attitude;
   

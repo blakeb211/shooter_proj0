@@ -19,9 +19,8 @@ struct Example : public olcConsoleGameEngine {
     playerPos[1] = ScreenHeight() - (Globals::kPlayerHeight + 1);
     // clear object vectors
     enemy.clear();
-    enemy.reserve(30);
     bullet.clear();
-    bullet.reserve(30);
+    bullet.reserve(30); // we can reserve for vectors but not for lists
     explosions.clear();
     explosions.reserve(30);
     rain.clear();
@@ -204,7 +203,6 @@ struct Example : public olcConsoleGameEngine {
     // Update Enemy Position
     //
     for (auto& e : enemy) {
-      if (e.Alive)
         e.UpdatePosition(fElapsedTime);
     }
     //
@@ -222,17 +220,17 @@ struct Example : public olcConsoleGameEngine {
     //
     // Check Enemy-Bullet Collisions. This step invalidates the bullet iterator
     //
-    for (auto& e : enemy) {
-      if (e.Alive)
+    for (auto enemy_it = begin(enemy); enemy_it != end(enemy); enemy_it++) {
         for (auto i = dead_bullet_count; i < bullet.size(); i++) {
-          if (Alien::GotHit(e, bullet[i])) {
-            e.Health--;
+          if (Alien::GotHit(*enemy_it, bullet[i])) {
+            enemy_it->Health--;
+            bullet[i].Alive = false;
             // create explosion effect
-            if (e.Health == 0) {
-              explosions.emplace_back(e.Pos[0] + e.width / 2,
-                                      e.Pos[1] + e.height / 2.0, 0.4, -999);
-              bullet[i].Alive = false;
-              e.Alive = false;
+            if (enemy_it->Health <= 0) {
+              explosions.emplace_back(enemy_it->Pos[0] + enemy_it->width / 2,
+                                      enemy_it->Pos[1] + enemy_it->height / 2.0, 0.4, -999);
+              // remove dead enemy
+              enemy_it = enemy.erase(enemy_it);
             }
           }
         }
@@ -256,12 +254,8 @@ struct Example : public olcConsoleGameEngine {
                           Globals::kBulletWidth, Globals::kBulletHeight);
 
     // Draw Enemies
-    int _livingEnemyCount = 0;
     for (auto& e : enemy) {
-      if (e.Alive) {
-        _livingEnemyCount++;
         Drawing::DrawEnemy(*this, e.Pos[0], e.Pos[1], e.width, e.height, e.attitude);
-      }
     }
     // Draw Explosions
     for (auto& ex : explosions) {
@@ -277,7 +271,7 @@ struct Example : public olcConsoleGameEngine {
                                   Drawing End
     ************************************************************************************/
     // Progress to Next level
-    if (_livingEnemyCount == 0) {
+    if (enemy.size() == 0) {
       Globals::Level++;
       OnUserCreate();
     }
@@ -286,7 +280,7 @@ struct Example : public olcConsoleGameEngine {
 
   vector<Bullet> bullet;
   float playerPos[2];
-  vector<Alien> enemy;
+  list<Alien> enemy;  // use a list for fast insertion and deletion and so we can decrease branching in the main loop
   vector<ParticleEffect> explosions;
   vector<Drop> rain;
 };
