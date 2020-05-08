@@ -885,7 +885,10 @@ public:
 		}
 	}
 
-	void Fill(int x1, int y1, int x2, int y2, wchar_t c = 0x2588, short col = 0x000F)
+	void 
+	
+	
+	(int x1, int y1, int x2, int y2, wchar_t c = 0x2588, short col = 0x000F)
 	{
 		Clip(x1, y1);
 		Clip(x2, y2);
