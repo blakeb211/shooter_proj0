@@ -14,7 +14,7 @@ License
 One Lone Coder Console Game Engine  Copyright (C) 2018  Javidx9
 This program comes with ABSOLUTELY NO WARRANTY.
 This is free software, and you are welcome to redistribute it
-under certain conditions; See license for details.D
+under certain conditions; See license for details.
 
 Original works located at:
 	https://www.github.com/onelonecoder
@@ -885,10 +885,7 @@ public:
 		}
 	}
 
-	void 
-	
-	
-	(int x1, int y1, int x2, int y2, wchar_t c = 0x2588, short col = 0x000F)
+	void Fill(int x1, int y1, int x2, int y2, wchar_t c = 0x2588, short col = 0x000F)
 	{
 		Clip(x1, y1);
 		Clip(x2, y2);
@@ -1617,7 +1614,7 @@ private:
 
 				// Update Title & Present Screen Buffer
 				wchar_t sNewTitle[256];
-				swprintf_s(sNewTitle, 256, L"Console Game Engine (OpenGL) - %s - FPS: %3.2f", m_sAppName.c_str(), 1.0f / fElapsedTime);
+				swprintf_s(sNewTitle, 256, L"OneLoneCoder.com - Console Game Engine (OGL) - %s - FPS: %3.2f", m_sAppName.c_str(), 1.0f / fElapsedTime);
 				SetWindowText(m_hWnd, sNewTitle);
 
 				SwapBuffers(m_hDevCtx);
