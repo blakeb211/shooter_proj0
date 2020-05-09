@@ -1,4 +1,4 @@
-// shooter_proj0.cpp : This file contains the 'main' function. Program execution
+// main.cpp : This file contains the 'main' function. Program execution
 // begins and ends there.
 //
 

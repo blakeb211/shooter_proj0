@@ -2,25 +2,30 @@ TODO Space Invaders
 
 
 FEATURES
-  Refactor main loop
+
   Prevent Alien Collisions
-  ALIENS EXPLODE WHEN THEY DIE
-  Bullets explode
-  ALIEN ATTACKS
   LEVEL EDITOR
+  ALIEN ATTACKS
+  More enemy behaviors
+  Enemy Animations
+
   MUSIC
   SOUNDS
   
 PLAYER HEALTH
 PLAYER DIE 
 	LEVEL RESET AFTER PLAYER DEATH
-
-	PLAYER ADVACED ATTACKS
+ 
+PLAYER ADVACED ATTACKS
 		SEND UP WALLS
 		LAY TIMED ATTACKS
 		
 
 DONE
+  Refactor main loop
+  Cut scene between levels
+  Pause screen with color scale printed out
+  Aliens explode when they die
   Block Explosions
   Alien Behaviors (side_to_side, circles)
   Make bullets re-usable
