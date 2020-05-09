@@ -1,4 +1,6 @@
-
+/* This is the Drawing namespace - 
+ a bucket of functions to draw to the screen using functions from
+ the OneLoneCoderConsoleGameEngineGL */
 #include "globals.h"
 #include "Alien.h"
 #include "Drop.h"
@@ -31,8 +33,9 @@ void DrawBullet(olcConsoleGameEngine& game, float xpos, float ypos, int width, i
 void DrawEnemy(olcConsoleGameEngine& game, Alien & e) {
 
   game.Fill(round(e.Pos[0]), round(e.Pos[1]), round(e.Pos[0] + e.width), round(e.Pos[1] + e.height), L'T', 165);
+  /* Draw cracks in the enemy if it is injured */
+
   if (e.Cracked) {
-    // these values could be cached
     int leftCrackX = e.Pos[0];
     int leftCrackY = e.Pos[1] + e.height / 2 + 2;
     int topCrackX = e.Pos[0] + e.width / 4 - 1;

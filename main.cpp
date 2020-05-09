@@ -16,7 +16,7 @@ struct Example : public olcConsoleGameEngine {
     // load level, characters, sprites, etc
     Globals::TotalTime = 0.0;
     playerPos[0] = ScreenWidth() / 2;
-    playerPos[1] = ScreenHeight() - (Globals::kPlayerHeight + 1);
+    playerPos[1] = ScreenHeight() - (Globals::kPlayerHeight*1.5);
     // clear object vectors
     enemy.clear();
     bullet.clear();

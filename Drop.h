@@ -1,3 +1,6 @@
+/* This is the Drop class. A vector of drops is created at the
+beginning of each scene and "falls" to create a raining effect. */
+
 #pragma once
 #include "globals.h"
 
