@@ -20,7 +20,7 @@ struct Example : public olcConsoleGameEngine {
     // clear object vectors
     enemy.clear();
     bullet.clear();
-    bullet.reserve(30); // we can reserve for vectors but not for lists
+    bullet.reserve(30);          // we can reserve for vectors but not for lists
     explosions.clear();
     explosions.reserve(30);
     rain.clear();
@@ -51,7 +51,6 @@ struct Example : public olcConsoleGameEngine {
                                    20, 12, Behavior::side_to_side));
         }
         break;
-
       case 2:
         Globals::CUTSCENE = true;
         // create enemies
@@ -115,7 +114,6 @@ struct Example : public olcConsoleGameEngine {
 
     // Increment total game running time
     Globals::TotalTime += fElapsedTime;
-
 
     if (Globals::CUTSCENE) {
       Globals::CutSceneTimer += fElapsedTime;
@@ -260,7 +258,6 @@ struct Example : public olcConsoleGameEngine {
     for (auto i = dead_bullet_count; i < bullet.size(); i++)
       Drawing::DrawBullet(*this, bullet[i].Pos[0], bullet[i].Pos[1],
                           Globals::kBulletWidth, Globals::kBulletHeight);
-
     // Draw Enemies
     for (auto& e : enemy) {
         Drawing::DrawEnemy(*this, e);
@@ -268,7 +265,7 @@ struct Example : public olcConsoleGameEngine {
     // Draw Explosions
     for (auto& ex : explosions) {
       if (ex.Alive) {
-			// draw circle of triangles at ex's current radius
+		// draw circle of triangles at ex's current radius
         float radius = ex.GetRadius();
         float rand_0_3 = rand() % 3;
         radius += rand_0_3;
@@ -284,7 +281,8 @@ struct Example : public olcConsoleGameEngine {
 
   vector<Bullet> bullet;
   float playerPos[2];
-  list<Alien> enemy;  // use a list for fast insertion and deletion and so we can decrease branching in the main loop
+  list<Alien> enemy;  // use a list for fast insertion and deletion 
+                     // and so we can decrease branching in the main loop
   vector<ParticleEffect> explosions;
   vector<Drop> rain;
 };
