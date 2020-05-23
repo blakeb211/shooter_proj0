@@ -1,8 +1,8 @@
 TODO Space Invaders
 
 5.23.2020
-  merge branches
   add alien attack
+  add player health bar
   add level reset on player lives == 0
   add alien bounce into other alien
 

@@ -21,6 +21,7 @@ struct Example : public olcConsoleGameEngine {
     enemy.clear();
     bullet.clear();
     bullet.reserve(30);          // we can reserve for vectors but not for lists
+    enemy_bullet.reserve(30);
     explosions.clear();
     explosions.reserve(30);
     rain.clear();
@@ -95,7 +96,7 @@ struct Example : public olcConsoleGameEngine {
       // cout << "Pause Pressed" << endl;
     }
     if (Globals::PAUSE) {
-      // Draw Colors
+      // Draw Color palette in pause screen, 50 colors per line, from 1 to 250
       int xbump = 0;
       int ybump = 0;
       for (int i = 1; i < 250; i++) {
@@ -197,7 +198,14 @@ struct Example : public olcConsoleGameEngine {
       bullet[i].Pos[1] += round(Globals::kBulletSpeed * fElapsedTime);
       bullet[i].Alive = bullet[i].Pos[1] < 0 ? false : true;
     }
-
+    //
+    // Update Alive Enemy Bullet Positions
+    //
+    for (auto i = 0; i < enemy_bullet.size(); i++) {
+      enemy_bullet[i].Pos[1] += round(Globals::kEnemyBulletSpeed * fElapsedTime);
+      enemy_bullet[i].Alive = enemy_bullet[i].Pos[1] > Globals::kScreenHeight ? false : true;
+    }
+    
     //
     // Update Enemy Position
     //
@@ -220,7 +228,13 @@ struct Example : public olcConsoleGameEngine {
     // Check Enemy-Bullet Collisions. This step invalidates the bullet iterator
     //
     for (auto enemy_it = begin(enemy); enemy_it != end(enemy); enemy_it++) {
-        for (auto i = dead_bullet_count; i < bullet.size(); i++) {
+      // shoot at player
+      if (enemy_it->IsGoodToShoot(*enemy_it, playerPos)) {
+        enemy_bullet.emplace_back(enemy_it->Pos[0] + (enemy_it->width) / 2.0,
+                                  enemy_it->Pos[1] + enemy_it->height + 2, 0,
+                                  0);
+      }
+      for (auto i = dead_bullet_count; i < bullet.size(); i++) {
           if (Alien::GotHit(*enemy_it, bullet[i])) {
             enemy_it->Health--;
             enemy_it->Cracked = true;
@@ -258,6 +272,12 @@ struct Example : public olcConsoleGameEngine {
     for (auto i = dead_bullet_count; i < bullet.size(); i++)
       Drawing::DrawBullet(*this, bullet[i].Pos[0], bullet[i].Pos[1],
                           Globals::kBulletWidth, Globals::kBulletHeight);
+
+    // Draw Enemy Bullets
+    for (auto i = 0; i < enemy_bullet.size(); i++)
+      Drawing::DrawBullet(*this, enemy_bullet[i].Pos[0], enemy_bullet[i].Pos[1],
+                          Globals::kBulletWidth, Globals::kBulletHeight);
+
     // Draw Enemies
     for (auto& e : enemy) {
         Drawing::DrawEnemy(*this, e);
@@ -280,6 +300,7 @@ struct Example : public olcConsoleGameEngine {
   }
 
   vector<Bullet> bullet;
+  vector<Bullet> enemy_bullet;
   float playerPos[2];
   list<Alien> enemy;  // use a list for fast insertion and deletion 
                      // and so we can decrease branching in the main loop

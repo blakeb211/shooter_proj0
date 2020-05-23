@@ -58,6 +58,10 @@ struct Alien {
     };
   }
   static bool GotHit(const Alien &, const Bullet &);
+  static bool IsGoodToShoot(const Alien&, float* playerPos) { 
+    // raycast to player
+    return true;
+  }
 };
 
 // Static method for alien-bullet collisions

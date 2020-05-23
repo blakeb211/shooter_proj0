@@ -15,6 +15,8 @@ namespace Globals {
 		int kBulletWidth = 2;
 		int kBulletHeight = 5;
 		float kBulletSpeed = -160;
+    float kEnemyBulletSpeed = +100;
+
 		// Game state
 		int Level = 0;										// what level are we on
 		bool PAUSE = false;								// is game paused
