@@ -161,11 +161,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="shooter_proj0.cpp" />
+    <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Alien.h" />
+    <ClInclude Include="Bullet.h" />
+    <ClInclude Include="Drawing.h" />
+    <ClInclude Include="Drop.h" />
     <ClInclude Include="globals.h" />
     <ClInclude Include="olcConsoleGameEngine.h" />
+    <ClInclude Include="ParticleEffect.h" />
     <ClInclude Include="stdlibs.h" />
   </ItemGroup>
   <ItemGroup>
