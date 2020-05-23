@@ -15,7 +15,8 @@ namespace Globals {
 		int kBulletWidth = 2;
 		int kBulletHeight = 5;
 		float kBulletSpeed = -160;
-    float kEnemyBulletSpeed = +100;
+    float kEnemyBulletSpeed = +95;
+    const float kEnemyReloadingTime = 0.9;
 
 		// Game state
 		int Level = 0;										// what level are we on

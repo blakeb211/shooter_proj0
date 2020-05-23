@@ -141,7 +141,12 @@ struct Example : public olcConsoleGameEngine {
       DrawString(10, 12, strPause, 95);
       return true;
     }
-    
+    // Move dead enemy bullets to the end and remove them
+    auto last_alive_it =
+        partition(enemy_bullet.begin(), enemy_bullet.end(),
+                  [](const Bullet& b) { return b.Alive == true; });
+    enemy_bullet.erase(last_alive_it, enemy_bullet.end());
+
     // Partition and count dead bullets
     auto _beg_alive_it = partition(
         bullet.begin(), bullet.end(), [](const Bullet& b) { return b.Alive == false; });
@@ -229,7 +234,7 @@ struct Example : public olcConsoleGameEngine {
     //
     for (auto enemy_it = begin(enemy); enemy_it != end(enemy); enemy_it++) {
       // shoot at player
-      if (enemy_it->IsGoodToShoot(*enemy_it, playerPos)) {
+      if (enemy_it->IsGoodToShoot(*enemy_it, playerPos, fElapsedTime)) {
         enemy_bullet.emplace_back(enemy_it->Pos[0] + (enemy_it->width) / 2.0,
                                   enemy_it->Pos[1] + enemy_it->height + 2, 0,
                                   0);

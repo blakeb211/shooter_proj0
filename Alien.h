@@ -18,6 +18,7 @@ struct Alien {
     Health = 3;
     attitude = b;
     Cracked = false;
+    TimeSinceFired = 0;
   }
 
   // member variables
@@ -28,6 +29,7 @@ struct Alien {
   int Health;
   bool Cracked;
   Behavior attitude;
+  mutable float TimeSinceFired;
   
   // member methods
   void UpdatePosition(float fElapsed) {
@@ -58,10 +60,7 @@ struct Alien {
     };
   }
   static bool GotHit(const Alien &, const Bullet &);
-  static bool IsGoodToShoot(const Alien&, float* playerPos) { 
-    // raycast to player
-    return true;
-  }
+  static bool IsGoodToShoot(const Alien&, const float*, float& );
 };
 
 // Static method for alien-bullet collisions
@@ -77,6 +76,19 @@ bool Alien::GotHit(const Alien &a, const Bullet &b) {
       topBullet > topAlien && topBullet < bottomAlien) {
     return true;
   } else {
+    return false;
+  }
+}
+
+bool Alien::IsGoodToShoot(const Alien& a, const float* playerPos, float& fElapsed)
+{
+  // raycast to player
+  if (a.TimeSinceFired > Globals::kEnemyReloadingTime && fabs(*playerPos + (Globals::kPlayerWidth / 2) -
+           (a.Pos[0] + a.width / 2)) < 1.0) {
+    a.TimeSinceFired = 0.0; // reset reloading timer
+    return true;
+  } else {
+    a.TimeSinceFired += fElapsed;
     return false;
   }
 }
