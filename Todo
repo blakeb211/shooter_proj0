@@ -1,20 +1,11 @@
 TODO Space Invaders
 
-5.23.2020
-  add alien attack
-  add player health bar
-  add level reset on player lives == 0
+DESIRED FEATURES
   add alien bounce into other alien
-
-
-FEATURES
+  Bullet disintegration when it hits
   Prevent Alien Collisions
   Simple Level Editor
-  Alien attacks
   More enemy behaviors
-  PLAYER HEALTH
-  PLAYER DIE 
-	LEVEL RESET AFTER PLAYER DEATH
   PLAYER ANIMATIONS
 
 PLAYER ADVACED ATTACKS
@@ -23,6 +14,9 @@ PLAYER ADVACED ATTACKS
 		
 
 DONE
+  add alien attack
+  add player health bar
+  add level reset on player lives == 0
   Refactor main loop
   Cut scene between levels
   Pause screen with color scale printed out
@@ -35,8 +29,6 @@ DONE
   Pause button
 
   DESIRED FEATURES FOR FUTURE 
-    Quadtree for collisions
-    Bullet disintegration when it hits
     More realistic explosions
     MUSIC
     SOUNDS

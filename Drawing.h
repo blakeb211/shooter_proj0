@@ -26,9 +26,15 @@ void DrawPlayer(olcConsoleGameEngine& game, float * playerPos) {
 void DrawBullet(olcConsoleGameEngine& game, float xpos, float ypos, int width, int height) {
   game.Fill(round(xpos), round(ypos),
        round(xpos + width),
-       round(ypos + height), L'O', 60);
+       round(ypos + height), L'O', 215);
 }
 
+void DrawHealthBar(olcConsoleGameEngine& game, int& health) {
+  int ystart = Globals::kScreenHeight - Globals::kHealthBarRadius - 2; 
+  for(int i = 0; i < health; i++) {
+    game.FillCircle(0 + Globals::kHealthBarRadius + 2, ystart - 2*Globals::kHealthBarRadius*i, Globals::kHealthBarRadius, L'@', 184); 
+  }
+}
 
 void DrawEnemy(olcConsoleGameEngine& game, Alien & e) {
 
@@ -62,7 +68,9 @@ void DrawEnemy(olcConsoleGameEngine& game, Alien & e) {
     int ypos = yPos0 + radius * sin(theta);
     game.DrawTriangle(xpos, ypos, xpos + 2, ypos + 2, xpos - 2, ypos + 2, L'*', 196);
   }
-}
+ }
+  //void DrawExplodingBullet(olcConsoleGameEngine& game, ParticleEffect2& pe) {
+  //}
 
 
 }  // namespace Drawing

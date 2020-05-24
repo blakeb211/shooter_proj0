@@ -60,7 +60,7 @@ struct Alien {
     };
   }
   static bool GotHit(const Alien &, const Bullet &);
-  static bool IsGoodToShoot(const Alien&, const float*, float& );
+  static bool IsGoodToShoot(const Alien&, const float*, const float&);
 };
 
 // Static method for alien-bullet collisions
@@ -80,9 +80,9 @@ bool Alien::GotHit(const Alien &a, const Bullet &b) {
   }
 }
 
-bool Alien::IsGoodToShoot(const Alien& a, const float* playerPos, float& fElapsed)
+bool Alien::IsGoodToShoot(const Alien& a, const float* playerPos, const float& fElapsed)
 {
-  // raycast to player
+  // TODO: raycast to player
   if (a.TimeSinceFired > Globals::kEnemyReloadingTime && fabs(*playerPos + (Globals::kPlayerWidth / 2) -
            (a.Pos[0] + a.width / 2)) < 1.0) {
     a.TimeSinceFired = 0.0; // reset reloading timer

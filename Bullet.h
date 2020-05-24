@@ -13,5 +13,4 @@ struct Bullet {
   float Pos[2];
   float Vel[2];
   bool Alive;
-  
 };

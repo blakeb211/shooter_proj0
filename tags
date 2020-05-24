@@ -1,0 +1,505 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.7	//
+Alien	.\Alien.h	/^  Alien(float x, float y, float vx, float vy, int width, int height,$/;"	f	struct:Alien	access:public	signature:(float x, float y, float vx, float vy, int width, int height, Behavior b = Behavior::side_to_side)
+Alien	.\Alien.h	/^struct Alien {$/;"	s
+Alien::Alien	.\Alien.h	/^  Alien(float x, float y, float vx, float vy, int width, int height,$/;"	f	struct:Alien	access:public	signature:(float x, float y, float vx, float vy, int width, int height, Behavior b = Behavior::side_to_side)
+Alien::Cracked	.\Alien.h	/^  bool Cracked;$/;"	m	struct:Alien	access:public
+Alien::GotHit	.\Alien.h	/^  static bool GotHit(const Alien &, const Bullet &);$/;"	p	struct:Alien	access:public	signature:(const Alien &, const Bullet &)
+Alien::GotHit	.\Alien.h	/^bool Alien::GotHit(const Alien &a, const Bullet &b) {$/;"	f	class:Alien	signature:(const Alien &a, const Bullet &b)
+Alien::Health	.\Alien.h	/^  int Health;$/;"	m	struct:Alien	access:public
+Alien::IsGoodToShoot	.\Alien.h	/^  static bool IsGoodToShoot(const Alien&, const float*, const float&);$/;"	p	struct:Alien	access:public	signature:(const Alien&, const float*, const float&)
+Alien::IsGoodToShoot	.\Alien.h	/^bool Alien::IsGoodToShoot(const Alien& a, const float* playerPos, const float& fElapsed)$/;"	f	class:Alien	signature:(const Alien& a, const float* playerPos, const float& fElapsed)
+Alien::Pos	.\Alien.h	/^  float Pos[2];$/;"	m	struct:Alien	access:public
+Alien::PosX0	.\Alien.h	/^  float PosX0, PosY0;$/;"	m	struct:Alien	access:public
+Alien::PosY0	.\Alien.h	/^  float PosX0, PosY0;$/;"	m	struct:Alien	access:public
+Alien::TimeSinceFired	.\Alien.h	/^  mutable float TimeSinceFired;$/;"	m	struct:Alien	access:public
+Alien::UpdatePosition	.\Alien.h	/^  void UpdatePosition(float fElapsed) {$/;"	f	struct:Alien	access:public	signature:(float fElapsed)
+Alien::Vel	.\Alien.h	/^  float Vel[2];$/;"	m	struct:Alien	access:public
+Alien::attitude	.\Alien.h	/^  Behavior attitude;$/;"	m	struct:Alien	access:public
+Alien::height	.\Alien.h	/^  int height, width;$/;"	m	struct:Alien	access:public
+Alien::width	.\Alien.h	/^  int height, width;$/;"	m	struct:Alien	access:public
+Alive	.\Bullet.h	/^  bool Alive;$/;"	m	struct:Bullet	access:public
+Alive	.\ParticleEffect.h	/^        bool Alive;$/;"	m	struct:ParticleEffect	access:public
+AudioThread	.\olcConsoleGameEngine.h	/^		void AudioThread()$/;"	f	class:olcConsoleGameEngine	access:protected	signature:()
+BG_BLACK	.\olcConsoleGameEngine.h	/^	BG_BLACK = 0x0000,$/;"	e	enum:COLOUR
+BG_BLUE	.\olcConsoleGameEngine.h	/^	BG_BLUE = 0x0090,$/;"	e	enum:COLOUR
+BG_CYAN	.\olcConsoleGameEngine.h	/^	BG_CYAN = 0x00B0,$/;"	e	enum:COLOUR
+BG_DARK_BLUE	.\olcConsoleGameEngine.h	/^	BG_DARK_BLUE = 0x0010,$/;"	e	enum:COLOUR
+BG_DARK_CYAN	.\olcConsoleGameEngine.h	/^	BG_DARK_CYAN = 0x0030,$/;"	e	enum:COLOUR
+BG_DARK_GREEN	.\olcConsoleGameEngine.h	/^	BG_DARK_GREEN = 0x0020,$/;"	e	enum:COLOUR
+BG_DARK_GREY	.\olcConsoleGameEngine.h	/^	BG_DARK_GREY = 0x0080,$/;"	e	enum:COLOUR
+BG_DARK_MAGENTA	.\olcConsoleGameEngine.h	/^	BG_DARK_MAGENTA = 0x0050,$/;"	e	enum:COLOUR
+BG_DARK_RED	.\olcConsoleGameEngine.h	/^	BG_DARK_RED = 0x0040,$/;"	e	enum:COLOUR
+BG_DARK_YELLOW	.\olcConsoleGameEngine.h	/^	BG_DARK_YELLOW = 0x0060,$/;"	e	enum:COLOUR
+BG_GREEN	.\olcConsoleGameEngine.h	/^	BG_GREEN = 0x00A0,$/;"	e	enum:COLOUR
+BG_GREY	.\olcConsoleGameEngine.h	/^	BG_GREY = 0x0070,$/;"	e	enum:COLOUR
+BG_MAGENTA	.\olcConsoleGameEngine.h	/^	BG_MAGENTA = 0x00D0,$/;"	e	enum:COLOUR
+BG_RED	.\olcConsoleGameEngine.h	/^	BG_RED = 0x00C0,$/;"	e	enum:COLOUR
+BG_WHITE	.\olcConsoleGameEngine.h	/^	BG_WHITE = 0x00F0,$/;"	e	enum:COLOUR
+BG_YELLOW	.\olcConsoleGameEngine.h	/^	BG_YELLOW = 0x00E0,$/;"	e	enum:COLOUR
+Behavior	.\Alien.h	/^enum class Behavior { circles, avoid_bottom_and_top, side_to_side, flocker };$/;"	c
+Behavior::avoid_bottom_and_top	.\Alien.h	/^enum class Behavior { circles, avoid_bottom_and_top, side_to_side, flocker };$/;"	m	class:Behavior	access:private
+Behavior::circles	.\Alien.h	/^enum class Behavior { circles, avoid_bottom_and_top, side_to_side, flocker };$/;"	m	class:Behavior	access:private
+Behavior::side_to_side	.\Alien.h	/^enum class Behavior { circles, avoid_bottom_and_top, side_to_side, flocker };$/;"	m	class:Behavior	access:private
+Bullet	.\Bullet.h	/^  Bullet() = default;$/;"	p	struct:Bullet	access:public	signature:()
+Bullet	.\Bullet.h	/^  Bullet(float x, float y, float vx, float vy) {$/;"	f	struct:Bullet	access:public	signature:(float x, float y, float vx, float vy)
+Bullet	.\Bullet.h	/^struct Bullet {$/;"	s
+Bullet::Alive	.\Bullet.h	/^  bool Alive;$/;"	m	struct:Bullet	access:public
+Bullet::Bullet	.\Bullet.h	/^  Bullet() = default;$/;"	p	struct:Bullet	access:public	signature:()
+Bullet::Bullet	.\Bullet.h	/^  Bullet(float x, float y, float vx, float vy) {$/;"	f	struct:Bullet	access:public	signature:(float x, float y, float vx, float vy)
+Bullet::Pos	.\Bullet.h	/^  float Pos[2];$/;"	m	struct:Bullet	access:public
+Bullet::Vel	.\Bullet.h	/^  float Vel[2];$/;"	m	struct:Bullet	access:public
+COLOUR	.\olcConsoleGameEngine.h	/^enum COLOUR$/;"	g
+CUTSCENE	.\globals.h	/^  bool CUTSCENE = false;					\/\/ is game in a cutscene$/;"	v
+ClearScreen	.\Drawing.h	/^void ClearScreen(olcConsoleGameEngine& game) {$/;"	f	namespace:Drawing	signature:(olcConsoleGameEngine& game)
+Clip	.\olcConsoleGameEngine.h	/^	void Clip(int &x, int &y)$/;"	f	class:olcConsoleGameEngine	access:public	signature:(int &x, int &y)
+ConstructConsole	.\olcConsoleGameEngine.h	/^	int ConstructConsole(int width, int height, int fontw, int fonth)$/;"	f	class:olcConsoleGameEngine	access:public	signature:(int width, int height, int fontw, int fonth)
+ConstructWindow	.\olcConsoleGameEngine.h	/^	HWND ConstructWindow(int width, int height)$/;"	f	class:olcConsoleGameEngine	access:private	signature:(int width, int height)
+Cracked	.\Alien.h	/^  bool Cracked;$/;"	m	struct:Alien	access:public
+Create	.\olcConsoleGameEngine.h	/^	void Create(int w, int h)$/;"	f	class:olcSprite	access:private	signature:(int w, int h)
+CreateAudio	.\olcConsoleGameEngine.h	/^		bool CreateAudio(unsigned int nSampleRate = 44100, unsigned int nChannels = 1,$/;"	f	class:olcConsoleGameEngine	access:protected	signature:(unsigned int nSampleRate = 44100, unsigned int nChannels = 1, unsigned int nBlocks = 8, unsigned int nBlockSamples = 512)
+CutSceneTimer	.\globals.h	/^  float CutSceneTimer = 0.0;$/;"	v
+DestroyAudio	.\olcConsoleGameEngine.h	/^		bool DestroyAudio()$/;"	f	class:olcConsoleGameEngine	access:protected	signature:()
+Draw	.\olcConsoleGameEngine.h	/^	virtual void Draw(int x, int y, wchar_t c = 0x2588, short col = 0x000F)$/;"	f	class:olcConsoleGameEngine	access:public	signature:(int x, int y, wchar_t c = 0x2588, short col = 0x000F)
+DrawBullet	.\Drawing.h	/^void DrawBullet(olcConsoleGameEngine& game, float xpos, float ypos, int width, int height) {$/;"	f	namespace:Drawing	signature:(olcConsoleGameEngine& game, float xpos, float ypos, int width, int height)
+DrawCircle	.\olcConsoleGameEngine.h	/^	void DrawCircle(int xc, int yc, int r, wchar_t c = 0x2588, short col = 0x000F)$/;"	f	class:olcConsoleGameEngine	access:public	signature:(int xc, int yc, int r, wchar_t c = 0x2588, short col = 0x000F)
+DrawEnemy	.\Drawing.h	/^void DrawEnemy(olcConsoleGameEngine& game, Alien & e) {$/;"	f	namespace:Drawing	signature:(olcConsoleGameEngine& game, Alien & e)
+DrawExplosion	.\Drawing.h	/^ void DrawExplosion(olcConsoleGameEngine& game, const int& xPos0, const int& yPos0, const int& radius) {$/;"	f	namespace:Drawing	signature:(olcConsoleGameEngine& game, const int& xPos0, const int& yPos0, const int& radius)
+DrawHealthBar	.\Drawing.h	/^void DrawHealthBar(olcConsoleGameEngine& game, int& health) {$/;"	f	namespace:Drawing	signature:(olcConsoleGameEngine& game, int& health)
+DrawLine	.\olcConsoleGameEngine.h	/^	void DrawLine(int x1, int y1, int x2, int y2, wchar_t c = 0x2588, short col = 0x000F)$/;"	f	class:olcConsoleGameEngine	access:public	signature:(int x1, int y1, int x2, int y2, wchar_t c = 0x2588, short col = 0x000F)
+DrawPartialSprite	.\olcConsoleGameEngine.h	/^	void DrawPartialSprite(int x, int y, olcSprite *sprite, int ox, int oy, int w, int h)$/;"	f	class:olcConsoleGameEngine	access:public	signature:(int x, int y, olcSprite *sprite, int ox, int oy, int w, int h)
+DrawPlayer	.\Drawing.h	/^void DrawPlayer(olcConsoleGameEngine& game, float * playerPos) {$/;"	f	namespace:Drawing	signature:(olcConsoleGameEngine& game, float * playerPos)
+DrawRain	.\Drawing.h	/^void DrawRain(olcConsoleGameEngine& game, Drop & d) {$/;"	f	namespace:Drawing	signature:(olcConsoleGameEngine& game, Drop & d)
+DrawSprite	.\olcConsoleGameEngine.h	/^	void DrawSprite(int x, int y, olcSprite *sprite)$/;"	f	class:olcConsoleGameEngine	access:public	signature:(int x, int y, olcSprite *sprite)
+DrawString	.\olcConsoleGameEngine.h	/^	void DrawString(int x, int y, wstring c, short col = 0x000F)$/;"	f	class:olcConsoleGameEngine	access:public	signature:(int x, int y, wstring c, short col = 0x000F)
+DrawStringAlpha	.\olcConsoleGameEngine.h	/^	void DrawStringAlpha(int x, int y, wstring c, short col = 0x000F)$/;"	f	class:olcConsoleGameEngine	access:public	signature:(int x, int y, wstring c, short col = 0x000F)
+DrawTriangle	.\olcConsoleGameEngine.h	/^	void DrawTriangle(int x1, int y1, int x2, int y2, int x3, int y3, short c = 0x2588, short col = 0x000F)$/;"	f	class:olcConsoleGameEngine	access:public	signature:(int x1, int y1, int x2, int y2, int x3, int y3, short c = 0x2588, short col = 0x000F)
+DrawWireFrameModel	.\olcConsoleGameEngine.h	/^	void DrawWireFrameModel(const std::vector<std::pair<float, float>> &vecModelCoordinates, float x, float y, float r = 0.0f, float s = 1.0f, short col = FG_WHITE, short c = PIXEL_SOLID)$/;"	f	class:olcConsoleGameEngine	access:public	signature:(const std::vector<std::pair<float, float>> &vecModelCoordinates, float x, float y, float r = 0.0f, float s = 1.0f, short col = FG_WHITE, short c = PIXEL_SOLID)
+Drawing	.\Drawing.h	/^namespace Drawing {$/;"	n
+Drawing::ClearScreen	.\Drawing.h	/^void ClearScreen(olcConsoleGameEngine& game) {$/;"	f	namespace:Drawing	signature:(olcConsoleGameEngine& game)
+Drawing::DrawBullet	.\Drawing.h	/^void DrawBullet(olcConsoleGameEngine& game, float xpos, float ypos, int width, int height) {$/;"	f	namespace:Drawing	signature:(olcConsoleGameEngine& game, float xpos, float ypos, int width, int height)
+Drawing::DrawEnemy	.\Drawing.h	/^void DrawEnemy(olcConsoleGameEngine& game, Alien & e) {$/;"	f	namespace:Drawing	signature:(olcConsoleGameEngine& game, Alien & e)
+Drawing::DrawExplosion	.\Drawing.h	/^ void DrawExplosion(olcConsoleGameEngine& game, const int& xPos0, const int& yPos0, const int& radius) {$/;"	f	namespace:Drawing	signature:(olcConsoleGameEngine& game, const int& xPos0, const int& yPos0, const int& radius)
+Drawing::DrawHealthBar	.\Drawing.h	/^void DrawHealthBar(olcConsoleGameEngine& game, int& health) {$/;"	f	namespace:Drawing	signature:(olcConsoleGameEngine& game, int& health)
+Drawing::DrawPlayer	.\Drawing.h	/^void DrawPlayer(olcConsoleGameEngine& game, float * playerPos) {$/;"	f	namespace:Drawing	signature:(olcConsoleGameEngine& game, float * playerPos)
+Drawing::DrawRain	.\Drawing.h	/^void DrawRain(olcConsoleGameEngine& game, Drop & d) {$/;"	f	namespace:Drawing	signature:(olcConsoleGameEngine& game, Drop & d)
+Drop	.\Drop.h	/^  Drop() {$/;"	f	struct:Drop	access:public	signature:()
+Drop	.\Drop.h	/^struct Drop {$/;"	s
+Drop::Drop	.\Drop.h	/^  Drop() {$/;"	f	struct:Drop	access:public	signature:()
+Drop::Fall	.\Drop.h	/^  void Fall(float fElapsed) {$/;"	f	struct:Drop	access:public	signature:(float fElapsed)
+Drop::dropColor	.\Drop.h	/^  int dropColor;$/;"	m	struct:Drop	access:public
+Drop::dropHeight	.\Drop.h	/^  static int dropHeight;$/;"	m	struct:Drop	access:public
+Drop::dropHeight	.\Drop.h	/^int Drop::dropHeight = 6;$/;"	m	class:Drop
+Drop::dropWidth	.\Drop.h	/^  static int dropWidth;$/;"	m	struct:Drop	access:public
+Drop::dropWidth	.\Drop.h	/^int Drop::dropWidth = 1;$/;"	m	class:Drop
+Drop::x	.\Drop.h	/^  float x, y;$/;"	m	struct:Drop	access:public
+Drop::y	.\Drop.h	/^  float x, y;$/;"	m	struct:Drop	access:public
+Drop::yspeed	.\Drop.h	/^  int yspeed;$/;"	m	struct:Drop	access:public
+EnableSound	.\olcConsoleGameEngine.h	/^	void EnableSound()$/;"	f	class:olcConsoleGameEngine	access:public	signature:()
+Error	.\olcConsoleGameEngine.h	/^	int Error(const wchar_t *msg)$/;"	f	class:olcConsoleGameEngine	access:protected	signature:(const wchar_t *msg)
+Example	.\main.cpp	/^struct Example : public olcConsoleGameEngine {$/;"	s	file:	inherits:olcConsoleGameEngine
+Example::OnUserCreate	.\main.cpp	/^  bool OnUserCreate() {$/;"	f	struct:Example	access:public	signature:()
+Example::OnUserUpdate	.\main.cpp	/^  bool OnUserUpdate(float fElapsedTime) {$/;"	f	struct:Example	access:public	signature:(float fElapsedTime)
+Example::bullet	.\main.cpp	/^  vector<Bullet> bullet;$/;"	m	struct:Example	file:	access:public
+Example::enemy	.\main.cpp	/^  list<Alien> enemy;  $/;"	m	struct:Example	file:	access:public
+Example::enemy_bullet	.\main.cpp	/^  vector<Bullet> enemy_bullet;$/;"	m	struct:Example	file:	access:public
+Example::explosions	.\main.cpp	/^  vector<ParticleEffect> explosions;$/;"	m	struct:Example	file:	access:public
+Example::playerHealth	.\main.cpp	/^  int playerHealth;   \/\/ player's current health$/;"	m	struct:Example	file:	access:public
+Example::playerPos	.\main.cpp	/^  float playerPos[2];$/;"	m	struct:Example	file:	access:public
+Example::rain	.\main.cpp	/^  vector<Drop> rain;$/;"	m	struct:Example	file:	access:public
+FG_BLACK	.\olcConsoleGameEngine.h	/^	FG_BLACK = 0x0000,$/;"	e	enum:COLOUR
+FG_BLUE	.\olcConsoleGameEngine.h	/^	FG_BLUE = 0x0009,$/;"	e	enum:COLOUR
+FG_CYAN	.\olcConsoleGameEngine.h	/^	FG_CYAN = 0x000B,$/;"	e	enum:COLOUR
+FG_DARK_BLUE	.\olcConsoleGameEngine.h	/^	FG_DARK_BLUE = 0x0001,$/;"	e	enum:COLOUR
+FG_DARK_CYAN	.\olcConsoleGameEngine.h	/^	FG_DARK_CYAN = 0x0003,$/;"	e	enum:COLOUR
+FG_DARK_GREEN	.\olcConsoleGameEngine.h	/^	FG_DARK_GREEN = 0x0002,$/;"	e	enum:COLOUR
+FG_DARK_GREY	.\olcConsoleGameEngine.h	/^	FG_DARK_GREY = 0x0008,$/;"	e	enum:COLOUR
+FG_DARK_MAGENTA	.\olcConsoleGameEngine.h	/^	FG_DARK_MAGENTA = 0x0005,$/;"	e	enum:COLOUR
+FG_DARK_RED	.\olcConsoleGameEngine.h	/^	FG_DARK_RED = 0x0004,$/;"	e	enum:COLOUR
+FG_DARK_YELLOW	.\olcConsoleGameEngine.h	/^	FG_DARK_YELLOW = 0x0006,$/;"	e	enum:COLOUR
+FG_GREEN	.\olcConsoleGameEngine.h	/^	FG_GREEN = 0x000A,$/;"	e	enum:COLOUR
+FG_GREY	.\olcConsoleGameEngine.h	/^	FG_GREY = 0x0007, \/\/ Thanks MS :-\/$/;"	e	enum:COLOUR
+FG_MAGENTA	.\olcConsoleGameEngine.h	/^	FG_MAGENTA = 0x000D,$/;"	e	enum:COLOUR
+FG_RED	.\olcConsoleGameEngine.h	/^	FG_RED = 0x000C,$/;"	e	enum:COLOUR
+FG_WHITE	.\olcConsoleGameEngine.h	/^	FG_WHITE = 0x000F,$/;"	e	enum:COLOUR
+FG_YELLOW	.\olcConsoleGameEngine.h	/^	FG_YELLOW = 0x000E,$/;"	e	enum:COLOUR
+FUV	.\olcConsoleGameEngine.h	277;"	d
+Fall	.\Drop.h	/^  void Fall(float fElapsed) {$/;"	f	struct:Drop	access:public	signature:(float fElapsed)
+Fill	.\olcConsoleGameEngine.h	/^	void Fill(int x1, int y1, int x2, int y2, wchar_t c = 0x2588, short col = 0x000F)$/;"	f	class:olcConsoleGameEngine	access:public	signature:(int x1, int y1, int x2, int y2, wchar_t c = 0x2588, short col = 0x000F)
+FillCircle	.\olcConsoleGameEngine.h	/^	void FillCircle(int xc, int yc, int r, wchar_t c = 0x2588, short col = 0x000F)$/;"	f	class:olcConsoleGameEngine	access:public	signature:(int xc, int yc, int r, wchar_t c = 0x2588, short col = 0x000F)
+FillTriangle	.\olcConsoleGameEngine.h	/^	void FillTriangle(int x1, int y1, int x2, int y2, int x3, int y3, short c = 0x2588, short col = 0x000F)$/;"	f	class:olcConsoleGameEngine	access:public	signature:(int x1, int y1, int x2, int y2, int x3, int y3, short c = 0x2588, short col = 0x000F)
+GL_GENERATE_MIPMAP	.\olcConsoleGameEngine.h	131;"	d
+GL_GENERATE_MIPMAP_HINT	.\olcConsoleGameEngine.h	132;"	d
+GameThread	.\olcConsoleGameEngine.h	/^	void GameThread()$/;"	f	class:olcConsoleGameEngine	access:private	signature:()
+GenerateMipmapPow2	.\olcConsoleGameEngine.h	/^	void GenerateMipmapPow2(uint8_t *tex_new, uint8_t *tex_old, uint8_t *ref_alpha, int size)$/;"	f	class:olcConsoleGameEngine	access:public	signature:(uint8_t *tex_new, uint8_t *tex_old, uint8_t *ref_alpha, int size)
+GetColour	.\olcConsoleGameEngine.h	/^	short GetColour(int x, int y)$/;"	f	class:olcSprite	access:public	signature:(int x, int y)
+GetFontCoords	.\olcConsoleGameEngine.h	/^void GetFontCoords(int id, int *x, int *y) {$/;"	f	signature:(int id, int *x, int *y)
+GetGlyph	.\olcConsoleGameEngine.h	/^	wchar_t GetGlyph(int x, int y)$/;"	f	class:olcSprite	access:public	signature:(int x, int y)
+GetKey	.\olcConsoleGameEngine.h	/^	sKeyState GetKey(int nKeyID) { return m_keys[nKeyID]; }$/;"	f	class:olcConsoleGameEngine	access:public	signature:(int nKeyID)
+GetMixerOutput	.\olcConsoleGameEngine.h	/^		float GetMixerOutput(int nChannel, float fGlobalTime, float fTimeStep)$/;"	f	class:olcConsoleGameEngine	access:protected	signature:(int nChannel, float fGlobalTime, float fTimeStep)
+GetMouse	.\olcConsoleGameEngine.h	/^	sKeyState GetMouse(int nMouseButtonID) { return m_mouse[nMouseButtonID]; }$/;"	f	class:olcConsoleGameEngine	access:public	signature:(int nMouseButtonID)
+GetMouseX	.\olcConsoleGameEngine.h	/^	int GetMouseX() { return m_mousePosX; }$/;"	f	class:olcConsoleGameEngine	access:public	signature:()
+GetMouseY	.\olcConsoleGameEngine.h	/^	int GetMouseY() { return m_mousePosY; }$/;"	f	class:olcConsoleGameEngine	access:public	signature:()
+GetRadius	.\ParticleEffect.h	/^        float GetRadius() { $/;"	f	struct:ParticleEffect	access:public	signature:()
+Globals	.\globals.h	/^namespace Globals {$/;"	n
+Globals::CUTSCENE	.\globals.h	/^  bool CUTSCENE = false;					\/\/ is game in a cutscene$/;"	v
+Globals::CutSceneTimer	.\globals.h	/^  float CutSceneTimer = 0.0;$/;"	v
+Globals::Level	.\globals.h	/^  int Level = 0;							\/\/ what level are we on$/;"	v
+Globals::PAUSE	.\globals.h	/^  bool PAUSE = false;	    				\/\/ is game paused$/;"	v
+Globals::PlayerGotHit	.\globals.h	/^  bool PlayerGotHit(const float * playerPos, const Bullet& b) {$/;"	f	namespace:Globals	signature:(const float * playerPos, const Bullet& b)
+Globals::TotalTime	.\globals.h	/^  float TotalTime = 0.0; $/;"	v
+Globals::kBulletHeight	.\globals.h	/^  int kBulletHeight = 5;$/;"	v
+Globals::kBulletSpeed	.\globals.h	/^  float kBulletSpeed = -160;$/;"	v
+Globals::kBulletWidth	.\globals.h	/^  int kBulletWidth = 2;$/;"	v
+Globals::kCutSceneLength	.\globals.h	/^  constexpr float kCutSceneLength = 1.75;	\/\/ seconds pause$/;"	v
+Globals::kEnemyBulletSpeed	.\globals.h	/^  float kEnemyBulletSpeed = +90;$/;"	v
+Globals::kEnemyReloadingTime	.\globals.h	/^  const float kEnemyReloadingTime = 0.9;$/;"	v
+Globals::kHealthBarRadius	.\globals.h	/^  const int kHealthBarRadius = 3;$/;"	v
+Globals::kLivesPerLevel	.\globals.h	/^  const int kLivesPerLevel = 3;$/;"	v
+Globals::kPlayerHeight	.\globals.h	/^  const int kPlayerHeight = 5;$/;"	v
+Globals::kPlayerSpeed	.\globals.h	/^  const float kPlayerSpeed = 165;$/;"	v
+Globals::kPlayerWidth	.\globals.h	/^  const int kPlayerWidth = 8;$/;"	v
+Globals::kRainDropCount	.\globals.h	/^  const int kRainDropCount = 140;$/;"	v
+Globals::kScreenHeight	.\globals.h	/^  constexpr float kScreenHeight = kScreenWidth * 9 \/ 16;$/;"	v
+Globals::kScreenWidth	.\globals.h	/^  constexpr float kScreenWidth = 360;$/;"	v
+GotHit	.\Alien.h	/^  static bool GotHit(const Alien &, const Bullet &);$/;"	p	struct:Alien	access:public	signature:(const Alien &, const Bullet &)
+GotHit	.\Alien.h	/^bool Alien::GotHit(const Alien &a, const Bullet &b) {$/;"	f	class:Alien	signature:(const Alien &a, const Bullet &b)
+Health	.\Alien.h	/^  int Health;$/;"	m	struct:Alien	access:public
+IsFocused	.\olcConsoleGameEngine.h	/^	bool IsFocused() { return m_bConsoleInFocus; }$/;"	f	class:olcConsoleGameEngine	access:public	signature:()
+IsGoodToShoot	.\Alien.h	/^  static bool IsGoodToShoot(const Alien&, const float*, const float&);$/;"	p	struct:Alien	access:public	signature:(const Alien&, const float*, const float&)
+IsGoodToShoot	.\Alien.h	/^bool Alien::IsGoodToShoot(const Alien& a, const float* playerPos, const float& fElapsed)$/;"	f	class:Alien	signature:(const Alien& a, const float* playerPos, const float& fElapsed)
+Level	.\globals.h	/^  int Level = 0;							\/\/ what level are we on$/;"	v
+Load	.\olcConsoleGameEngine.h	/^	bool Load(wstring sFile)$/;"	f	class:olcSprite	access:public	signature:(wstring sFile)
+LoadAudioSample	.\olcConsoleGameEngine.h	/^		unsigned int LoadAudioSample(std::wstring sWavFile)$/;"	f	class:olcConsoleGameEngine	access:protected	signature:(std::wstring sWavFile)
+OnUserCreate	.\main.cpp	/^  bool OnUserCreate() {$/;"	f	struct:Example	access:public	signature:()
+OnUserCreate	.\olcConsoleGameEngine.h	/^	virtual bool OnUserCreate() = 0;$/;"	p	class:olcConsoleGameEngine	access:public	signature:()
+OnUserDestroy	.\olcConsoleGameEngine.h	/^	virtual bool OnUserDestroy()$/;"	f	class:olcConsoleGameEngine	access:public	signature:()
+OnUserUpdate	.\main.cpp	/^  bool OnUserUpdate(float fElapsedTime) {$/;"	f	struct:Example	access:public	signature:(float fElapsedTime)
+OnUserUpdate	.\olcConsoleGameEngine.h	/^	virtual bool OnUserUpdate(float fElapsedTime) = 0;$/;"	p	class:olcConsoleGameEngine	access:public	signature:(float fElapsedTime)
+PAUSE	.\globals.h	/^  bool PAUSE = false;	    				\/\/ is game paused$/;"	v
+PIXEL_HALF	.\olcConsoleGameEngine.h	/^	PIXEL_HALF = 0x2592,$/;"	e	enum:PIXEL_TYPE
+PIXEL_QUARTER	.\olcConsoleGameEngine.h	/^	PIXEL_QUARTER = 0x2591,$/;"	e	enum:PIXEL_TYPE
+PIXEL_SOLID	.\olcConsoleGameEngine.h	/^	PIXEL_SOLID = 0x2588,$/;"	e	enum:PIXEL_TYPE
+PIXEL_THREEQUARTERS	.\olcConsoleGameEngine.h	/^	PIXEL_THREEQUARTERS = 0x2593,$/;"	e	enum:PIXEL_TYPE
+PIXEL_TYPE	.\olcConsoleGameEngine.h	/^enum PIXEL_TYPE$/;"	g
+ParticleEffect	.\ParticleEffect.h	/^        ParticleEffect() = default;$/;"	p	struct:ParticleEffect	access:public	signature:()
+ParticleEffect	.\ParticleEffect.h	/^        ParticleEffect(int x, int y, float duration, float param2) {$/;"	f	struct:ParticleEffect	access:public	signature:(int x, int y, float duration, float param2)
+ParticleEffect	.\ParticleEffect.h	/^struct ParticleEffect {$/;"	s
+ParticleEffect::Alive	.\ParticleEffect.h	/^        bool Alive;$/;"	m	struct:ParticleEffect	access:public
+ParticleEffect::GetRadius	.\ParticleEffect.h	/^        float GetRadius() { $/;"	f	struct:ParticleEffect	access:public	signature:()
+ParticleEffect::ParticleEffect	.\ParticleEffect.h	/^        ParticleEffect() = default;$/;"	p	struct:ParticleEffect	access:public	signature:()
+ParticleEffect::ParticleEffect	.\ParticleEffect.h	/^        ParticleEffect(int x, int y, float duration, float param2) {$/;"	f	struct:ParticleEffect	access:public	signature:(int x, int y, float duration, float param2)
+ParticleEffect::UpdateTimer	.\ParticleEffect.h	/^        void UpdateTimer(float fElapsed) {$/;"	f	struct:ParticleEffect	access:public	signature:(float fElapsed)
+ParticleEffect::_maxTimer	.\ParticleEffect.h	/^        float _maxTimer;$/;"	m	struct:ParticleEffect	access:private
+ParticleEffect::_timer	.\ParticleEffect.h	/^        float _timer;$/;"	m	struct:ParticleEffect	access:private
+ParticleEffect::xPos0	.\ParticleEffect.h	/^        int xPos0;$/;"	m	struct:ParticleEffect	access:public
+ParticleEffect::yPos0	.\ParticleEffect.h	/^        int yPos0;$/;"	m	struct:ParticleEffect	access:public
+PlaySample	.\olcConsoleGameEngine.h	/^		void PlaySample(int id, bool bLoop = false)$/;"	f	class:olcConsoleGameEngine	access:protected	signature:(int id, bool bLoop = false)
+PlayerGotHit	.\globals.h	/^  bool PlayerGotHit(const float * playerPos, const Bullet& b) {$/;"	f	namespace:Globals	signature:(const float * playerPos, const Bullet& b)
+Pos	.\Alien.h	/^  float Pos[2];$/;"	m	struct:Alien	access:public
+Pos	.\Bullet.h	/^  float Pos[2];$/;"	m	struct:Bullet	access:public
+PosX0	.\Alien.h	/^  float PosX0, PosY0;$/;"	m	struct:Alien	access:public
+PosY0	.\Alien.h	/^  float PosX0, PosY0;$/;"	m	struct:Alien	access:public
+SampleColour	.\olcConsoleGameEngine.h	/^	short SampleColour(float x, float y)$/;"	f	class:olcSprite	access:public	signature:(float x, float y)
+SampleGlyph	.\olcConsoleGameEngine.h	/^	wchar_t SampleGlyph(float x, float y)$/;"	f	class:olcSprite	access:public	signature:(float x, float y)
+Save	.\olcConsoleGameEngine.h	/^	bool Save(wstring sFile)$/;"	f	class:olcSprite	access:public	signature:(wstring sFile)
+ScreenHeight	.\olcConsoleGameEngine.h	/^	int ScreenHeight()$/;"	f	class:olcConsoleGameEngine	access:public	signature:()
+ScreenWidth	.\olcConsoleGameEngine.h	/^	int ScreenWidth()$/;"	f	class:olcConsoleGameEngine	access:public	signature:()
+SetColour	.\olcConsoleGameEngine.h	/^	void SetColour(int x, int y, short c)$/;"	f	class:olcSprite	access:public	signature:(int x, int y, short c)
+SetGlyph	.\olcConsoleGameEngine.h	/^	void SetGlyph(int x, int y, wchar_t c)$/;"	f	class:olcSprite	access:public	signature:(int x, int y, wchar_t c)
+SetPixelFormatGL	.\olcConsoleGameEngine.h	/^	int SetPixelFormatGL(void)$/;"	f	class:olcConsoleGameEngine	access:private	signature:(void)
+Start	.\olcConsoleGameEngine.h	/^	void Start()$/;"	f	class:olcConsoleGameEngine	access:public	signature:()
+StopSample	.\olcConsoleGameEngine.h	/^		void StopSample(int id)$/;"	f	class:olcConsoleGameEngine	access:protected	signature:(int id)
+TimeSinceFired	.\Alien.h	/^  mutable float TimeSinceFired;$/;"	m	struct:Alien	access:public
+ToggleFullscreen	.\olcConsoleGameEngine.h	/^	void ToggleFullscreen(HWND hWnd)$/;"	f	class:olcConsoleGameEngine	access:private	signature:(HWND hWnd)
+TotalTime	.\globals.h	/^  float TotalTime = 0.0; $/;"	v
+UNICODE	.\olcConsoleGameEngine.h	112;"	d
+UpdateMousePosition	.\olcConsoleGameEngine.h	/^	void UpdateMousePosition(int x, int y)$/;"	f	class:olcConsoleGameEngine	access:private	signature:(int x, int y)
+UpdatePosition	.\Alien.h	/^  void UpdatePosition(float fElapsed) {$/;"	f	struct:Alien	access:public	signature:(float fElapsed)
+UpdateTimer	.\ParticleEffect.h	/^        void UpdateTimer(float fElapsed) {$/;"	f	struct:ParticleEffect	access:public	signature:(float fElapsed)
+Vel	.\Alien.h	/^  float Vel[2];$/;"	m	struct:Alien	access:public
+Vel	.\Bullet.h	/^  float Vel[2];$/;"	m	struct:Bullet	access:public
+WindowResize	.\olcConsoleGameEngine.h	/^	void WindowResize(void)$/;"	f	class:olcConsoleGameEngine	access:private	signature:(void)
+WindowUpdateScale	.\olcConsoleGameEngine.h	/^	void WindowUpdateScale(void)$/;"	f	class:olcConsoleGameEngine	access:private	signature:(void)
+_UNICODE	.\olcConsoleGameEngine.h	113;"	d
+_USE_MATH_DEFINES	.\stdlibs.h	5;"	d
+_maxTimer	.\ParticleEffect.h	/^        float _maxTimer;$/;"	m	struct:ParticleEffect	access:private
+_timer	.\ParticleEffect.h	/^        float _timer;$/;"	m	struct:ParticleEffect	access:private
+attitude	.\Alien.h	/^  Behavior attitude;$/;"	m	struct:Alien	access:public
+avoid_bottom_and_top	.\Alien.h	/^enum class Behavior { circles, avoid_bottom_and_top, side_to_side, flocker };$/;"	m	class:Behavior	access:private
+bFinished	.\olcConsoleGameEngine.h	/^			bool bFinished = false;$/;"	m	struct:olcConsoleGameEngine::sCurrentlyPlayingSample	access:public
+bHeld	.\olcConsoleGameEngine.h	/^		bool bHeld;$/;"	m	struct:olcConsoleGameEngine::sKeyState	access:public
+bLoop	.\olcConsoleGameEngine.h	/^			bool bLoop = false;$/;"	m	struct:olcConsoleGameEngine::sCurrentlyPlayingSample	access:public
+bPressed	.\olcConsoleGameEngine.h	/^		bool bPressed;$/;"	m	struct:olcConsoleGameEngine::sKeyState	access:public
+bReleased	.\olcConsoleGameEngine.h	/^		bool bReleased;$/;"	m	struct:olcConsoleGameEngine::sKeyState	access:public
+bSampleValid	.\olcConsoleGameEngine.h	/^			bool bSampleValid = false;$/;"	m	class:olcConsoleGameEngine::olcAudioSample	access:public
+bullet	.\main.cpp	/^  vector<Bullet> bullet;$/;"	m	struct:Example	file:	access:public
+circles	.\Alien.h	/^enum class Behavior { circles, avoid_bottom_and_top, side_to_side, flocker };$/;"	m	class:Behavior	access:private
+dropColor	.\Drop.h	/^  int dropColor;$/;"	m	struct:Drop	access:public
+dropHeight	.\Drop.h	/^  static int dropHeight;$/;"	m	struct:Drop	access:public
+dropHeight	.\Drop.h	/^int Drop::dropHeight = 6;$/;"	m	class:Drop
+dropWidth	.\Drop.h	/^  static int dropWidth;$/;"	m	struct:Drop	access:public
+dropWidth	.\Drop.h	/^int Drop::dropWidth = 1;$/;"	m	class:Drop
+enemy	.\main.cpp	/^  list<Alien> enemy;  $/;"	m	struct:Example	file:	access:public
+enemy_bullet	.\main.cpp	/^  vector<Bullet> enemy_bullet;$/;"	m	struct:Example	file:	access:public
+explosions	.\main.cpp	/^  vector<ParticleEffect> explosions;$/;"	m	struct:Example	file:	access:public
+fSample	.\olcConsoleGameEngine.h	/^			float *fSample = nullptr;$/;"	m	class:olcConsoleGameEngine::olcAudioSample	access:public
+font_decode_custom_base64	.\olcConsoleGameEngine.h	/^void font_decode_custom_base64(void)$/;"	f	signature:(void)
+height	.\Alien.h	/^  int height, width;$/;"	m	struct:Alien	access:public
+kBulletHeight	.\globals.h	/^  int kBulletHeight = 5;$/;"	v
+kBulletSpeed	.\globals.h	/^  float kBulletSpeed = -160;$/;"	v
+kBulletWidth	.\globals.h	/^  int kBulletWidth = 2;$/;"	v
+kCutSceneLength	.\globals.h	/^  constexpr float kCutSceneLength = 1.75;	\/\/ seconds pause$/;"	v
+kEnemyBulletSpeed	.\globals.h	/^  float kEnemyBulletSpeed = +90;$/;"	v
+kEnemyReloadingTime	.\globals.h	/^  const float kEnemyReloadingTime = 0.9;$/;"	v
+kHealthBarRadius	.\globals.h	/^  const int kHealthBarRadius = 3;$/;"	v
+kLivesPerLevel	.\globals.h	/^  const int kLivesPerLevel = 3;$/;"	v
+kPlayerHeight	.\globals.h	/^  const int kPlayerHeight = 5;$/;"	v
+kPlayerSpeed	.\globals.h	/^  const float kPlayerSpeed = 165;$/;"	v
+kPlayerWidth	.\globals.h	/^  const int kPlayerWidth = 8;$/;"	v
+kRainDropCount	.\globals.h	/^  const int kRainDropCount = 140;$/;"	v
+kScreenHeight	.\globals.h	/^  constexpr float kScreenHeight = kScreenWidth * 9 \/ 16;$/;"	v
+kScreenWidth	.\globals.h	/^  constexpr float kScreenWidth = 360;$/;"	v
+listActiveSamples	.\olcConsoleGameEngine.h	/^		std::list<sCurrentlyPlayingSample> listActiveSamples;$/;"	m	class:olcConsoleGameEngine	access:protected
+m_AudioThread	.\olcConsoleGameEngine.h	/^		std::thread m_AudioThread;$/;"	m	class:olcConsoleGameEngine	access:protected
+m_ColourPalette	.\olcConsoleGameEngine.h	/^	uint32_t m_ColourPalette[16] = \/\/ 0xAABBGGRR$/;"	m	class:olcConsoleGameEngine	access:private
+m_Colours	.\olcConsoleGameEngine.h	/^	short *m_Colours = nullptr;$/;"	m	class:olcSprite	access:public
+m_Glyphs	.\olcConsoleGameEngine.h	/^	wchar_t *m_Glyphs = nullptr;$/;"	m	class:olcSprite	access:public
+m_bAtomActive	.\olcConsoleGameEngine.h	/^	static atomic<bool> m_bAtomActive;$/;"	m	class:olcConsoleGameEngine	access:protected
+m_bAtomActive	.\olcConsoleGameEngine.h	/^atomic<bool> olcConsoleGameEngine::m_bAtomActive(false);$/;"	p	class:olcConsoleGameEngine	signature:(false)
+m_bAudioThreadActive	.\olcConsoleGameEngine.h	/^		std::atomic<bool> m_bAudioThreadActive = false;$/;"	m	class:olcConsoleGameEngine	access:protected
+m_bConsoleInFocus	.\olcConsoleGameEngine.h	/^	bool m_bConsoleInFocus = true;$/;"	m	class:olcConsoleGameEngine	access:protected
+m_bDoWindowUpdate	.\olcConsoleGameEngine.h	/^	bool m_bDoWindowUpdate = false;$/;"	m	class:olcConsoleGameEngine	access:protected
+m_bEnableSound	.\olcConsoleGameEngine.h	/^		bool m_bEnableSound = false;$/;"	m	class:olcConsoleGameEngine	access:protected
+m_bufMemory	.\olcConsoleGameEngine.h	/^	uint8_t *m_bufMemory;$/;"	m	class:olcConsoleGameEngine	access:protected
+m_bufScreen	.\olcConsoleGameEngine.h	/^	CHAR_INFO *m_bufScreen;$/;"	m	class:olcConsoleGameEngine	access:protected
+m_bufScreen_old	.\olcConsoleGameEngine.h	/^	CHAR_INFO *m_bufScreen_old;$/;"	m	class:olcConsoleGameEngine	access:protected
+m_cvBlockNotZero	.\olcConsoleGameEngine.h	/^		std::condition_variable m_cvBlockNotZero;$/;"	m	class:olcConsoleGameEngine	access:protected
+m_cvGameFinished	.\olcConsoleGameEngine.h	/^	static condition_variable m_cvGameFinished;$/;"	m	class:olcConsoleGameEngine	access:protected
+m_cvGameFinished	.\olcConsoleGameEngine.h	/^condition_variable olcConsoleGameEngine::m_cvGameFinished;$/;"	m	class:olcConsoleGameEngine
+m_fDrawOffsetX	.\olcConsoleGameEngine.h	/^	float m_fDrawOffsetX;$/;"	m	class:olcConsoleGameEngine	access:protected
+m_fDrawOffsetY	.\olcConsoleGameEngine.h	/^	float m_fDrawOffsetY;$/;"	m	class:olcConsoleGameEngine	access:protected
+m_fDrawScale	.\olcConsoleGameEngine.h	/^	float m_fDrawScale;$/;"	m	class:olcConsoleGameEngine	access:protected
+m_fGlobalTime	.\olcConsoleGameEngine.h	/^		std::atomic<float> m_fGlobalTime = 0.0f;$/;"	m	class:olcConsoleGameEngine	access:protected
+m_fTexCoordArray	.\olcConsoleGameEngine.h	/^	float *m_fTexCoordArray;$/;"	m	class:olcConsoleGameEngine	access:protected
+m_fVertexArray	.\olcConsoleGameEngine.h	/^	float *m_fVertexArray;$/;"	m	class:olcConsoleGameEngine	access:protected
+m_hConsole	.\olcConsoleGameEngine.h	/^	HWND  m_hConsole = nullptr;$/;"	m	class:olcConsoleGameEngine	access:protected
+m_hDevCtx	.\olcConsoleGameEngine.h	/^	HDC   m_hDevCtx = nullptr;$/;"	m	class:olcConsoleGameEngine	access:protected
+m_hRenCtx	.\olcConsoleGameEngine.h	/^	HGLRC m_hRenCtx = nullptr;$/;"	m	class:olcConsoleGameEngine	access:protected
+m_hWnd	.\olcConsoleGameEngine.h	/^	HWND  m_hWnd = nullptr;$/;"	m	class:olcConsoleGameEngine	access:protected
+m_hwDevice	.\olcConsoleGameEngine.h	/^		HWAVEOUT m_hwDevice = nullptr;$/;"	m	class:olcConsoleGameEngine	access:protected
+m_keyNewState	.\olcConsoleGameEngine.h	/^	short m_keyNewState[256] = { 0 };$/;"	m	class:olcConsoleGameEngine	access:protected
+m_keyOldState	.\olcConsoleGameEngine.h	/^	short m_keyOldState[256] = { 0 };$/;"	m	class:olcConsoleGameEngine	access:protected
+m_keys	.\olcConsoleGameEngine.h	/^	} m_keys[256], m_mouse[5];$/;"	m	class:olcConsoleGameEngine	typeref:struct:olcConsoleGameEngine::sKeyState	access:protected
+m_mouse	.\olcConsoleGameEngine.h	/^	} m_keys[256], m_mouse[5];$/;"	m	class:olcConsoleGameEngine	typeref:struct:olcConsoleGameEngine::sKeyState	access:protected
+m_mouseNewState	.\olcConsoleGameEngine.h	/^	bool m_mouseNewState[5] = { 0 };$/;"	m	class:olcConsoleGameEngine	access:protected
+m_mouseOldState	.\olcConsoleGameEngine.h	/^	bool m_mouseOldState[5] = { 0 };$/;"	m	class:olcConsoleGameEngine	access:protected
+m_mousePosX	.\olcConsoleGameEngine.h	/^	int m_mousePosX;$/;"	m	class:olcConsoleGameEngine	access:protected
+m_mousePosY	.\olcConsoleGameEngine.h	/^	int m_mousePosY;$/;"	m	class:olcConsoleGameEngine	access:protected
+m_muxBlockNotZero	.\olcConsoleGameEngine.h	/^		std::mutex m_muxBlockNotZero;$/;"	m	class:olcConsoleGameEngine	access:protected
+m_muxGame	.\olcConsoleGameEngine.h	/^	static mutex m_muxGame;$/;"	m	class:olcConsoleGameEngine	access:protected
+m_muxGame	.\olcConsoleGameEngine.h	/^mutex olcConsoleGameEngine::m_muxGame;/;"	m	class:olcConsoleGameEngine
+m_nBlockCount	.\olcConsoleGameEngine.h	/^		unsigned int m_nBlockCount;$/;"	m	class:olcConsoleGameEngine	access:protected
+m_nBlockCurrent	.\olcConsoleGameEngine.h	/^		unsigned int m_nBlockCurrent;$/;"	m	class:olcConsoleGameEngine	access:protected
+m_nBlockFree	.\olcConsoleGameEngine.h	/^		std::atomic<unsigned int> m_nBlockFree = 0;$/;"	m	class:olcConsoleGameEngine	access:protected
+m_nBlockSamples	.\olcConsoleGameEngine.h	/^		unsigned int m_nBlockSamples;$/;"	m	class:olcConsoleGameEngine	access:protected
+m_nChannels	.\olcConsoleGameEngine.h	/^		unsigned int m_nChannels;$/;"	m	class:olcConsoleGameEngine	access:protected
+m_nFontHeight	.\olcConsoleGameEngine.h	/^	int m_nFontHeight;$/;"	m	class:olcConsoleGameEngine	access:protected
+m_nFontWidth	.\olcConsoleGameEngine.h	/^	int m_nFontWidth;$/;"	m	class:olcConsoleGameEngine	access:protected
+m_nSampleRate	.\olcConsoleGameEngine.h	/^		unsigned int m_nSampleRate;$/;"	m	class:olcConsoleGameEngine	access:protected
+m_nScreenHeight	.\olcConsoleGameEngine.h	/^	int m_nScreenHeight;$/;"	m	class:olcConsoleGameEngine	access:protected
+m_nScreenWidth	.\olcConsoleGameEngine.h	/^	int m_nScreenWidth;$/;"	m	class:olcConsoleGameEngine	access:protected
+m_nWindowHeight	.\olcConsoleGameEngine.h	/^	int m_nWindowHeight;$/;"	m	class:olcConsoleGameEngine	access:protected
+m_nWindowWidth	.\olcConsoleGameEngine.h	/^	int m_nWindowWidth;$/;"	m	class:olcConsoleGameEngine	access:protected
+m_pBlockMemory	.\olcConsoleGameEngine.h	/^		short* m_pBlockMemory = nullptr;$/;"	m	class:olcConsoleGameEngine	access:protected
+m_pWaveHeaders	.\olcConsoleGameEngine.h	/^		WAVEHDR *m_pWaveHeaders = nullptr;$/;"	m	class:olcConsoleGameEngine	access:protected
+m_rectWindow	.\olcConsoleGameEngine.h	/^	SMALL_RECT m_rectWindow;$/;"	m	class:olcConsoleGameEngine	access:protected
+m_sAppName	.\olcConsoleGameEngine.h	/^	wstring m_sAppName;$/;"	m	class:olcConsoleGameEngine	access:protected
+m_uBackgroundColorArray	.\olcConsoleGameEngine.h	/^	uint32_t *m_uBackgroundColorArray;$/;"	m	class:olcConsoleGameEngine	access:protected
+m_uFontTexture	.\olcConsoleGameEngine.h	/^	GLuint m_uFontTexture;$/;"	m	class:olcConsoleGameEngine	access:protected
+m_uForegroundColorArray	.\olcConsoleGameEngine.h	/^	uint32_t *m_uForegroundColorArray;$/;"	m	class:olcConsoleGameEngine	access:protected
+m_uIndicesArray	.\olcConsoleGameEngine.h	/^	uint32_t *m_uIndicesArray;$/;"	m	class:olcConsoleGameEngine	access:protected
+main	.\main.cpp	/^int main() {$/;"	f	signature:()
+nAudioSampleID	.\olcConsoleGameEngine.h	/^			int nAudioSampleID = 0;$/;"	m	struct:olcConsoleGameEngine::sCurrentlyPlayingSample	access:public
+nChannels	.\olcConsoleGameEngine.h	/^			int nChannels = 0;$/;"	m	class:olcConsoleGameEngine::olcAudioSample	access:public
+nHeight	.\olcConsoleGameEngine.h	/^	int nHeight = 0;$/;"	m	class:olcSprite	access:public
+nSamplePosition	.\olcConsoleGameEngine.h	/^			long nSamplePosition = 0;$/;"	m	struct:olcConsoleGameEngine::sCurrentlyPlayingSample	access:public
+nSamples	.\olcConsoleGameEngine.h	/^			long nSamples = 0;$/;"	m	class:olcConsoleGameEngine::olcAudioSample	access:public
+nWidth	.\olcConsoleGameEngine.h	/^	int nWidth = 0;$/;"	m	class:olcSprite	access:public
+olcAudioSample	.\olcConsoleGameEngine.h	/^			olcAudioSample()$/;"	f	class:olcConsoleGameEngine::olcAudioSample	access:public	signature:()
+olcAudioSample	.\olcConsoleGameEngine.h	/^			olcAudioSample(std::wstring sWavFile)$/;"	f	class:olcConsoleGameEngine::olcAudioSample	access:public	signature:(std::wstring sWavFile)
+olcAudioSample	.\olcConsoleGameEngine.h	/^		class olcAudioSample$/;"	c	class:olcConsoleGameEngine	access:protected
+olcConsoleGameEngine	.\olcConsoleGameEngine.h	/^	olcConsoleGameEngine()$/;"	f	class:olcConsoleGameEngine	access:public	signature:()
+olcConsoleGameEngine	.\olcConsoleGameEngine.h	/^class olcConsoleGameEngine$/;"	c
+olcConsoleGameEngine::AudioThread	.\olcConsoleGameEngine.h	/^		void AudioThread()$/;"	f	class:olcConsoleGameEngine	access:protected	signature:()
+olcConsoleGameEngine::Clip	.\olcConsoleGameEngine.h	/^	void Clip(int &x, int &y)$/;"	f	class:olcConsoleGameEngine	access:public	signature:(int &x, int &y)
+olcConsoleGameEngine::ConstructConsole	.\olcConsoleGameEngine.h	/^	int ConstructConsole(int width, int height, int fontw, int fonth)$/;"	f	class:olcConsoleGameEngine	access:public	signature:(int width, int height, int fontw, int fonth)
+olcConsoleGameEngine::ConstructWindow	.\olcConsoleGameEngine.h	/^	HWND ConstructWindow(int width, int height)$/;"	f	class:olcConsoleGameEngine	access:private	signature:(int width, int height)
+olcConsoleGameEngine::CreateAudio	.\olcConsoleGameEngine.h	/^		bool CreateAudio(unsigned int nSampleRate = 44100, unsigned int nChannels = 1,$/;"	f	class:olcConsoleGameEngine	access:protected	signature:(unsigned int nSampleRate = 44100, unsigned int nChannels = 1, unsigned int nBlocks = 8, unsigned int nBlockSamples = 512)
+olcConsoleGameEngine::DestroyAudio	.\olcConsoleGameEngine.h	/^		bool DestroyAudio()$/;"	f	class:olcConsoleGameEngine	access:protected	signature:()
+olcConsoleGameEngine::Draw	.\olcConsoleGameEngine.h	/^	virtual void Draw(int x, int y, wchar_t c = 0x2588, short col = 0x000F)$/;"	f	class:olcConsoleGameEngine	access:public	signature:(int x, int y, wchar_t c = 0x2588, short col = 0x000F)
+olcConsoleGameEngine::DrawCircle	.\olcConsoleGameEngine.h	/^	void DrawCircle(int xc, int yc, int r, wchar_t c = 0x2588, short col = 0x000F)$/;"	f	class:olcConsoleGameEngine	access:public	signature:(int xc, int yc, int r, wchar_t c = 0x2588, short col = 0x000F)
+olcConsoleGameEngine::DrawLine	.\olcConsoleGameEngine.h	/^	void DrawLine(int x1, int y1, int x2, int y2, wchar_t c = 0x2588, short col = 0x000F)$/;"	f	class:olcConsoleGameEngine	access:public	signature:(int x1, int y1, int x2, int y2, wchar_t c = 0x2588, short col = 0x000F)
+olcConsoleGameEngine::DrawPartialSprite	.\olcConsoleGameEngine.h	/^	void DrawPartialSprite(int x, int y, olcSprite *sprite, int ox, int oy, int w, int h)$/;"	f	class:olcConsoleGameEngine	access:public	signature:(int x, int y, olcSprite *sprite, int ox, int oy, int w, int h)
+olcConsoleGameEngine::DrawSprite	.\olcConsoleGameEngine.h	/^	void DrawSprite(int x, int y, olcSprite *sprite)$/;"	f	class:olcConsoleGameEngine	access:public	signature:(int x, int y, olcSprite *sprite)
+olcConsoleGameEngine::DrawString	.\olcConsoleGameEngine.h	/^	void DrawString(int x, int y, wstring c, short col = 0x000F)$/;"	f	class:olcConsoleGameEngine	access:public	signature:(int x, int y, wstring c, short col = 0x000F)
+olcConsoleGameEngine::DrawStringAlpha	.\olcConsoleGameEngine.h	/^	void DrawStringAlpha(int x, int y, wstring c, short col = 0x000F)$/;"	f	class:olcConsoleGameEngine	access:public	signature:(int x, int y, wstring c, short col = 0x000F)
+olcConsoleGameEngine::DrawTriangle	.\olcConsoleGameEngine.h	/^	void DrawTriangle(int x1, int y1, int x2, int y2, int x3, int y3, short c = 0x2588, short col = 0x000F)$/;"	f	class:olcConsoleGameEngine	access:public	signature:(int x1, int y1, int x2, int y2, int x3, int y3, short c = 0x2588, short col = 0x000F)
+olcConsoleGameEngine::DrawWireFrameModel	.\olcConsoleGameEngine.h	/^	void DrawWireFrameModel(const std::vector<std::pair<float, float>> &vecModelCoordinates, float x, float y, float r = 0.0f, float s = 1.0f, short col = FG_WHITE, short c = PIXEL_SOLID)$/;"	f	class:olcConsoleGameEngine	access:public	signature:(const std::vector<std::pair<float, float>> &vecModelCoordinates, float x, float y, float r = 0.0f, float s = 1.0f, short col = FG_WHITE, short c = PIXEL_SOLID)
+olcConsoleGameEngine::EnableSound	.\olcConsoleGameEngine.h	/^	void EnableSound()$/;"	f	class:olcConsoleGameEngine	access:public	signature:()
+olcConsoleGameEngine::Error	.\olcConsoleGameEngine.h	/^	int Error(const wchar_t *msg)$/;"	f	class:olcConsoleGameEngine	access:protected	signature:(const wchar_t *msg)
+olcConsoleGameEngine::Fill	.\olcConsoleGameEngine.h	/^	void Fill(int x1, int y1, int x2, int y2, wchar_t c = 0x2588, short col = 0x000F)$/;"	f	class:olcConsoleGameEngine	access:public	signature:(int x1, int y1, int x2, int y2, wchar_t c = 0x2588, short col = 0x000F)
+olcConsoleGameEngine::FillCircle	.\olcConsoleGameEngine.h	/^	void FillCircle(int xc, int yc, int r, wchar_t c = 0x2588, short col = 0x000F)$/;"	f	class:olcConsoleGameEngine	access:public	signature:(int xc, int yc, int r, wchar_t c = 0x2588, short col = 0x000F)
+olcConsoleGameEngine::FillTriangle	.\olcConsoleGameEngine.h	/^	void FillTriangle(int x1, int y1, int x2, int y2, int x3, int y3, short c = 0x2588, short col = 0x000F)$/;"	f	class:olcConsoleGameEngine	access:public	signature:(int x1, int y1, int x2, int y2, int x3, int y3, short c = 0x2588, short col = 0x000F)
+olcConsoleGameEngine::GameThread	.\olcConsoleGameEngine.h	/^	void GameThread()$/;"	f	class:olcConsoleGameEngine	access:private	signature:()
+olcConsoleGameEngine::GenerateMipmapPow2	.\olcConsoleGameEngine.h	/^	void GenerateMipmapPow2(uint8_t *tex_new, uint8_t *tex_old, uint8_t *ref_alpha, int size)$/;"	f	class:olcConsoleGameEngine	access:public	signature:(uint8_t *tex_new, uint8_t *tex_old, uint8_t *ref_alpha, int size)
+olcConsoleGameEngine::GetKey	.\olcConsoleGameEngine.h	/^	sKeyState GetKey(int nKeyID) { return m_keys[nKeyID]; }$/;"	f	class:olcConsoleGameEngine	access:public	signature:(int nKeyID)
+olcConsoleGameEngine::GetMixerOutput	.\olcConsoleGameEngine.h	/^		float GetMixerOutput(int nChannel, float fGlobalTime, float fTimeStep)$/;"	f	class:olcConsoleGameEngine	access:protected	signature:(int nChannel, float fGlobalTime, float fTimeStep)
+olcConsoleGameEngine::GetMouse	.\olcConsoleGameEngine.h	/^	sKeyState GetMouse(int nMouseButtonID) { return m_mouse[nMouseButtonID]; }$/;"	f	class:olcConsoleGameEngine	access:public	signature:(int nMouseButtonID)
+olcConsoleGameEngine::GetMouseX	.\olcConsoleGameEngine.h	/^	int GetMouseX() { return m_mousePosX; }$/;"	f	class:olcConsoleGameEngine	access:public	signature:()
+olcConsoleGameEngine::GetMouseY	.\olcConsoleGameEngine.h	/^	int GetMouseY() { return m_mousePosY; }$/;"	f	class:olcConsoleGameEngine	access:public	signature:()
+olcConsoleGameEngine::IsFocused	.\olcConsoleGameEngine.h	/^	bool IsFocused() { return m_bConsoleInFocus; }$/;"	f	class:olcConsoleGameEngine	access:public	signature:()
+olcConsoleGameEngine::LoadAudioSample	.\olcConsoleGameEngine.h	/^		unsigned int LoadAudioSample(std::wstring sWavFile)$/;"	f	class:olcConsoleGameEngine	access:protected	signature:(std::wstring sWavFile)
+olcConsoleGameEngine::OnUserCreate	.\olcConsoleGameEngine.h	/^	virtual bool OnUserCreate() = 0;$/;"	p	class:olcConsoleGameEngine	access:public	signature:()
+olcConsoleGameEngine::OnUserDestroy	.\olcConsoleGameEngine.h	/^	virtual bool OnUserDestroy()$/;"	f	class:olcConsoleGameEngine	access:public	signature:()
+olcConsoleGameEngine::OnUserUpdate	.\olcConsoleGameEngine.h	/^	virtual bool OnUserUpdate(float fElapsedTime) = 0;$/;"	p	class:olcConsoleGameEngine	access:public	signature:(float fElapsedTime)
+olcConsoleGameEngine::PlaySample	.\olcConsoleGameEngine.h	/^		void PlaySample(int id, bool bLoop = false)$/;"	f	class:olcConsoleGameEngine	access:protected	signature:(int id, bool bLoop = false)
+olcConsoleGameEngine::ScreenHeight	.\olcConsoleGameEngine.h	/^	int ScreenHeight()$/;"	f	class:olcConsoleGameEngine	access:public	signature:()
+olcConsoleGameEngine::ScreenWidth	.\olcConsoleGameEngine.h	/^	int ScreenWidth()$/;"	f	class:olcConsoleGameEngine	access:public	signature:()
+olcConsoleGameEngine::SetPixelFormatGL	.\olcConsoleGameEngine.h	/^	int SetPixelFormatGL(void)$/;"	f	class:olcConsoleGameEngine	access:private	signature:(void)
+olcConsoleGameEngine::Start	.\olcConsoleGameEngine.h	/^	void Start()$/;"	f	class:olcConsoleGameEngine	access:public	signature:()
+olcConsoleGameEngine::StopSample	.\olcConsoleGameEngine.h	/^		void StopSample(int id)$/;"	f	class:olcConsoleGameEngine	access:protected	signature:(int id)
+olcConsoleGameEngine::ToggleFullscreen	.\olcConsoleGameEngine.h	/^	void ToggleFullscreen(HWND hWnd)$/;"	f	class:olcConsoleGameEngine	access:private	signature:(HWND hWnd)
+olcConsoleGameEngine::UpdateMousePosition	.\olcConsoleGameEngine.h	/^	void UpdateMousePosition(int x, int y)$/;"	f	class:olcConsoleGameEngine	access:private	signature:(int x, int y)
+olcConsoleGameEngine::WindowResize	.\olcConsoleGameEngine.h	/^	void WindowResize(void)$/;"	f	class:olcConsoleGameEngine	access:private	signature:(void)
+olcConsoleGameEngine::WindowUpdateScale	.\olcConsoleGameEngine.h	/^	void WindowUpdateScale(void)$/;"	f	class:olcConsoleGameEngine	access:private	signature:(void)
+olcConsoleGameEngine::listActiveSamples	.\olcConsoleGameEngine.h	/^		std::list<sCurrentlyPlayingSample> listActiveSamples;$/;"	m	class:olcConsoleGameEngine	access:protected
+olcConsoleGameEngine::m_AudioThread	.\olcConsoleGameEngine.h	/^		std::thread m_AudioThread;$/;"	m	class:olcConsoleGameEngine	access:protected
+olcConsoleGameEngine::m_ColourPalette	.\olcConsoleGameEngine.h	/^	uint32_t m_ColourPalette[16] = \/\/ 0xAABBGGRR$/;"	m	class:olcConsoleGameEngine	access:private
+olcConsoleGameEngine::m_bAtomActive	.\olcConsoleGameEngine.h	/^	static atomic<bool> m_bAtomActive;$/;"	m	class:olcConsoleGameEngine	access:protected
+olcConsoleGameEngine::m_bAtomActive	.\olcConsoleGameEngine.h	/^atomic<bool> olcConsoleGameEngine::m_bAtomActive(false);$/;"	p	class:olcConsoleGameEngine	signature:(false)
+olcConsoleGameEngine::m_bAudioThreadActive	.\olcConsoleGameEngine.h	/^		std::atomic<bool> m_bAudioThreadActive = false;$/;"	m	class:olcConsoleGameEngine	access:protected
+olcConsoleGameEngine::m_bConsoleInFocus	.\olcConsoleGameEngine.h	/^	bool m_bConsoleInFocus = true;$/;"	m	class:olcConsoleGameEngine	access:protected
+olcConsoleGameEngine::m_bDoWindowUpdate	.\olcConsoleGameEngine.h	/^	bool m_bDoWindowUpdate = false;$/;"	m	class:olcConsoleGameEngine	access:protected
+olcConsoleGameEngine::m_bEnableSound	.\olcConsoleGameEngine.h	/^		bool m_bEnableSound = false;$/;"	m	class:olcConsoleGameEngine	access:protected
+olcConsoleGameEngine::m_bufMemory	.\olcConsoleGameEngine.h	/^	uint8_t *m_bufMemory;$/;"	m	class:olcConsoleGameEngine	access:protected
+olcConsoleGameEngine::m_bufScreen	.\olcConsoleGameEngine.h	/^	CHAR_INFO *m_bufScreen;$/;"	m	class:olcConsoleGameEngine	access:protected
+olcConsoleGameEngine::m_bufScreen_old	.\olcConsoleGameEngine.h	/^	CHAR_INFO *m_bufScreen_old;$/;"	m	class:olcConsoleGameEngine	access:protected
+olcConsoleGameEngine::m_cvBlockNotZero	.\olcConsoleGameEngine.h	/^		std::condition_variable m_cvBlockNotZero;$/;"	m	class:olcConsoleGameEngine	access:protected
+olcConsoleGameEngine::m_cvGameFinished	.\olcConsoleGameEngine.h	/^	static condition_variable m_cvGameFinished;$/;"	m	class:olcConsoleGameEngine	access:protected
+olcConsoleGameEngine::m_cvGameFinished	.\olcConsoleGameEngine.h	/^condition_variable olcConsoleGameEngine::m_cvGameFinished;$/;"	m	class:olcConsoleGameEngine
+olcConsoleGameEngine::m_fDrawOffsetX	.\olcConsoleGameEngine.h	/^	float m_fDrawOffsetX;$/;"	m	class:olcConsoleGameEngine	access:protected
+olcConsoleGameEngine::m_fDrawOffsetY	.\olcConsoleGameEngine.h	/^	float m_fDrawOffsetY;$/;"	m	class:olcConsoleGameEngine	access:protected
+olcConsoleGameEngine::m_fDrawScale	.\olcConsoleGameEngine.h	/^	float m_fDrawScale;$/;"	m	class:olcConsoleGameEngine	access:protected
+olcConsoleGameEngine::m_fGlobalTime	.\olcConsoleGameEngine.h	/^		std::atomic<float> m_fGlobalTime = 0.0f;$/;"	m	class:olcConsoleGameEngine	access:protected
+olcConsoleGameEngine::m_fTexCoordArray	.\olcConsoleGameEngine.h	/^	float *m_fTexCoordArray;$/;"	m	class:olcConsoleGameEngine	access:protected
+olcConsoleGameEngine::m_fVertexArray	.\olcConsoleGameEngine.h	/^	float *m_fVertexArray;$/;"	m	class:olcConsoleGameEngine	access:protected
+olcConsoleGameEngine::m_hConsole	.\olcConsoleGameEngine.h	/^	HWND  m_hConsole = nullptr;$/;"	m	class:olcConsoleGameEngine	access:protected
+olcConsoleGameEngine::m_hDevCtx	.\olcConsoleGameEngine.h	/^	HDC   m_hDevCtx = nullptr;$/;"	m	class:olcConsoleGameEngine	access:protected
+olcConsoleGameEngine::m_hRenCtx	.\olcConsoleGameEngine.h	/^	HGLRC m_hRenCtx = nullptr;$/;"	m	class:olcConsoleGameEngine	access:protected
+olcConsoleGameEngine::m_hWnd	.\olcConsoleGameEngine.h	/^	HWND  m_hWnd = nullptr;$/;"	m	class:olcConsoleGameEngine	access:protected
+olcConsoleGameEngine::m_hwDevice	.\olcConsoleGameEngine.h	/^		HWAVEOUT m_hwDevice = nullptr;$/;"	m	class:olcConsoleGameEngine	access:protected
+olcConsoleGameEngine::m_keyNewState	.\olcConsoleGameEngine.h	/^	short m_keyNewState[256] = { 0 };$/;"	m	class:olcConsoleGameEngine	access:protected
+olcConsoleGameEngine::m_keyOldState	.\olcConsoleGameEngine.h	/^	short m_keyOldState[256] = { 0 };$/;"	m	class:olcConsoleGameEngine	access:protected
+olcConsoleGameEngine::m_keys	.\olcConsoleGameEngine.h	/^	} m_keys[256], m_mouse[5];$/;"	m	class:olcConsoleGameEngine	typeref:struct:olcConsoleGameEngine::sKeyState	access:protected
+olcConsoleGameEngine::m_mouse	.\olcConsoleGameEngine.h	/^	} m_keys[256], m_mouse[5];$/;"	m	class:olcConsoleGameEngine	typeref:struct:olcConsoleGameEngine::sKeyState	access:protected
+olcConsoleGameEngine::m_mouseNewState	.\olcConsoleGameEngine.h	/^	bool m_mouseNewState[5] = { 0 };$/;"	m	class:olcConsoleGameEngine	access:protected
+olcConsoleGameEngine::m_mouseOldState	.\olcConsoleGameEngine.h	/^	bool m_mouseOldState[5] = { 0 };$/;"	m	class:olcConsoleGameEngine	access:protected
+olcConsoleGameEngine::m_mousePosX	.\olcConsoleGameEngine.h	/^	int m_mousePosX;$/;"	m	class:olcConsoleGameEngine	access:protected
+olcConsoleGameEngine::m_mousePosY	.\olcConsoleGameEngine.h	/^	int m_mousePosY;$/;"	m	class:olcConsoleGameEngine	access:protected
+olcConsoleGameEngine::m_muxBlockNotZero	.\olcConsoleGameEngine.h	/^		std::mutex m_muxBlockNotZero;$/;"	m	class:olcConsoleGameEngine	access:protected
+olcConsoleGameEngine::m_muxGame	.\olcConsoleGameEngine.h	/^	static mutex m_muxGame;$/;"	m	class:olcConsoleGameEngine	access:protected
+olcConsoleGameEngine::m_muxGame	.\olcConsoleGameEngine.h	/^mutex olcConsoleGameEngine::m_muxGame;/;"	m	class:olcConsoleGameEngine
+olcConsoleGameEngine::m_nBlockCount	.\olcConsoleGameEngine.h	/^		unsigned int m_nBlockCount;$/;"	m	class:olcConsoleGameEngine	access:protected
+olcConsoleGameEngine::m_nBlockCurrent	.\olcConsoleGameEngine.h	/^		unsigned int m_nBlockCurrent;$/;"	m	class:olcConsoleGameEngine	access:protected
+olcConsoleGameEngine::m_nBlockFree	.\olcConsoleGameEngine.h	/^		std::atomic<unsigned int> m_nBlockFree = 0;$/;"	m	class:olcConsoleGameEngine	access:protected
+olcConsoleGameEngine::m_nBlockSamples	.\olcConsoleGameEngine.h	/^		unsigned int m_nBlockSamples;$/;"	m	class:olcConsoleGameEngine	access:protected
+olcConsoleGameEngine::m_nChannels	.\olcConsoleGameEngine.h	/^		unsigned int m_nChannels;$/;"	m	class:olcConsoleGameEngine	access:protected
+olcConsoleGameEngine::m_nFontHeight	.\olcConsoleGameEngine.h	/^	int m_nFontHeight;$/;"	m	class:olcConsoleGameEngine	access:protected
+olcConsoleGameEngine::m_nFontWidth	.\olcConsoleGameEngine.h	/^	int m_nFontWidth;$/;"	m	class:olcConsoleGameEngine	access:protected
+olcConsoleGameEngine::m_nSampleRate	.\olcConsoleGameEngine.h	/^		unsigned int m_nSampleRate;$/;"	m	class:olcConsoleGameEngine	access:protected
+olcConsoleGameEngine::m_nScreenHeight	.\olcConsoleGameEngine.h	/^	int m_nScreenHeight;$/;"	m	class:olcConsoleGameEngine	access:protected
+olcConsoleGameEngine::m_nScreenWidth	.\olcConsoleGameEngine.h	/^	int m_nScreenWidth;$/;"	m	class:olcConsoleGameEngine	access:protected
+olcConsoleGameEngine::m_nWindowHeight	.\olcConsoleGameEngine.h	/^	int m_nWindowHeight;$/;"	m	class:olcConsoleGameEngine	access:protected
+olcConsoleGameEngine::m_nWindowWidth	.\olcConsoleGameEngine.h	/^	int m_nWindowWidth;$/;"	m	class:olcConsoleGameEngine	access:protected
+olcConsoleGameEngine::m_pBlockMemory	.\olcConsoleGameEngine.h	/^		short* m_pBlockMemory = nullptr;$/;"	m	class:olcConsoleGameEngine	access:protected
+olcConsoleGameEngine::m_pWaveHeaders	.\olcConsoleGameEngine.h	/^		WAVEHDR *m_pWaveHeaders = nullptr;$/;"	m	class:olcConsoleGameEngine	access:protected
+olcConsoleGameEngine::m_rectWindow	.\olcConsoleGameEngine.h	/^	SMALL_RECT m_rectWindow;$/;"	m	class:olcConsoleGameEngine	access:protected
+olcConsoleGameEngine::m_sAppName	.\olcConsoleGameEngine.h	/^	wstring m_sAppName;$/;"	m	class:olcConsoleGameEngine	access:protected
+olcConsoleGameEngine::m_uBackgroundColorArray	.\olcConsoleGameEngine.h	/^	uint32_t *m_uBackgroundColorArray;$/;"	m	class:olcConsoleGameEngine	access:protected
+olcConsoleGameEngine::m_uFontTexture	.\olcConsoleGameEngine.h	/^	GLuint m_uFontTexture;$/;"	m	class:olcConsoleGameEngine	access:protected
+olcConsoleGameEngine::m_uForegroundColorArray	.\olcConsoleGameEngine.h	/^	uint32_t *m_uForegroundColorArray;$/;"	m	class:olcConsoleGameEngine	access:protected
+olcConsoleGameEngine::m_uIndicesArray	.\olcConsoleGameEngine.h	/^	uint32_t *m_uIndicesArray;$/;"	m	class:olcConsoleGameEngine	access:protected
+olcConsoleGameEngine::olcAudioSample	.\olcConsoleGameEngine.h	/^		class olcAudioSample$/;"	c	class:olcConsoleGameEngine	access:protected
+olcConsoleGameEngine::olcAudioSample::bSampleValid	.\olcConsoleGameEngine.h	/^			bool bSampleValid = false;$/;"	m	class:olcConsoleGameEngine::olcAudioSample	access:public
+olcConsoleGameEngine::olcAudioSample::fSample	.\olcConsoleGameEngine.h	/^			float *fSample = nullptr;$/;"	m	class:olcConsoleGameEngine::olcAudioSample	access:public
+olcConsoleGameEngine::olcAudioSample::nChannels	.\olcConsoleGameEngine.h	/^			int nChannels = 0;$/;"	m	class:olcConsoleGameEngine::olcAudioSample	access:public
+olcConsoleGameEngine::olcAudioSample::nSamples	.\olcConsoleGameEngine.h	/^			long nSamples = 0;$/;"	m	class:olcConsoleGameEngine::olcAudioSample	access:public
+olcConsoleGameEngine::olcAudioSample::olcAudioSample	.\olcConsoleGameEngine.h	/^			olcAudioSample()$/;"	f	class:olcConsoleGameEngine::olcAudioSample	access:public	signature:()
+olcConsoleGameEngine::olcAudioSample::olcAudioSample	.\olcConsoleGameEngine.h	/^			olcAudioSample(std::wstring sWavFile)$/;"	f	class:olcConsoleGameEngine::olcAudioSample	access:public	signature:(std::wstring sWavFile)
+olcConsoleGameEngine::olcAudioSample::wavHeader	.\olcConsoleGameEngine.h	/^			WAVEFORMATEX wavHeader;$/;"	m	class:olcConsoleGameEngine::olcAudioSample	access:public
+olcConsoleGameEngine::olcConsoleGameEngine	.\olcConsoleGameEngine.h	/^	olcConsoleGameEngine()$/;"	f	class:olcConsoleGameEngine	access:public	signature:()
+olcConsoleGameEngine::olcWndProc	.\olcConsoleGameEngine.h	/^		LRESULT CALLBACK olcWndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)$/;"	f	class:olcConsoleGameEngine	access:private	signature:(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
+olcConsoleGameEngine::onUserSoundFilter	.\olcConsoleGameEngine.h	/^		virtual float onUserSoundFilter(int nChannel, float fGlobalTime, float fSample)$/;"	f	class:olcConsoleGameEngine	access:protected	signature:(int nChannel, float fGlobalTime, float fSample)
+olcConsoleGameEngine::onUserSoundSample	.\olcConsoleGameEngine.h	/^		virtual float onUserSoundSample(int nChannel, float fGlobalTime, float fTimeStep)$/;"	f	class:olcConsoleGameEngine	access:protected	signature:(int nChannel, float fGlobalTime, float fTimeStep)
+olcConsoleGameEngine::sCurrentlyPlayingSample	.\olcConsoleGameEngine.h	/^		struct sCurrentlyPlayingSample$/;"	s	class:olcConsoleGameEngine	access:protected
+olcConsoleGameEngine::sCurrentlyPlayingSample::bFinished	.\olcConsoleGameEngine.h	/^			bool bFinished = false;$/;"	m	struct:olcConsoleGameEngine::sCurrentlyPlayingSample	access:public
+olcConsoleGameEngine::sCurrentlyPlayingSample::bLoop	.\olcConsoleGameEngine.h	/^			bool bLoop = false;$/;"	m	struct:olcConsoleGameEngine::sCurrentlyPlayingSample	access:public
+olcConsoleGameEngine::sCurrentlyPlayingSample::nAudioSampleID	.\olcConsoleGameEngine.h	/^			int nAudioSampleID = 0;$/;"	m	struct:olcConsoleGameEngine::sCurrentlyPlayingSample	access:public
+olcConsoleGameEngine::sCurrentlyPlayingSample::nSamplePosition	.\olcConsoleGameEngine.h	/^			long nSamplePosition = 0;$/;"	m	struct:olcConsoleGameEngine::sCurrentlyPlayingSample	access:public
+olcConsoleGameEngine::sKeyState	.\olcConsoleGameEngine.h	/^	struct sKeyState$/;"	s	class:olcConsoleGameEngine	access:protected
+olcConsoleGameEngine::sKeyState::bHeld	.\olcConsoleGameEngine.h	/^		bool bHeld;$/;"	m	struct:olcConsoleGameEngine::sKeyState	access:public
+olcConsoleGameEngine::sKeyState::bPressed	.\olcConsoleGameEngine.h	/^		bool bPressed;$/;"	m	struct:olcConsoleGameEngine::sKeyState	access:public
+olcConsoleGameEngine::sKeyState::bReleased	.\olcConsoleGameEngine.h	/^		bool bReleased;$/;"	m	struct:olcConsoleGameEngine::sKeyState	access:public
+olcConsoleGameEngine::vecAudioSamples	.\olcConsoleGameEngine.h	/^		std::vector<olcAudioSample> vecAudioSamples;$/;"	m	class:olcConsoleGameEngine	access:protected
+olcConsoleGameEngine::waveOutProc	.\olcConsoleGameEngine.h	/^		void waveOutProc(HWAVEOUT hWaveOut, UINT uMsg, DWORD dwParam1, DWORD dwParam2)$/;"	f	class:olcConsoleGameEngine	access:protected	signature:(HWAVEOUT hWaveOut, UINT uMsg, DWORD dwParam1, DWORD dwParam2)
+olcConsoleGameEngine::waveOutProcWrap	.\olcConsoleGameEngine.h	/^		static void CALLBACK waveOutProcWrap(HWAVEOUT hWaveOut, UINT uMsg, DWORD dwInstance, DWORD dwParam1, DWORD dwParam2)$/;"	f	class:olcConsoleGameEngine	access:protected	signature:(HWAVEOUT hWaveOut, UINT uMsg, DWORD dwInstance, DWORD dwParam1, DWORD dwParam2)
+olcConsoleGameEngine::~olcConsoleGameEngine	.\olcConsoleGameEngine.h	/^	~olcConsoleGameEngine()$/;"	f	class:olcConsoleGameEngine	access:public	signature:()
+olcSprite	.\olcConsoleGameEngine.h	/^	olcSprite()$/;"	f	class:olcSprite	access:public	signature:()
+olcSprite	.\olcConsoleGameEngine.h	/^	olcSprite(int w, int h)$/;"	f	class:olcSprite	access:public	signature:(int w, int h)
+olcSprite	.\olcConsoleGameEngine.h	/^	olcSprite(wstring sFile)$/;"	f	class:olcSprite	access:public	signature:(wstring sFile)
+olcSprite	.\olcConsoleGameEngine.h	/^class olcSprite$/;"	c
+olcSprite::Create	.\olcConsoleGameEngine.h	/^	void Create(int w, int h)$/;"	f	class:olcSprite	access:private	signature:(int w, int h)
+olcSprite::GetColour	.\olcConsoleGameEngine.h	/^	short GetColour(int x, int y)$/;"	f	class:olcSprite	access:public	signature:(int x, int y)
+olcSprite::GetGlyph	.\olcConsoleGameEngine.h	/^	wchar_t GetGlyph(int x, int y)$/;"	f	class:olcSprite	access:public	signature:(int x, int y)
+olcSprite::Load	.\olcConsoleGameEngine.h	/^	bool Load(wstring sFile)$/;"	f	class:olcSprite	access:public	signature:(wstring sFile)
+olcSprite::SampleColour	.\olcConsoleGameEngine.h	/^	short SampleColour(float x, float y)$/;"	f	class:olcSprite	access:public	signature:(float x, float y)
+olcSprite::SampleGlyph	.\olcConsoleGameEngine.h	/^	wchar_t SampleGlyph(float x, float y)$/;"	f	class:olcSprite	access:public	signature:(float x, float y)
+olcSprite::Save	.\olcConsoleGameEngine.h	/^	bool Save(wstring sFile)$/;"	f	class:olcSprite	access:public	signature:(wstring sFile)
+olcSprite::SetColour	.\olcConsoleGameEngine.h	/^	void SetColour(int x, int y, short c)$/;"	f	class:olcSprite	access:public	signature:(int x, int y, short c)
+olcSprite::SetGlyph	.\olcConsoleGameEngine.h	/^	void SetGlyph(int x, int y, wchar_t c)$/;"	f	class:olcSprite	access:public	signature:(int x, int y, wchar_t c)
+olcSprite::m_Colours	.\olcConsoleGameEngine.h	/^	short *m_Colours = nullptr;$/;"	m	class:olcSprite	access:public
+olcSprite::m_Glyphs	.\olcConsoleGameEngine.h	/^	wchar_t *m_Glyphs = nullptr;$/;"	m	class:olcSprite	access:public
+olcSprite::nHeight	.\olcConsoleGameEngine.h	/^	int nHeight = 0;$/;"	m	class:olcSprite	access:public
+olcSprite::nWidth	.\olcConsoleGameEngine.h	/^	int nWidth = 0;$/;"	m	class:olcSprite	access:public
+olcSprite::olcSprite	.\olcConsoleGameEngine.h	/^	olcSprite()$/;"	f	class:olcSprite	access:public	signature:()
+olcSprite::olcSprite	.\olcConsoleGameEngine.h	/^	olcSprite(int w, int h)$/;"	f	class:olcSprite	access:public	signature:(int w, int h)
+olcSprite::olcSprite	.\olcConsoleGameEngine.h	/^	olcSprite(wstring sFile)$/;"	f	class:olcSprite	access:public	signature:(wstring sFile)
+olcWndProc	.\olcConsoleGameEngine.h	/^		LRESULT CALLBACK olcWndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)$/;"	f	class:olcConsoleGameEngine	access:private	signature:(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
+onUserSoundFilter	.\olcConsoleGameEngine.h	/^		virtual float onUserSoundFilter(int nChannel, float fGlobalTime, float fSample)$/;"	f	class:olcConsoleGameEngine	access:protected	signature:(int nChannel, float fGlobalTime, float fSample)
+onUserSoundSample	.\olcConsoleGameEngine.h	/^		virtual float onUserSoundSample(int nChannel, float fGlobalTime, float fTimeStep)$/;"	f	class:olcConsoleGameEngine	access:protected	signature:(int nChannel, float fGlobalTime, float fTimeStep)
+playerHealth	.\main.cpp	/^  int playerHealth;   \/\/ player's current health$/;"	m	struct:Example	file:	access:public
+playerPos	.\main.cpp	/^  float playerPos[2];$/;"	m	struct:Example	file:	access:public
+pxplus_ibm_cga	.\olcConsoleGameEngine.h	/^unsigned char pxplus_ibm_cga[65536];$/;"	v
+pxplus_ibm_cga_enc	.\olcConsoleGameEngine.h	/^char pxplus_ibm_cga_enc[8509 + 1] =$/;"	v
+rain	.\main.cpp	/^  vector<Drop> rain;$/;"	m	struct:Example	file:	access:public
+sCurrentlyPlayingSample	.\olcConsoleGameEngine.h	/^		struct sCurrentlyPlayingSample$/;"	s	class:olcConsoleGameEngine	access:protected
+sKeyState	.\olcConsoleGameEngine.h	/^	struct sKeyState$/;"	s	class:olcConsoleGameEngine	access:protected
+side_to_side	.\Alien.h	/^enum class Behavior { circles, avoid_bottom_and_top, side_to_side, flocker };$/;"	m	class:Behavior	access:private
+vecAudioSamples	.\olcConsoleGameEngine.h	/^		std::vector<olcAudioSample> vecAudioSamples;$/;"	m	class:olcConsoleGameEngine	access:protected
+wavHeader	.\olcConsoleGameEngine.h	/^			WAVEFORMATEX wavHeader;$/;"	m	class:olcConsoleGameEngine::olcAudioSample	access:public
+waveOutProc	.\olcConsoleGameEngine.h	/^		void waveOutProc(HWAVEOUT hWaveOut, UINT uMsg, DWORD dwParam1, DWORD dwParam2)$/;"	f	class:olcConsoleGameEngine	access:protected	signature:(HWAVEOUT hWaveOut, UINT uMsg, DWORD dwParam1, DWORD dwParam2)
+waveOutProcWrap	.\olcConsoleGameEngine.h	/^		static void CALLBACK waveOutProcWrap(HWAVEOUT hWaveOut, UINT uMsg, DWORD dwInstance, DWORD dwParam1, DWORD dwParam2)$/;"	f	class:olcConsoleGameEngine	access:protected	signature:(HWAVEOUT hWaveOut, UINT uMsg, DWORD dwInstance, DWORD dwParam1, DWORD dwParam2)
+wglSwapInterval	.\olcConsoleGameEngine.h	/^wglSwapInterval_t *wglSwapInterval;$/;"	v
+wglSwapInterval_t	.\olcConsoleGameEngine.h	/^typedef BOOL(WINAPI wglSwapInterval_t) (int interval);$/;"	t
+width	.\Alien.h	/^  int height, width;$/;"	m	struct:Alien	access:public
+x	.\Drop.h	/^  float x, y;$/;"	m	struct:Drop	access:public
+xPos0	.\ParticleEffect.h	/^        int xPos0;$/;"	m	struct:ParticleEffect	access:public
+y	.\Drop.h	/^  float x, y;$/;"	m	struct:Drop	access:public
+yPos0	.\ParticleEffect.h	/^        int yPos0;$/;"	m	struct:ParticleEffect	access:public
+yspeed	.\Drop.h	/^  int yspeed;$/;"	m	struct:Drop	access:public
+~olcConsoleGameEngine	.\olcConsoleGameEngine.h	/^	~olcConsoleGameEngine()$/;"	f	class:olcConsoleGameEngine	access:public	signature:()
