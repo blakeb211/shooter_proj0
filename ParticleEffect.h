@@ -9,6 +9,7 @@
 #include "stdlibs.h"
 #include "globals.h"
 #include "Alien.h"
+#include "Collision.h"
 
 struct ParticleEffect {
     public:

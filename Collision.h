@@ -1,7 +1,10 @@
 #pragma once
 #include "Alien.h"
 #include "Bullet.h"
+
 namespace Collision {
+  // Calc distance 
+ 
   // Calculate if Alien was hit by bullet
   bool AlienGotHit(const Alien &a, const Bullet &b) {
     int rightAlien = a.Pos[0] + a.width; // each enemy has own size
@@ -53,6 +56,7 @@ namespace Collision {
       return true;
     if (bulletDx > playerAx && bulletDx < playerBx && bulletDy > playerAy && bulletDy < playerCy)
       return true;
-      return false;
+    return false;
   } 
+  
 } // end namespace Collision

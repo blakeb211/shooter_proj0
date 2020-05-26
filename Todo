@@ -1,7 +1,6 @@
 TODO Space Invaders
 
 DESIRED FEATURES
-  add aliens avoid eachother
   Simple Level Editor
   basic animations
 
@@ -34,5 +33,7 @@ DONE
   Pause button
 
   DESIRED FEATURES FOR FUTURE 
+    Aliens avoid eachother
+    Bullets explode eachother
     MUSIC
     SOUNDS

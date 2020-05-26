@@ -34,59 +34,59 @@ struct Example : public olcConsoleGameEngine {
     // create aliens
     int widthSpacer0 = (ScreenWidth() / 15);
     switch (Globals::Level) {
-    case 0:
-      Globals::CUTSCENE = true;
-      for (int i = 2; i <= 5; i++) {
-        int rot_direction = (i % 2 == 0 ? -1 : 1);
-        int radius = 30;
-        enemy.emplace_back(Alien(30 + i * 40, 48, radius, rot_direction, 20, 12,
-                                 Behavior::circles));
-      }
-      for (int i = 1; i < 7; i++) {
-        int shuffle_dir = (i % 3 == 0 ? 1 : -1);
-        enemy.emplace_back(Alien(i * widthSpacer0, 70, shuffle_dir * 20, 8, 20,
-                                 12, Behavior::side_to_side));
-      }
-      enemy.emplace_back(Alien(Globals::kScreenWidth / 3.0,
-                               3.0 * Globals::kScreenHeight / 5.0, -999, -999,
-                               15, 15, Behavior::sniper));
-      enemy.emplace_back(Alien(Globals::kScreenWidth / 3.0,
-                               3.0 * Globals::kScreenHeight / 5.0, -999, -999,
-                               15, 15, Behavior::sniper));
-      break;
-    case 1:
-      Globals::CUTSCENE = true;
-      for (int i = 1; i < 7; i++) {
-        int shuffle_dir = 1;
-        enemy.emplace_back(Alien(i * widthSpacer0, 10, shuffle_dir * 20, 8, 20,
-                                 12, Behavior::side_to_side));
-      }
-      break;
-    case 2:
-      Globals::CUTSCENE = true;
-      // create enemies
-      for (int i = 1; i < 5; i++) {
-        enemy.emplace_back(
-            Alien(100, 25 * i, 0, 0, 20, 14, Behavior::side_to_side));
-      }
-      break;
-    case 3:
-      Globals::CUTSCENE = true;
-      // create enemies
-      for (int i = 2; i <= 5; i++) {
-        int rot_direction = (i % 2 == 0 ? -1 : 1);
-        int radius = 30;
-        enemy.emplace_back(Alien(30 + i * 40, 48, radius, rot_direction, 15, 8,
-                                 Behavior::circles));
-      }
-      for (int i = 1; i < 7; i++) {
-        int shuffle_dir = 1;
-        enemy.emplace_back(Alien(i * widthSpacer0, 70, shuffle_dir * 20, 8, 12,
-                                 8, Behavior::side_to_side));
-      }
-      break;
-    default:
-      break;
+      case 0:
+        Globals::CUTSCENE = true;
+        for (int i = 2; i <= 5; i++) {
+          int rot_direction = (i % 2 == 0 ? -1 : 1);
+          int radius = 30;
+          enemy.emplace_back(Alien(30 + i * 40, 48, radius, rot_direction, 20, 12,
+                Behavior::circles));
+        }
+        for (int i = 1; i < 7; i++) {
+          int shuffle_dir = (i % 3 == 0 ? 1 : -1);
+          enemy.emplace_back(Alien(i * widthSpacer0, 70, shuffle_dir * 20, 8, 20,
+                12, Behavior::side_to_side));
+        }
+        enemy.emplace_back(Alien(Globals::kScreenWidth / 3.0,
+              2.0 * Globals::kScreenHeight / 4.0, -999, -999,
+              15, 15, Behavior::sniper));
+        enemy.emplace_back(Alien(Globals::kScreenWidth / 3.0,
+              3.0 * Globals::kScreenHeight / 5.0, -999, -999,
+              15, 15, Behavior::sniper));
+        break;
+      case 1:
+        Globals::CUTSCENE = true;
+        for (int i = 1; i < 7; i++) {
+          int shuffle_dir = 1;
+          enemy.emplace_back(Alien(i * widthSpacer0, 10, shuffle_dir * 20, 8, 20,
+                12, Behavior::side_to_side));
+        }
+        break;
+      case 2:
+        Globals::CUTSCENE = true;
+        // create enemies
+        for (int i = 1; i < 5; i++) {
+          enemy.emplace_back(
+              Alien(100, 25 * i, 0, 0, 20, 14, Behavior::side_to_side));
+        }
+        break;
+      case 3:
+        Globals::CUTSCENE = true;
+        // create enemies
+        for (int i = 2; i <= 5; i++) {
+          int rot_direction = (i % 2 == 0 ? -1 : 1);
+          int radius = 30;
+          enemy.emplace_back(Alien(30 + i * 40, 48, radius, rot_direction, 15, 8,
+                Behavior::circles));
+        }
+        for (int i = 1; i < 7; i++) {
+          int shuffle_dir = 1;
+          enemy.emplace_back(Alien(i * widthSpacer0, 70, shuffle_dir * 20, 8, 12,
+                8, Behavior::side_to_side));
+        }
+        break;
+      default:
+        break;
     };
     // Create Background
     for (int i = 0; i < Globals::kRainDropCount; i++) {
@@ -156,9 +156,9 @@ struct Example : public olcConsoleGameEngine {
     if (m_keys[VK_SPACE].bPressed) {
       // Create Bullets
       bullet.emplace_back(playerPos[0] + Globals::kPlayerWidth / 2 + 2,
-                          playerPos[1] - 1 + 2, 0, Globals::kBulletSpeed);
+          playerPos[1] - 1 + 2, 0, Globals::kBulletSpeed);
       bullet.emplace_back(playerPos[0] + Globals::kPlayerWidth / 2 + -2,
-                          playerPos[1] - 1 + 2, 0, Globals::kBulletSpeed);
+          playerPos[1] - 1 + 2, 0, Globals::kBulletSpeed);
     }
 
     // Update Player Position
@@ -172,8 +172,8 @@ struct Example : public olcConsoleGameEngine {
 
     // Partition and Erase Dead Enemy Bullets
     auto last_alive_it =
-        partition(enemy_bullet.begin(), enemy_bullet.end(),
-                  [](const Bullet &b) { return b.Alive == true; });
+      partition(enemy_bullet.begin(), enemy_bullet.end(),
+          [](const Bullet &b) { return b.Alive == true; });
     enemy_bullet.erase(last_alive_it, enemy_bullet.end());
 
     // Erase Dead Enemies
@@ -185,20 +185,20 @@ struct Example : public olcConsoleGameEngine {
 
     // Partition and Erase Dead Player bullets
     auto _last_alive_it =
-        partition(bullet.begin(), bullet.end(),
-                  [](const Bullet &b) { return b.Alive == true; });
+      partition(bullet.begin(), bullet.end(),
+          [](const Bullet &b) { return b.Alive == true; });
     bullet.erase(_last_alive_it, bullet.end());
 
     // Partition and Erase Dead Bullet Explosions
     auto _last_alive =
-        partition(exploding_bullet.begin(), exploding_bullet.end(),
-                  [](const ParticleEffect2 &pe) { return pe.Alive == true; });
+      partition(exploding_bullet.begin(), exploding_bullet.end(),
+          [](const ParticleEffect2 &pe) { return pe.Alive == true; });
     exploding_bullet.erase(_last_alive, exploding_bullet.end());
 
     // Partition and Erase Dead Enemy Explosions
     auto _last_alive_e =
-        partition(exploding_enemy.begin(), exploding_enemy.end(),
-                  [](const ParticleEffect3 &pe) { return pe.Alive == true; });
+      partition(exploding_enemy.begin(), exploding_enemy.end(),
+          [](const ParticleEffect3 &pe) { return pe.Alive == true; });
     exploding_enemy.erase(_last_alive_e, exploding_enemy.end());
 
     // Update Player Bullet Positions
@@ -214,7 +214,7 @@ struct Example : public olcConsoleGameEngine {
       enemy_bullet[i].Pos[0] += enemy_bullet[i].Vel[0] * fElapsedTime;
       if (enemy_bullet[i].Pos[1] > Globals::kScreenHeight) { enemy_bullet[i].Alive = false; }
 
-    // Check for Player Collisions with Bullet
+      // Check for Player Collisions with Bullet
       if (Collision::PlayerGotHit(playerPos, enemy_bullet[i])) {
         enemy_bullet[i].Alive = false;
         playerHealth--;
@@ -230,7 +230,9 @@ struct Example : public olcConsoleGameEngine {
       float enemyCenterX = e.Pos[0] + e.width / 2.0;
       float enemyCenterY = e.Pos[1] + e.height / 2.0;
       float distance = Globals::Distance(playerCenterX, playerCenterY,
-                                         enemyCenterX, enemyCenterY);
+          enemyCenterX, enemyCenterY);
+
+
       // Fire Non-Sniper shots
       if (e.attitude != Behavior::sniper &&
           Alien::IsGoodToShoot(e, playerPos, fElapsedTime)) {
@@ -259,7 +261,7 @@ struct Example : public olcConsoleGameEngine {
         }
       }
     } 
-
+    
     // Update exploding Bullets
     for (auto &ex : exploding_bullet) {
       ex.Update(fElapsedTime);
@@ -302,32 +304,32 @@ struct Example : public olcConsoleGameEngine {
     // Draw Bullets
     for (auto &b : bullet) {
       Drawing::DrawBullet(*this, b.Pos[0], b.Pos[1], Globals::kBulletWidth,
-                          Globals::kBulletHeight);
+          Globals::kBulletHeight);
     }
 
     // Draw Enemy Bullets
     for (auto i = 0; i < enemy_bullet.size(); i++) {
       Drawing::DrawBullet(*this, enemy_bullet[i].Pos[0], enemy_bullet[i].Pos[1],
-                          Globals::kBulletWidth, Globals::kBulletHeight);
+          Globals::kBulletWidth, Globals::kBulletHeight);
     }
 
     // Draw Enemies
     for (auto &e : enemy) {
       Drawing::DrawEnemy(*this, e);
     }
-
     // Draw Player Healthbar
     Drawing::DrawHealthBar(*this, playerHealth);
+
+    // Draw Exploding Enemies
+    for (auto &ex_e : exploding_enemy) {
+      Drawing::DrawExplodingEnemy(*this, ex_e);
+    }
 
     // Draw Exploding Bullets
     for (auto &ex_b : exploding_bullet) {
       Drawing::DrawExplodingBullet(*this, ex_b);
     }
 
-    // Draw Exploding Enemies
-    for (auto &ex_e : exploding_enemy) {
-      Drawing::DrawExplodingEnemy(*this, ex_e);
-    }
 
     //######################################################
     //################### End Drawing ####################
@@ -351,7 +353,7 @@ int main() {
   //
   Example game;
   game.ConstructConsole(Globals::kScreenWidth, Globals::kScreenHeight,
-                        Globals::kPixelSize, Globals::kPixelSize);
+      Globals::kPixelSize, Globals::kPixelSize);
   game.Start();
   return 0;
 }

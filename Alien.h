@@ -92,6 +92,12 @@ struct Alien {
         break;
     };
   }
+
+
+
+
+
+
   float getCenterX() const { return Pos[0] + width / 2.0; }
   float getCenterY() const { return Pos[1] + height / 2.0; }
   static bool GotHit(const Alien &, const Bullet &);
@@ -103,7 +109,6 @@ struct Alien {
 
 bool Alien::IsGoodToShoot(const Alien& a, const float* playerPos, const float& fElapsed)
 {
-  // TODO: raycast to player
   if (a.TimeSinceFired > Globals::kEnemyReloadingTime && fabs(*playerPos + (Globals::kPlayerWidth / 2) -
         (a.Pos[0] + a.width / 2)) < 3.0) {
     a.TimeSinceFired = 0.0; // reset reloading timer
@@ -116,7 +121,6 @@ bool Alien::IsGoodToShoot(const Alien& a, const float* playerPos, const float& f
 
 bool Alien::IsSniperGoodToShoot(const Alien& a, const float* playerPos, const float& fElapsed)
 {
-  // TODO: raycast to player
   if (a.TimeSinceFired > Globals::kEnemyReloadingTime * 2.0) {
     a.TimeSinceFired = 0.0; // reset reloading timer
     return true;
