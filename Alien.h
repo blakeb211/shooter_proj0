@@ -16,8 +16,12 @@ struct Alien {
     Vel[1] = vy;
     this->width = width;
     this->height = height;
-    Health = 2;
     attitude = b;
+    if (attitude == Behavior::sniper) {
+      Health = 4;
+    } else {
+      Health = 2;
+    }
     Cracked = false;
     TimeSinceFired = 0;
     GoalPos[0] = 3.0 * Globals::kScreenWidth / 4.0;

@@ -36,6 +36,29 @@ struct Example : public olcConsoleGameEngine {
     switch (Globals::Level) {
       case 0:
         Globals::CUTSCENE = true;
+        for (int i = 1; i < 7; i++) {
+          int shuffle_dir = 1;
+          enemy.emplace_back(Alien(i * widthSpacer0, widthSpacer0*2, shuffle_dir * 20, 8, 20,
+                12, Behavior::side_to_side));
+        }
+        for (int i = 1; i < 7; i++) {
+          int shuffle_dir = -1;
+          enemy.emplace_back(Alien(i * widthSpacer0, widthSpacer0*5, shuffle_dir * 20, 8, 20,
+                12, Behavior::side_to_side));
+        }
+        for (int i = 1; i < 3; i++) {
+          int shuffle_dir = -1;
+          enemy.emplace_back(Alien(i * widthSpacer0 + widthSpacer0*3, widthSpacer0*1, shuffle_dir * 40, 8, 20,
+                12, Behavior::side_to_side));
+        }
+        for (int i = 1; i < 3; i++) {
+          int shuffle_dir = +1;
+          enemy.emplace_back(Alien(i * widthSpacer0 + widthSpacer0*1, widthSpacer0*1, shuffle_dir * 40, 8, 20,
+                12, Behavior::side_to_side));
+        }
+        break;
+      case 1:
+        Globals::CUTSCENE = true;
         for (int i = 2; i <= 5; i++) {
           int rot_direction = (i % 2 == 0 ? -1 : 1);
           int radius = 30;
@@ -53,14 +76,6 @@ struct Example : public olcConsoleGameEngine {
         enemy.emplace_back(Alien(Globals::kScreenWidth / 3.0,
               3.0 * Globals::kScreenHeight / 5.0, -999, -999,
               15, 15, Behavior::sniper));
-        break;
-      case 1:
-        Globals::CUTSCENE = true;
-        for (int i = 1; i < 7; i++) {
-          int shuffle_dir = 1;
-          enemy.emplace_back(Alien(i * widthSpacer0, 10, shuffle_dir * 20, 8, 20,
-                12, Behavior::side_to_side));
-        }
         break;
       case 2:
         Globals::CUTSCENE = true;
@@ -170,57 +185,10 @@ struct Example : public olcConsoleGameEngine {
     //############## End User Input Handling ###############
     //######################################################
 
-    // Partition and Erase Dead Enemy Bullets
-    auto last_alive_it =
-      partition(enemy_bullet.begin(), enemy_bullet.end(),
-          [](const Bullet &b) { return b.Alive == true; });
-    enemy_bullet.erase(last_alive_it, enemy_bullet.end());
 
-    // Erase Dead Enemies
-    for (auto it = begin(enemy); it != end(enemy); it++) {
-      if (it->Health <= 0) {
-        enemy.erase(it);
-      }
-    }
 
-    // Partition and Erase Dead Player bullets
-    auto _last_alive_it =
-      partition(bullet.begin(), bullet.end(),
-          [](const Bullet &b) { return b.Alive == true; });
-    bullet.erase(_last_alive_it, bullet.end());
 
-    // Partition and Erase Dead Bullet Explosions
-    auto _last_alive =
-      partition(exploding_bullet.begin(), exploding_bullet.end(),
-          [](const ParticleEffect2 &pe) { return pe.Alive == true; });
-    exploding_bullet.erase(_last_alive, exploding_bullet.end());
 
-    // Partition and Erase Dead Enemy Explosions
-    auto _last_alive_e =
-      partition(exploding_enemy.begin(), exploding_enemy.end(),
-          [](const ParticleEffect3 &pe) { return pe.Alive == true; });
-    exploding_enemy.erase(_last_alive_e, exploding_enemy.end());
-
-    // Update Player Bullet Positions
-    for (auto &b : bullet) {
-      b.Pos[1] += b.Vel[1] * fElapsedTime;
-      // kill player bullet if it goes off screen
-      if (b.Pos[1] < 0) { b.Alive = false; }
-    }
-
-    // Update Enemy Bullet Positions
-    for (auto i = 0; i < enemy_bullet.size(); i++) {
-      enemy_bullet[i].Pos[1] += enemy_bullet[i].Vel[1] * fElapsedTime;
-      enemy_bullet[i].Pos[0] += enemy_bullet[i].Vel[0] * fElapsedTime;
-      if (enemy_bullet[i].Pos[1] > Globals::kScreenHeight) { enemy_bullet[i].Alive = false; }
-
-      // Check for Player Collisions with Bullet
-      if (Collision::PlayerGotHit(playerPos, enemy_bullet[i])) {
-        enemy_bullet[i].Alive = false;
-        playerHealth--;
-        exploding_bullet.emplace_back(enemy_bullet[i], playerPos);
-      }
-    }
 
     for (auto &e : enemy) {
       // Update Enemy Positions
@@ -232,21 +200,23 @@ struct Example : public olcConsoleGameEngine {
       float distance = Globals::Distance(playerCenterX, playerCenterY,
           enemyCenterX, enemyCenterY);
 
-
       // Fire Non-Sniper shots
       if (e.attitude != Behavior::sniper &&
           Alien::IsGoodToShoot(e, playerPos, fElapsedTime)) {
         enemy_bullet.emplace_back(
-            enemyCenterX, e.Pos[1] + e.height + 1,
-            (playerCenterX / distance - enemyCenterX / distance) * 95, +95);
+            enemyCenterX + 1*Globals::kBulletWidth, e.Pos[1] + e.height + 1,
+            ((playerCenterX+2*Globals::kBulletWidth) / distance - enemyCenterX / distance) * 110, +110);
+        enemy_bullet.emplace_back(
+            enemyCenterX - 1*Globals::kBulletWidth, e.Pos[1] + e.height + 1,
+            ((playerCenterX-2*Globals::kBulletWidth) / distance - enemyCenterX / distance) * 110, +110);
       }
       // Fire Sniper Shots
       if (e.attitude == Behavior::sniper &&
           Alien::IsSniperGoodToShoot(e, playerPos, fElapsedTime)) {
         enemy_bullet.emplace_back(
             enemyCenterX, e.Pos[1] + e.height + 1,
-            (playerCenterX / distance - enemyCenterX / distance) * 120,
-            (playerCenterY / distance - enemyCenterY / distance) * 120);
+            (playerCenterX / distance - enemyCenterX / distance) * 140,
+            (playerCenterY / distance - enemyCenterY / distance) * 140);
       }
       // Check for Enemy Collisions with Bullet
       for (auto &b : bullet) {
@@ -261,20 +231,103 @@ struct Example : public olcConsoleGameEngine {
         }
       }
     } 
-    
-    // Update exploding Bullets
-    for (auto &ex : exploding_bullet) {
-      ex.Update(fElapsedTime);
-    }
+
+
+
+    //######################################################
+    //################### Begin Drawing ####################
+    //######################################################
+    // Clear Screen
+    Drawing::ClearScreen(*this);
+
     // Update rain
+    // Draw Rain
     for (auto &d : rain) {
       d.Fall(fElapsedTime);
+      Drawing::DrawRain(*this, d);
     }
 
-    // Update exploding Enemies
-    for (auto &ex : exploding_enemy) {
-      ex.Update(fElapsedTime);
+    // Draw Player
+    Drawing::DrawPlayer(*this, playerPos);
+
+    // Partition and Erase Dead Player bullets
+    auto _last_alive_it =
+      partition(bullet.begin(), bullet.end(),
+          [](const Bullet &b) { return b.Alive == true; });
+    bullet.erase(_last_alive_it, bullet.end());
+    // Draw Player Bullets
+    for (auto &b : bullet) {
+      // Update Player Bullet Positions
+      b.Pos[1] += b.Vel[1] * fElapsedTime;
+      // kill player bullet if it goes off screen
+      if (b.Pos[1] < 0) { b.Alive = false; }
+      Drawing::DrawBullet(*this, b.Pos[0], b.Pos[1], Globals::kBulletWidth,
+          Globals::kBulletHeight);
     }
+
+    // Partition and Erase Dead Enemy Bullets
+    auto last_alive_it =
+      partition(enemy_bullet.begin(), enemy_bullet.end(),
+          [](const Bullet &b) { return b.Alive == true; });
+    enemy_bullet.erase(last_alive_it, enemy_bullet.end());
+    // Draw Enemy Bullets
+    for (auto i = 0; i < enemy_bullet.size(); i++) {
+      // Update Enemy Bullet Positions
+      enemy_bullet[i].Pos[1] += enemy_bullet[i].Vel[1] * fElapsedTime;
+      enemy_bullet[i].Pos[0] += enemy_bullet[i].Vel[0] * fElapsedTime;
+      if (enemy_bullet[i].Pos[1] > Globals::kScreenHeight) { enemy_bullet[i].Alive = false; }
+
+      // Check for Player Collisions with Bullet
+      if (enemy_bullet[i].Alive && Collision::PlayerGotHit(playerPos, enemy_bullet[i])) {
+        enemy_bullet[i].Alive = false;
+        playerHealth--;
+        exploding_bullet.emplace_back(enemy_bullet[i], playerPos);
+      }
+      Drawing::DrawBullet(*this, enemy_bullet[i].Pos[0], enemy_bullet[i].Pos[1],
+          Globals::kBulletWidth, Globals::kBulletHeight);
+    }
+
+
+    // Erase Dead Enemies
+    for (auto it = begin(enemy); it != end(enemy); it++) {
+      if (it->Health <= 0) { enemy.erase(it); }
+    }
+    // Draw Enemies
+    for (auto &e : enemy) {
+      Drawing::DrawEnemy(*this, e);
+    }
+
+    // Draw Player Healthbar
+    Drawing::DrawHealthBar(*this, playerHealth);
+
+    // Erase Dead Enemy Explosions
+    auto _last_alive_e =
+      partition(exploding_enemy.begin(), exploding_enemy.end(),
+          [](const ParticleEffect3 &pe) { return pe.Alive == true; });
+    exploding_enemy.erase(_last_alive_e, exploding_enemy.end());
+    // Draw Exploding Enemies
+    for (auto &ex : exploding_enemy) {
+      // Update exploding Enemies
+      ex.Update(fElapsedTime);
+      Drawing::DrawExplodingEnemy(*this, ex);
+    }
+
+    // Erase Dead Bullet Explosions
+    auto _last_alive =
+      partition(exploding_bullet.begin(), exploding_bullet.end(),
+          [](const ParticleEffect2 &pe) { return pe.Alive == true; });
+    exploding_bullet.erase(_last_alive, exploding_bullet.end());
+    // Draw Exploding Bullets
+    for (auto &ex : exploding_bullet) {
+      // Update exploding Bullets
+      ex.Update(fElapsedTime);
+      Drawing::DrawExplodingBullet(*this, ex);
+    }
+
+    //######################################################
+    //################### End Drawing ####################
+    //######################################################
+
     // Restart Level if Player Dead
     if (playerHealth <= 0) {
       OnUserCreate();
@@ -287,53 +340,6 @@ struct Example : public olcConsoleGameEngine {
       OnUserCreate();
     }
 
-    //######################################################
-    //################### Begin Drawing ####################
-    //######################################################
-    // Clear Screen
-    Drawing::ClearScreen(*this);
-
-    // Draw Rain
-    for (auto &d : rain) {
-      Drawing::DrawRain(*this, d);
-    }
-
-    // Draw Player
-    Drawing::DrawPlayer(*this, playerPos);
-
-    // Draw Bullets
-    for (auto &b : bullet) {
-      Drawing::DrawBullet(*this, b.Pos[0], b.Pos[1], Globals::kBulletWidth,
-          Globals::kBulletHeight);
-    }
-
-    // Draw Enemy Bullets
-    for (auto i = 0; i < enemy_bullet.size(); i++) {
-      Drawing::DrawBullet(*this, enemy_bullet[i].Pos[0], enemy_bullet[i].Pos[1],
-          Globals::kBulletWidth, Globals::kBulletHeight);
-    }
-
-    // Draw Enemies
-    for (auto &e : enemy) {
-      Drawing::DrawEnemy(*this, e);
-    }
-    // Draw Player Healthbar
-    Drawing::DrawHealthBar(*this, playerHealth);
-
-    // Draw Exploding Enemies
-    for (auto &ex_e : exploding_enemy) {
-      Drawing::DrawExplodingEnemy(*this, ex_e);
-    }
-
-    // Draw Exploding Bullets
-    for (auto &ex_b : exploding_bullet) {
-      Drawing::DrawExplodingBullet(*this, ex_b);
-    }
-
-
-    //######################################################
-    //################### End Drawing ####################
-    //######################################################
     return true;
   }
   // Game globals

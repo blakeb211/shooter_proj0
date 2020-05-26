@@ -26,7 +26,7 @@ namespace Drawing {
   void DrawBullet(olcConsoleGameEngine& game, float xpos, float ypos, int width, int height) {
     game.Fill(round(xpos), round(ypos),
         round(xpos + width),
-        round(ypos + height), L'O', 215);
+        round(ypos + height), L'O', 205);
   }
 
   void DrawHealthBar(olcConsoleGameEngine& game, int& health) {
@@ -74,7 +74,7 @@ namespace Drawing {
     // draw each frag
     for(auto & f : pe.frags) {
       if ((int)round(f.x) % 2 == 0) {
-        game.FillCircle(round(f.x), round(f.y), 1, L'O', 208);
+        game.FillCircle(round(f.x), round(f.y), 1, L'O', 205);
       } else { 
         game.FillCircle(round(f.x), round(f.y), 1, L'O', 205);
       }

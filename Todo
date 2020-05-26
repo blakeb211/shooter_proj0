@@ -1,14 +1,16 @@
 TODO Space Invaders
 
 DESIRED FEATURES
-  Simple Level Editor
-  basic animations
-
-  FIXES TO IMPLEMENT
-  Pre-Generate Sniper GoalPos at level load so game is deterministic
-  Pre-Generate Crack
+  Pre-Generate Sniper GoalPos at level load
+  Pre-Generate Sniper starting timer increment
+  Make levels increasingly hard
+  Add basic Sound
+  Center Level Loading Screen
+  Put instructions on the Level Loading screen
+  ADD YOU WON THE GAME SCREEN WITH STATS 
 
 DONE
+  Make enemies more dangerous
   Improve collision code
   Make a collision namespace
   Fix Sniper Shooting 
@@ -33,6 +35,7 @@ DONE
   Pause button
 
   DESIRED FEATURES FOR FUTURE 
+    Basic animations
     Aliens avoid eachother
     Bullets explode eachother
     MUSIC

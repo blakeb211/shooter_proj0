@@ -16,7 +16,7 @@ namespace Globals {
   constexpr int kBulletSpeed = -160;
   constexpr int kBulletWidth = 2;
   constexpr int kBulletHeight = 5;
-  const float kEnemyReloadingTime = 0.9;
+  const float kEnemyReloadingTime = 0.7;
   // HealthBar
   const int kHealthBarRadius = 5;
   // Game state
@@ -34,5 +34,4 @@ namespace Globals {
  float Distance(float x, float y, float x2, float y2) {
     return sqrt(pow(x - x2,  2) + pow(y - y2, 2));
   }
-
 } // namespace Globals
