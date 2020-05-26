@@ -339,3 +339,6 @@ ASALocalRun/
 # BeatPulse healthcheck temp database
 healthchecksdb
 /main.cpp.exe
+*.swp
+/Alien.h.exe
+/ParticleEffect.h.exe

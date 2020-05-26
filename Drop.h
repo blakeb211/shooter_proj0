@@ -10,11 +10,11 @@ struct Drop {
   static int dropHeight;
   int dropColor;
   int yspeed;
-  Drop() {
+  Drop(int _level) {
     x = rand() % (int)Globals::kScreenWidth;
     y = rand() % (int)Globals::kScreenHeight;
-    yspeed = 25 + rand() % 20; 
-    dropColor = 152 + (rand() % 5);
+    yspeed = 15 + rand() % 20; 
+    dropColor = 152+10*_level + (rand() % 5);
   }
   void Fall(float fElapsed) {
     y += yspeed*fElapsed;
@@ -25,4 +25,4 @@ struct Drop {
   }
 };
 int Drop::dropWidth = 1;
-int Drop::dropHeight = 6;
+int Drop::dropHeight = 3;

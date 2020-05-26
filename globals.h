@@ -1,22 +1,24 @@
+// globals.h - Contains the Globals namespace used to hold globally 
+//             used variables and free functions
+
 #pragma once
 #include "stdlibs.h"
 #include "Bullet.h"
 namespace Globals {
   // Player
-  const int kPlayerWidth = 8;
-  const int kPlayerHeight = 5;
+  const int kPlayerWidth = 10;
+  const int kPlayerHeight = 6;
   const float kPlayerSpeed = 165;
-  constexpr float kScreenWidth = 360;
+  constexpr float kScreenWidth = 500;
   constexpr float kScreenHeight = kScreenWidth * 9 / 16;
   const int kLivesPerLevel = 3;
   // Bullet
+  constexpr int kBulletSpeed = -160;
   constexpr int kBulletWidth = 2;
   constexpr int kBulletHeight = 5;
-  float kBulletSpeed = -160;
-  float kEnemyBulletSpeed = +90;
   const float kEnemyReloadingTime = 0.9;
   // HealthBar
-  const int kHealthBarRadius = 3;
+  const int kHealthBarRadius = 5;
   // Game state
   int Level = 0;							// what level are we on
   bool PAUSE = false;	    				// is game paused
@@ -26,9 +28,12 @@ namespace Globals {
   float TotalTime = 0.0; 
   const int kPixelSize = 2;
   // Rain
-  const int kRainDropCount = 140;
+  const int kRainDropCount = 165;
 
   // Member functions
+  float Distance(float x, float y, float x2, float y2) {
+    return sqrt(pow(x - x2,  2) + pow(y - y2, 2));
+  }
   bool PlayerGotHit(const float * playerPos, const Bullet& b) {
     int rightP = *playerPos + Globals::kPlayerWidth;
     int leftP = *playerPos;

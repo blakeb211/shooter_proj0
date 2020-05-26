@@ -1,19 +1,21 @@
 TODO Space Invaders
 
 DESIRED FEATURES
-  add alien bounce into other alien
-  Bullet disintegration when it hits
-  Prevent Alien Collisions
+  More enemy behaviors - sniper
+  Fix collision code
+  Debug Sniper
+  Fix Sniper Shooting 
+  Fix Sniper Start Position
+  add aliens avoid eachother
   Simple Level Editor
-  More enemy behaviors
-  PLAYER ANIMATIONS
-
-PLAYER ADVACED ATTACKS
-		LAY TIMED ATTACKS
-    shoot up a beam
-		
+  basic animations
 
 DONE
+  Enemies drawn based on their color 
+  Increase screen size
+  correct enemy explosion to look like its exploding away from impact
+  Rain color changes each level
+  Bullet disintegration when it hits
   add alien attack
   add player health bar
   add level reset on player lives == 0
@@ -29,6 +31,5 @@ DONE
   Pause button
 
   DESIRED FEATURES FOR FUTURE 
-    More realistic explosions
     MUSIC
     SOUNDS
