@@ -9,6 +9,7 @@
 #include "globals.h"
 #include "olcConsoleGameEngine.h"
 #include "stdlibs.h"
+#include "Collision.h"
 
 struct Example : public olcConsoleGameEngine {
   // This function is called at the beginning of each level
@@ -203,37 +204,41 @@ struct Example : public olcConsoleGameEngine {
     // Update Player Bullet Positions
     for (auto &b : bullet) {
       b.Pos[1] += b.Vel[1] * fElapsedTime;
-      bool _currAliveState = b.Alive;
       // kill player bullet if it goes off screen
-      b.Alive = b.Pos[1] < 0 ? false : _currAliveState;
+      if (b.Pos[1] < 0) { b.Alive = false; }
     }
 
     // Update Enemy Bullet Positions
     for (auto i = 0; i < enemy_bullet.size(); i++) {
       enemy_bullet[i].Pos[1] += enemy_bullet[i].Vel[1] * fElapsedTime;
       enemy_bullet[i].Pos[0] += enemy_bullet[i].Vel[0] * fElapsedTime;
-      bool _currAliveState = enemy_bullet[i].Alive;
-      // kill enemy bullet if it goes off screen
-      enemy_bullet[i].Alive = enemy_bullet[i].Pos[1] > Globals::kScreenHeight
-                                  ? false
-                                  : _currAliveState;
+      if (enemy_bullet[i].Pos[1] > Globals::kScreenHeight) { enemy_bullet[i].Alive = false; }
+
+    // Check for Player Collisions with Bullet
+      if (Collision::PlayerGotHit(playerPos, enemy_bullet[i])) {
+        enemy_bullet[i].Alive = false;
+        playerHealth--;
+        exploding_bullet.emplace_back(enemy_bullet[i], playerPos);
+      }
     }
 
-    // Update Enemy Position and Fire Shots
     for (auto &e : enemy) {
+      // Update Enemy Positions
       e.UpdatePosition(fElapsedTime);
       float playerCenterX = playerPos[0] + Globals::kPlayerWidth / 2.0;
-      float playerCenterY = playerPos[1] + Globals::kPlayerHeight / 2.0;
+      float playerCenterY = playerPos[1]; 
       float enemyCenterX = e.Pos[0] + e.width / 2.0;
       float enemyCenterY = e.Pos[1] + e.height / 2.0;
       float distance = Globals::Distance(playerCenterX, playerCenterY,
                                          enemyCenterX, enemyCenterY);
+      // Fire Non-Sniper shots
       if (e.attitude != Behavior::sniper &&
           Alien::IsGoodToShoot(e, playerPos, fElapsedTime)) {
         enemy_bullet.emplace_back(
             enemyCenterX, e.Pos[1] + e.height + 1,
             (playerCenterX / distance - enemyCenterX / distance) * 95, +95);
       }
+      // Fire Sniper Shots
       if (e.attitude == Behavior::sniper &&
           Alien::IsSniperGoodToShoot(e, playerPos, fElapsedTime)) {
         enemy_bullet.emplace_back(
@@ -243,27 +248,18 @@ struct Example : public olcConsoleGameEngine {
       }
       // Check for Enemy Collisions with Bullet
       for (auto &b : bullet) {
-        if (Alien::GotHit(e, b)) {
+        if (Collision::AlienGotHit(e, b)) {
           b.Alive = false;
           e.Health--;
           e.Cracked = true;
+          exploding_bullet.emplace_back(b, e);
           if (e.Health <= 0) {
             exploding_enemy.emplace_back(b, e);
           }
         }
-        if (e.Health <= 0) {
-          exploding_bullet.emplace_back(b, e);
-        }
       }
-    }
-    // Check for Player Collisions with Bullet
-    for (auto &b : enemy_bullet) {
-      if (Globals::PlayerGotHit(playerPos, b)) {
-        b.Alive = false;
-        playerHealth--;
-        exploding_bullet.emplace_back(b, playerPos);
-      }
-    }
+    } 
+
     // Update exploding Bullets
     for (auto &ex : exploding_bullet) {
       ex.Update(fElapsedTime);
@@ -280,6 +276,7 @@ struct Example : public olcConsoleGameEngine {
     // Restart Level if Player Dead
     if (playerHealth <= 0) {
       OnUserCreate();
+      return true;
     }
 
     // Progress to Next level

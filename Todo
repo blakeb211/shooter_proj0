@@ -1,16 +1,19 @@
 TODO Space Invaders
 
 DESIRED FEATURES
-  More enemy behaviors - sniper
-  Fix collision code
-  Debug Sniper
-  Fix Sniper Shooting 
-  Fix Sniper Start Position
   add aliens avoid eachother
   Simple Level Editor
   basic animations
 
+  FIXES TO IMPLEMENT
+  Pre-Generate Sniper GoalPos at level load so game is deterministic
+  Pre-Generate Crack
+
 DONE
+  Improve collision code
+  Make a collision namespace
+  Fix Sniper Shooting 
+  More enemy behaviors - sniper
   Enemies drawn based on their color 
   Increase screen size
   correct enemy explosion to look like its exploding away from impact

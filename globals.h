@@ -34,20 +34,5 @@ namespace Globals {
   float Distance(float x, float y, float x2, float y2) {
     return sqrt(pow(x - x2,  2) + pow(y - y2, 2));
   }
-  bool PlayerGotHit(const float * playerPos, const Bullet& b) {
-    int rightP = *playerPos + Globals::kPlayerWidth;
-    int leftP = *playerPos;
-    int bottomP = *(playerPos + 1) + Globals::kPlayerHeight;
-    int topP = *(playerPos + 1);
-    int topBullet = b.Pos[1];
-    int bottomBullet = b.Pos[1] + Globals::kBulletHeight;
-    int leftBullet = b.Pos[0];
-    int rightBullet = b.Pos[0] + Globals::kBulletWidth;
-    if (rightBullet > leftP && leftBullet < rightP &&
-        bottomBullet > topP && bottomBullet < bottomP) {
-      return true;
-    } else {
-      return false;
-    }
-  } 
+
 } // namespace Globals

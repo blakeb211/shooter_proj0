@@ -87,8 +87,8 @@ struct Alien {
         }
         float DirX = (GoalPos[0] - Pos[0]) / fabs(GoalPos[0] - Pos[0]);
         float DirY = (GoalPos[1] - Pos[1]) / fabs(GoalPos[1] - Pos[1]);
-        Pos[0] += DirX * 9.5 * fElapsed;
-        Pos[1] += DirY * 9.5 * fElapsed;
+        Pos[0] += DirX * 16.0 * fElapsed;
+        Pos[1] += DirY * 16.0 * fElapsed;
         break;
     };
   }
@@ -100,21 +100,6 @@ struct Alien {
 };
 
 // Static method for alien-bullet collisions
-bool Alien::GotHit(const Alien &a, const Bullet &b) {
-  int rightAlien = a.Pos[0] + a.width; // each enemy has own size
-  int leftAlien = a.Pos[0];
-  int bottomAlien = a.Pos[1] + a.height;
-  int topAlien = a.Pos[1];
-  int topBullet = b.Pos[1];
-  int leftBullet = b.Pos[0];
-  int rightBullet = b.Pos[0] + Globals::kBulletWidth;
-  if (rightBullet > leftAlien && leftBullet < rightAlien &&
-      topBullet > topAlien && topBullet < bottomAlien) {
-    return true;
-  } else {
-    return false;
-  }
-}
 
 bool Alien::IsGoodToShoot(const Alien& a, const float* playerPos, const float& fElapsed)
 {
