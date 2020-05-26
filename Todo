@@ -5,11 +5,13 @@ DESIRED FEATURES
   Pre-Generate Sniper starting timer increment
   Make levels increasingly hard
   Add basic Sound
-  Center Level Loading Screen
-  Put instructions on the Level Loading screen
+
   ADD YOU WON THE GAME SCREEN WITH STATS 
+  Upload screenshots and video to github
 
 DONE
+  Center Level Loading Screen
+  Put instructions on the Level Loading screen
   Make enemies more dangerous
   Improve collision code
   Make a collision namespace

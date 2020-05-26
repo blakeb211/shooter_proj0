@@ -11,6 +11,7 @@ namespace Globals {
   const float kPlayerSpeed = 165;
   constexpr float kScreenWidth = 500;
   constexpr float kScreenHeight = kScreenWidth * 9 / 16;
+  constexpr int kSpacer = kScreenWidth / 15;
   const int kLivesPerLevel = 3;
   // Bullet
   constexpr int kBulletSpeed = -160;
@@ -24,7 +25,7 @@ namespace Globals {
   bool PAUSE = false;	    				// is game paused
   bool CUTSCENE = false;					// is game in a cutscene
   float CutSceneTimer = 0.0;
-  constexpr float kCutSceneLength = 1.75;	// seconds pause
+  constexpr float kCutSceneLength = 2.8;	// seconds pause
   float TotalTime = 0.0; 
   const int kPixelSize = 2;
   // Rain
