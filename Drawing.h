@@ -5,7 +5,7 @@
 #include "Alien.h"
 #include "Drop.h"
 #include "olcConsoleGameEngine.h"
-
+#include "ParticleEffect.h"
 namespace Drawing {
 
   void ClearScreen(olcConsoleGameEngine& game) {
